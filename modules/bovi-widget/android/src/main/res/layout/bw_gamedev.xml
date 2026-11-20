@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/bw_root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/bovi_widget_bg"
+  android:orientation="vertical"
+  android:padding="12dp">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+      android:id="@+id/bw_prev"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:background="@drawable/bw_button"
+      android:gravity="center"
+      android:text="‹"
+      android:textColor="#F3F4F6"
+      android:textSize="18sp" />
+    <TextView
+    android:id="@+id/bw_project"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Open BOVI to load projects"
+    android:textColor="#F3F4F6"
+    android:textSize="16sp"
+    android:textStyle="bold"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:layout_weight="1"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:gravity="center" />
+    <TextView
+      android:id="@+id/bw_next"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:background="@drawable/bw_button"
+      android:gravity="center"
+      android:text="›"
+      android:textColor="#F3F4F6"
+      android:textSize="18sp" />
+  </LinearLayout>
+  <TextView
+    android:id="@+id/bw_milestone"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text=""
+    android:textColor="#F3F4F6"
+    android:textSize="13sp"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:layout_marginTop="6dp" />
+  <ProgressBar
+    android:id="@+id/bw_progress"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:layout_width="match_parent"
+    android:layout_height="6dp"
+    android:indeterminate="false"
+    android:max="100"
+    android:progress="0"
+    android:progressDrawable="@drawable/bw_progress" android:layout_marginTop="4dp" />
+  <TextView
+    android:id="@+id/bw_meta"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text=""
+    android:textColor="#9CA3AF"
+    android:textSize="11sp"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:layout_marginTop="3dp" />
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:baselineAligned="true"
+      android:orientation="horizontal">
+      <Chronometer
+        android:id="@+id/bw_chrono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#2DD4BF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+      <TextView
+    android:id="@+id/bw_focus_status"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Focus"
+    android:textColor="#9CA3AF"
+    android:textSize="13sp"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:layout_marginStart="6dp" />
+    </LinearLayout>
+    <TextView
+      android:id="@+id/bw_minutes"
+      android:layout_width="wrap_content"
+      android:layout_height="34dp"
+      android:background="@drawable/bw_button"
+      android:gravity="center"
+      android:paddingStart="10dp"
+      android:paddingEnd="10dp"
+      android:text="25m"
+      android:textColor="#F3F4F6"
+      android:textSize="13sp" />
+    <TextView
+      android:id="@+id/bw_focus_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="34dp"
+      android:layout_marginStart="6dp"
+      android:background="@drawable/bw_button_primary"
+      android:gravity="center"
+      android:paddingStart="14dp"
+      android:paddingEnd="14dp"
+      android:text="Start"
+      android:textColor="#FFFFFF"
+      android:textSize="13sp"
+      android:textStyle="bold" />
+    <TextView
+      android:id="@+id/bw_idea"
+      android:layout_width="wrap_content"
+      android:layout_height="34dp"
+      android:layout_marginStart="6dp"
+      android:background="@drawable/bw_button"
+      android:gravity="center"
+      android:paddingStart="10dp"
+      android:paddingEnd="10dp"
+      android:text="+ Idea"
+      android:textColor="#FBBF24"
+      android:textSize="13sp" />
+  </LinearLayout>
+</LinearLayout>

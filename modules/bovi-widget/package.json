@@ -1,0 +1,7 @@
+{
+  "name": "bovi-widget",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Expo module: BOVI home-screen widget (next class, next exam, habits).",
+  "main": "index.ts"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "screen-time",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Expo module: Android app usage (screen time) via UsageStatsManager.",
+  "main": "index.ts"
+}

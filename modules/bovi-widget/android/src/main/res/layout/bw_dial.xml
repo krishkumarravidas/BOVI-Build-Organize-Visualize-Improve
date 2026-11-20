@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/bw_root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/bovi_widget_bg"
+  android:orientation="vertical"
+  android:padding="6dp">
+  <ImageView
+    android:id="@+id/bw_image"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:contentDescription="BOVI dial"
+    android:scaleType="fitCenter" />
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="32dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+      android:id="@+id/bw_dial_prev"
+      android:layout_width="40dp"
+      android:layout_height="30dp"
+      android:background="@drawable/bw_button"
+      android:contentDescription="Turn back 3 hours"
+      android:gravity="center"
+      android:text="◀"
+      android:textColor="#F3F4F6"
+      android:textSize="13sp" />
+    <TextView
+      android:id="@+id/bw_dial_label"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:ellipsize="end"
+      android:gravity="center"
+      android:maxLines="1"
+      android:text="Next 12 h"
+      android:textColor="#9CA3AF"
+      android:textSize="12sp"
+      android:textStyle="bold" />
+    <TextView
+      android:id="@+id/bw_dial_next"
+      android:layout_width="40dp"
+      android:layout_height="30dp"
+      android:background="@drawable/bw_button"
+      android:contentDescription="Turn forward 3 hours"
+      android:gravity="center"
+      android:text="▶"
+      android:textColor="#F3F4F6"
+      android:textSize="13sp" />
+  </LinearLayout>
+</LinearLayout>

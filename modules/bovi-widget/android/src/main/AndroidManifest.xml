@@ -1,0 +1,117 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <receiver
+      android:name="expo.modules.boviwidget.BoviWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_next">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bovi_widget_info" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.GlanceWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_glance">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_glance" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.TodayWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_today">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_today" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.HabitsWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_habits">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_habits" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.AttendanceWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_attendance">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_attendance" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.ExamWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_exam">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_exam" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.GameDevWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_gamedev">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_gamedev" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.DialWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_dial">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_dial" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.WeekWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_week">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_week" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.ScreenTimeWidgetProvider"
+      android:exported="true"
+      android:label="@string/bw_label_screentime">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/bw_info_screentime" />
+    </receiver>
+    <receiver
+      android:name="expo.modules.boviwidget.ActionReceiver"
+      android:exported="false" />
+  </application>
+</manifest>

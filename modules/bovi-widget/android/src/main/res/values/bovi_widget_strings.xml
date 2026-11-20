@@ -1,0 +1,22 @@
+<resources>
+  <string name="bw_label_next">BOVI</string>
+  <string name="bw_desc_next">Your current or next class, next exam and today\'s habits. Follows your College / Projects switch.</string>
+  <string name="bw_label_glance">BOVI Glance</string>
+  <string name="bw_desc_glance">One slim line: what\'s on now or next.</string>
+  <string name="bw_label_today">BOVI Today</string>
+  <string name="bw_desc_today">Today\'s classes and deadlines; tick off assignments.</string>
+  <string name="bw_label_habits">BOVI Habits</string>
+  <string name="bw_desc_habits">Tick off today\'s habits from the home screen.</string>
+  <string name="bw_label_attendance">BOVI Attendance</string>
+  <string name="bw_desc_attendance">Mark attendance after class and see how many you can skip.</string>
+  <string name="bw_label_exam">BOVI Exam</string>
+  <string name="bw_desc_exam">Countdown to your next exam with syllabus progress.</string>
+  <string name="bw_label_gamedev">BOVI Projects</string>
+  <string name="bw_desc_gamedev">Project progress, focus timer and a quick idea button.</string>
+  <string name="bw_label_dial">BOVI Dial</string>
+  <string name="bw_desc_dial">12 hours on a clock face. ◀ ▶ turn it through today and the next two days.</string>
+  <string name="bw_label_week">BOVI Week</string>
+  <string name="bw_desc_week">This week\'s progress rings.</string>
+  <string name="bw_label_screentime">BOVI Screen time</string>
+  <string name="bw_desc_screentime">Today\'s screen time against your limit, with top apps.</string>
+</resources>

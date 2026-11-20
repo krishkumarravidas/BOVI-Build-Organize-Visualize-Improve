@@ -1,0 +1,7 @@
+{
+  "name": "share-intent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Expo module: receive text, links and images shared to BOVI from other apps.",
+  "main": "index.ts"
+}

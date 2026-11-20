@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/bw_root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/bovi_widget_bg"
+  android:orientation="vertical"
+  android:padding="12dp">
+  
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+    android:id="@+id/bw_title"
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="wrap_content"
+    android:text="BOVI"
+    android:textColor="#A5B4FC"
+    android:textSize="11sp"
+    android:textStyle="bold"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:letterSpacing="0.08" />
+    <TextView
+    android:id="@+id/bw_header_meta"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text=""
+    android:textColor="#9CA3AF"
+    android:textSize="11sp"
+    android:maxLines="1"
+    android:ellipsize="end" />
+  </LinearLayout>
+  <TextView
+    android:id="@+id/bw_empty"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text=""
+    android:textColor="#9CA3AF"
+    android:textSize="13sp"
+    android:maxLines="3"
+    android:ellipsize="end"
+    android:layout_marginTop="6dp"
+    android:visibility="gone" />
+  
+  <LinearLayout
+    android:id="@+id/bw_rows"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:orientation="vertical" />
+</LinearLayout>
