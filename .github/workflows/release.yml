@@ -1,11 +1,25 @@
 name: Build Android APK
 
-# Push a tag like v1.0.0 to build the APK and publish it as a GitHub release.
-# "Run workflow" (manual) builds the APK as a downloadable artifact without releasing.
+# Release a version either way:
+#  - push a tag like v1.0.1, or
+#  - Actions → "Build Android APK" → Run workflow, enter the version (creates the tag + release).
+#    Untick "release" to only build the APK as a downloadable artifact.
 on:
   push:
     tags: ['v*']
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag to release, e.g. v1.0.1'
+        required: true
+        default: 'v1.0.0'
+      release:
+        description: 'Publish a GitHub release (otherwise only build the APK artifact)'
+        type: boolean
+        default: true
+
+env:
+  VERSION: ${{ github.event.inputs.version || github.ref_name }}
 
 permissions:
   contents: write
@@ -46,7 +60,7 @@ jobs:
 
       - name: Name the APK
         run: |
-          NAME="BOVI-${GITHUB_REF_NAME//\//-}.apk"
+          NAME="BOVI-${VERSION//\//-}.apk"
           cp android/app/build/outputs/apk/release/app-release.apk "$NAME"
           echo "APK=$NAME" >> "$GITHUB_ENV"
           ls -lh "$NAME"
@@ -57,9 +71,12 @@ jobs:
           path: ${{ env.APK }}
 
       - name: Publish release
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && github.event.inputs.release == 'true')
         uses: softprops/action-gh-release@v2
         with:
-          name: BOVI ${{ github.ref_name }}
+          tag_name: ${{ env.VERSION }}
+          target_commitish: ${{ github.sha }}
+          name: BOVI ${{ env.VERSION }}
           body_path: RELEASE_NOTES.md
           files: ${{ env.APK }}
+          make_latest: true
