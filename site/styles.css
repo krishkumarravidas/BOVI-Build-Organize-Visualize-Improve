@@ -140,8 +140,15 @@ h4 { font-size: 16px; margin: 0 0 6px; }
 
 /* ---------- gallery ---------- */
 .gallery { padding: 24px 0 88px; }
-.gallery-track { --edge: max(20px, calc((100% - 1120px) / 2)); display: flex; gap: 20px; overflow-x: auto; padding: 8px var(--edge) 24px; scroll-padding-inline: var(--edge); scroll-snap-type: x mandatory; }
-.gallery-track .phone { flex: 0 0 auto; width: 220px; min-width: 0; height: auto; scroll-snap-align: start; }
+.gallery-box { position: relative; }
+.gallery-track {
+  --col: 220px;
+  display: grid; grid-auto-flow: column; grid-auto-columns: var(--col); gap: 20px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  padding: 8px 4px 20px; scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.gallery-box::after { content: ''; position: absolute; top: 0; right: 0; bottom: 20px; width: 64px; pointer-events: none; background: linear-gradient(to right, transparent, var(--bg)); }
+.gallery-track .phone { width: 100%; max-width: var(--col); height: auto; scroll-snap-align: start; }
 
 /* ---------- privacy ---------- */
 .privacy { padding: 72px 0; border-top: 1px solid var(--border); }
@@ -189,5 +196,5 @@ h4 { font-size: 16px; margin: 0 0 6px; }
   .phone-front { transform: translateX(-5%); }
   .phone-back { transform: translateX(-88%) rotate(-6deg); }
   .footer-inner { flex-direction: column; gap: 8px; }
-  .gallery-track .phone { width: 170px; }
+  .gallery-track { --col: 170px; gap: 14px; }
 }
