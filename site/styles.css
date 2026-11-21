@@ -94,7 +94,7 @@ h4 { font-size: 16px; margin: 0 0 6px; }
 .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding: 72px 0 56px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-phones { position: relative; margin: 0; height: 600px; overflow: visible; }
-.hero-phones .phone { position: absolute; width: 270px; }
+.hero-phones .phone { position: absolute; width: 250px; }
 .phone-front { right: 40px; top: 0; z-index: 2; }
 .phone-back { right: 230px; top: 70px; transform: rotate(-6deg); opacity: 0.95; }
 
@@ -111,10 +111,10 @@ h4 { font-size: 16px; margin: 0 0 6px; }
 .ticks { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 10px; }
 .ticks li { position: relative; padding-left: 26px; }
 .ticks li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 12px; height: 2px; background: var(--primary); }
-.shots { display: grid; gap: 18px; align-items: start; }
-.shots-2 { grid-template-columns: repeat(2, 1fr); }
+.shots { display: grid; gap: 18px; align-items: start; justify-content: center; }
+.shots-2 { grid-template-columns: repeat(2, minmax(0, 230px)); }
 .shots-2 .phone:nth-child(2) { margin-top: 48px; }
-.shots-3 { grid-template-columns: repeat(3, 1fr); }
+.shots-3 { grid-template-columns: repeat(3, minmax(0, 190px)); }
 .shots-3 .phone:nth-child(2) { margin-top: 36px; }
 
 /* ---------- band ---------- */
@@ -182,7 +182,7 @@ h4 { font-size: 16px; margin: 0 0 6px; }
 @media (max-width: 560px) {
   body { font-size: 16px; }
   .pillars, .band-grid, .privacy-grid { grid-template-columns: 1fr; }
-  .shots-3 { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .shots-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .phone { border-radius: 18px; }
   .hero-phones { height: 440px; }
   .hero-phones .phone { width: 180px; }

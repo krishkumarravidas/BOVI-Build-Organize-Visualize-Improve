@@ -2,6 +2,7 @@
 // Usage: node scripts/build-site.mjs [outDir]
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const out = path.resolve(process.argv[2] ?? path.join(root, 'out'));
@@ -16,12 +17,17 @@ if (!m) throw new Error('ATTENDANCE_PROMPT not found');
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const prompt = esc(m[1].replace(/\\`/g, '`').replace(/\\\$/g, '$'));
 
+const css = fs.readFileSync(path.join(root, 'site/styles.css'));
+const cssHash = crypto.createHash('sha1').update(css).digest('hex').slice(0, 8);
+
 const html = fs
   .readFileSync(path.join(root, 'site/index.html'), 'utf8')
   .replaceAll('{{REPO}}', REPO)
   .replaceAll('{{APK}}', `${REPO}/releases/latest/download/BOVI.apk`)
   .replaceAll('{{VERSION}}', version)
-  .replaceAll('{{PROMPT}}', prompt);
+  .replaceAll('{{PROMPT}}', prompt)
+  // Cache-bust the stylesheet so a deploy shows up without a hard refresh.
+  .replace('href="styles.css"', `href="styles.css?v=${cssHash}"`);
 if (/\{\{\w+\}\}/.test(html)) throw new Error('Unfilled placeholder in index.html');
 
 fs.rmSync(out, { recursive: true, force: true });
