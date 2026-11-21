@@ -16,8 +16,8 @@ export function contrastRatio(a: string, b: string): number {
 }
 
 /** Black or white text, whichever reads better on `bg`. */
-export function readableOn(bg: string): '#FFFFFF' | '#111827' {
-  return contrastRatio('#FFFFFF', bg) >= contrastRatio('#111827', bg) ? '#FFFFFF' : '#111827';
+export function readableOn(bg: string): '#FFFFFF' | '#111111' {
+  return contrastRatio('#FFFFFF', bg) >= contrastRatio('#111111', bg) ? '#FFFFFF' : '#111111';
 }
 
 /** Solid colour `amount` (0–1) of the way from `base` to `tint`. */

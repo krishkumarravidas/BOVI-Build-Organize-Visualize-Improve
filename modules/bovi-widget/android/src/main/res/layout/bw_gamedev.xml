@@ -18,14 +18,14 @@
       android:background="@drawable/bw_button"
       android:gravity="center"
       android:text="‹"
-      android:textColor="#EEEDF2"
+      android:textColor="#F2F2F2"
       android:textSize="18sp" />
     <TextView
     android:id="@+id/bw_project"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:text="Open BOVI to load projects"
-    android:textColor="#EEEDF2"
+    android:textColor="#F2F2F2"
     android:textSize="16sp"
     android:textStyle="bold"
     android:maxLines="1"
@@ -41,7 +41,7 @@
       android:background="@drawable/bw_button"
       android:gravity="center"
       android:text="›"
-      android:textColor="#EEEDF2"
+      android:textColor="#F2F2F2"
       android:textSize="18sp" />
   </LinearLayout>
   <TextView
@@ -49,7 +49,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text=""
-    android:textColor="#EEEDF2"
+    android:textColor="#F2F2F2"
     android:textSize="13sp"
     android:maxLines="1"
     android:ellipsize="end"
@@ -68,7 +68,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text=""
-    android:textColor="#9A97A5"
+    android:textColor="#9B9B9B"
     android:textSize="11sp"
     android:maxLines="1"
     android:ellipsize="end"
@@ -89,7 +89,7 @@
         android:id="@+id/bw_chrono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#4CC9A0"
+        android:textColor="#7CC4A1"
         android:textSize="22sp"
         android:textStyle="bold"
         android:visibility="gone" />
@@ -98,7 +98,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Focus"
-    android:textColor="#9A97A5"
+    android:textColor="#9B9B9B"
     android:textSize="13sp"
     android:maxLines="1"
     android:ellipsize="end"
@@ -113,7 +113,7 @@
       android:paddingStart="10dp"
       android:paddingEnd="10dp"
       android:text="25m"
-      android:textColor="#EEEDF2"
+      android:textColor="#F2F2F2"
       android:textSize="13sp" />
     <TextView
       android:id="@+id/bw_focus_btn"
@@ -125,7 +125,7 @@
       android:paddingStart="14dp"
       android:paddingEnd="14dp"
       android:text="Start"
-      android:textColor="#FFFFFF"
+      android:textColor="#0A0A0A"
       android:textSize="13sp"
       android:textStyle="bold" />
     <TextView
@@ -138,7 +138,7 @@
       android:paddingStart="10dp"
       android:paddingEnd="10dp"
       android:text="+ Idea"
-      android:textColor="#E8B44C"
+      android:textColor="#D9B35E"
       android:textSize="13sp" />
   </LinearLayout>
 </LinearLayout>

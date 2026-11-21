@@ -39,7 +39,7 @@ export const seedCollege = (): CollegeState => {
     profile: 'Sem 3 · Section A',
     defaultRoom: 'Room 204',
     subjects: [
-      { id: 'dsa', name: 'Data Structures & Algorithms', short: 'DSA', code: 'CS305', color: '#6E56CF' },
+      { id: 'dsa', name: 'Data Structures & Algorithms', short: 'DSA', code: 'CS305', color: '#3A3A3A' },
       { id: 'java', name: 'OOPS with Java', short: 'Java', code: 'CS303', color: '#D9822B' },
       { id: 'ai', name: 'Artificial Intelligence', short: 'AI', code: 'CS302', color: '#187A63' },
       { id: 'ddco', name: 'Digital Design & Computer Org.', short: 'DDCO', code: 'CS304', color: '#C2417A' },

@@ -2,6 +2,9 @@
 
 A planner for college students and their own projects, built around a clock-style calendar. Android only. No account, no ads, no servers: everything stays on your phone.
 
+### New in 1.2
+- **Black and white.** A new 3D abstract logo and a monochrome look across the app, widgets and splash screen. Only red (problems), green (done) and amber (warnings) keep a colour, plus your subject colours on the calendar. A purple subject turns charcoal automatically.
+
 ### New in 1.1
 - **A new look.** A calmer "ink & iris" palette, tonal buttons and chips, a flat bottom bar and a refreshed calendar dial, all checked for readable contrast in light and dark mode. Existing subjects move to the new colours automatically.
 - Website: https://krishkumarravidas.github.io/BOVI-Build-Organize-Visualize-Improve/

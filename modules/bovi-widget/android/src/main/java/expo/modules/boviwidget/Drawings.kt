@@ -39,7 +39,7 @@ object Drawings {
 
   private fun readableOn(color: Int): Int {
     val l = (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
-    return if (l > 0.6) 0xFF111827.toInt() else Color.WHITE
+    return if (l > 0.6) 0xFF111111.toInt() else Color.WHITE
   }
 
   private fun paint(color: Int, style: Paint.Style = Paint.Style.FILL): Paint =
@@ -203,7 +203,7 @@ object Drawings {
       val cx = cellW * (i + 0.5f)
       val isToday = d.optString("day") == today
       if (isToday) canvas.drawCircle(cx, cy, radius + stroke, paint(Ui.SURFACE))
-      canvas.drawCircle(cx, cy, radius, paint(0xFF2B2933.toInt(), Paint.Style.STROKE).apply { strokeWidth = stroke })
+      canvas.drawCircle(cx, cy, radius, paint(0xFF2A2A2A.toInt(), Paint.Style.STROKE).apply { strokeWidth = stroke })
       val total = d.optInt("total")
       val pct = if (total > 0) d.optInt("done") * 100 / total else -1
       if (pct > 0) {
@@ -222,7 +222,7 @@ object Drawings {
       text.color = if (isToday) Ui.TEXT else Ui.MUTED
       canvas.drawText(letters[i], cx, cy + text.textSize * 0.36f, text)
       text.textSize = min(radius * 0.62f, h * 0.15f)
-      text.color = if (pct >= 0) Ui.MUTED else 0x669CA3AF
+      text.color = if (pct >= 0) Ui.MUTED else 0x669B9B9B
       canvas.drawText(if (pct >= 0) "$pct%" else "–", cx, h * 0.93f, text)
     }
     return bmp

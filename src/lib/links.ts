@@ -44,7 +44,7 @@ const INFO: Record<LinkKind, Omit<LinkInfo, 'kind'>> = {
   youtube: { label: 'YouTube', icon: 'logo-youtube', color: '#FF0000' },
   notion: { label: 'Notion', icon: 'book', color: null },
   figma: { label: 'Figma', icon: 'logo-figma', color: '#A259FF' },
-  game: { label: 'Store page', icon: 'game-controller', color: '#A594F9' },
+  game: { label: 'Store page', icon: 'game-controller', color: null },
   trello: { label: 'Trello', icon: 'clipboard', color: '#0079BF' },
   pdf: { label: 'PDF', icon: 'document', color: '#DC2626' },
   web: { label: 'Link', icon: 'link', color: null },

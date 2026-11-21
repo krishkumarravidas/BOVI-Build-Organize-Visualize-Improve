@@ -8,6 +8,6 @@
   android:letterSpacing="0.08"
   android:maxLines="1"
   android:text=""
-  android:textColor="#9A97A5"
+  android:textColor="#9B9B9B"
   android:textSize="10sp"
   android:textStyle="bold" />

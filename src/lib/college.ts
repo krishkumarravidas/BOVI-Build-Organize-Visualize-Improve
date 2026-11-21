@@ -188,7 +188,8 @@ export const emptyCollege = (): CollegeState => ({
 
 /** Previous default subject colours → their replacements in the current palette (applied on load). */
 const LEGACY_SUBJECT_COLORS: Record<string, string> = {
-  '#4F46E5': '#6E56CF',
+  '#4F46E5': '#3A3A3A',
+  '#6E56CF': '#3A3A3A',
   '#0D9488': '#187A63',
   '#D97706': '#D9822B',
   '#DB2777': '#C2417A',
@@ -203,7 +204,7 @@ const LEGACY_SUBJECT_COLORS: Record<string, string> = {
 export const refreshSubjectColor = (c: string) => LEGACY_SUBJECT_COLORS[c.toUpperCase()] ?? c;
 
 /** Curated subject palette: distinct at a glance, calm together, readable with white or ink text. */
-export const SUBJECT_COLORS = ['#6E56CF', '#187A63', '#D9822B', '#C2417A', '#376FBE', '#8E6C3A', '#2E9BB5', '#B54A3C', '#5E6577'];
+export const SUBJECT_COLORS = ['#3A3A3A', '#187A63', '#D9822B', '#C2417A', '#376FBE', '#8E6C3A', '#2E9BB5', '#B54A3C', '#5E6577'];
 
 // ---------- validation ----------
 

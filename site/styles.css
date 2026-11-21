@@ -1,29 +1,29 @@
-/* BOVI site — same "ink & iris" palette as the app. */
+/* BOVI site — same black-and-white "mono" palette as the app. */
 :root {
-  --bg: #f7f6f3;
+  --bg: #f4f4f3;
   --surface: #ffffff;
-  --raised: #efedf1;
-  --text: #17151c;
-  --muted: #66626f;
-  --primary: #5b45d6;
+  --raised: #ebebea;
+  --text: #111111;
+  --muted: #5e5e5e;
+  --primary: #111111;
   --on-primary: #ffffff;
-  --accent: #157352;
-  --border: #e4e1e8;
-  --shadow: 0 30px 60px -30px rgba(23, 21, 28, 0.35);
+  --accent: #2f6b4f;
+  --border: #e2e2e0;
+  --shadow: 0 30px 60px -30px rgba(17, 17, 17, 0.35);
   --serif: 'Instrument Serif', Georgia, serif;
   --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f0e13;
-    --surface: #18171e;
-    --raised: #232129;
-    --text: #eeedf2;
-    --muted: #9a97a5;
-    --primary: #a594f9;
-    --on-primary: #16121f;
-    --accent: #4cc9a0;
-    --border: #2b2933;
+    --bg: #0a0a0a;
+    --surface: #151515;
+    --raised: #202020;
+    --text: #f2f2f2;
+    --muted: #9b9b9b;
+    --primary: #f2f2f2;
+    --on-primary: #0a0a0a;
+    --accent: #7cc4a1;
+    --border: #2a2a2a;
     --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
   }
 }

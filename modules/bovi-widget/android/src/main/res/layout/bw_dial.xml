@@ -26,7 +26,7 @@
       android:contentDescription="Turn back 3 hours"
       android:gravity="center"
       android:text="◀"
-      android:textColor="#EEEDF2"
+      android:textColor="#F2F2F2"
       android:textSize="13sp" />
     <TextView
       android:id="@+id/bw_dial_label"
@@ -37,7 +37,7 @@
       android:gravity="center"
       android:maxLines="1"
       android:text="Next 12 h"
-      android:textColor="#9A97A5"
+      android:textColor="#9B9B9B"
       android:textSize="12sp"
       android:textStyle="bold" />
     <TextView
@@ -48,7 +48,7 @@
       android:contentDescription="Turn forward 3 hours"
       android:gravity="center"
       android:text="▶"
-      android:textColor="#EEEDF2"
+      android:textColor="#F2F2F2"
       android:textSize="13sp" />
   </LinearLayout>
 </LinearLayout>

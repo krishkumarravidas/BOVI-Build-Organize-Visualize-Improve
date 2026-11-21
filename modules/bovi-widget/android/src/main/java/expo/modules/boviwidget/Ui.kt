@@ -15,14 +15,14 @@ import java.util.Locale
 
 /** Colours, formatting and intent helpers shared by all BOVI widgets (dark theme, matching the app). */
 object Ui {
-  const val TEXT = 0xFFEEEDF2.toInt()
-  const val MUTED = 0xFF9A97A5.toInt()
-  const val PRIMARY = 0xFFA594F9.toInt()
-  const val ACCENT = 0xFF4CC9A0.toInt()
-  const val DANGER = 0xFFF07470.toInt()
-  const val WARN = 0xFFE8B44C.toInt()
-  const val SURFACE = 0xFF232129.toInt()
-  const val FACE = 0xFF0F0E13.toInt()
+  const val TEXT = 0xFFF2F2F2.toInt()
+  const val MUTED = 0xFF9B9B9B.toInt()
+  const val PRIMARY = 0xFFF2F2F2.toInt()
+  const val ACCENT = 0xFF7CC4A1.toInt()
+  const val DANGER = 0xFFEE7A74.toInt()
+  const val WARN = 0xFFD9B35E.toInt()
+  const val SURFACE = 0xFF202020.toInt()
+  const val FACE = 0xFF0A0A0A.toInt()
 
   fun color(hex: String?, fallback: Int): Int =
     try {

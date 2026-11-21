@@ -30,7 +30,9 @@ describe('palette', () => {
   });
 
   it('moves old default subject colours onto the current palette, keeping custom ones', () => {
-    expect(refreshSubjectColor('#4F46E5')).toBe('#6E56CF');
+    expect(refreshSubjectColor('#4F46E5')).toBe('#3A3A3A');
+    // The violet from the previous palette moves to charcoal (the UI is black and white now).
+    expect(refreshSubjectColor('#6E56CF')).toBe('#3A3A3A');
     expect(refreshSubjectColor('#0d9488')).toBe('#187A63');
     expect(refreshSubjectColor('#123456')).toBe('#123456');
     for (const c of ['#4F46E5', '#0D9488', '#D97706', '#DB2777', '#2563EB', '#7C3AED', '#059669', '#DC2626', '#64748B']) expect(SUBJECT_COLORS).toContain(refreshSubjectColor(c));

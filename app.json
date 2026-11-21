@@ -2,19 +2,19 @@
   "expo": {
     "name": "BOVI",
     "slug": "bovi",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#010007",
+        "backgroundColor": "#000000",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.bovi.app",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -28,10 +28,10 @@
           "image": "./assets/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#010007",
+          "backgroundColor": "#000000",
           "dark": {
             "image": "./assets/splash-icon.png",
-            "backgroundColor": "#010007"
+            "backgroundColor": "#000000"
           }
         }
       ],

@@ -12,7 +12,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="BOVI"
-    android:textColor="#C4B8FC"
+    android:textColor="#BDBDBD"
     android:textSize="11sp"
     android:textStyle="bold"
     android:letterSpacing="0.08" />
@@ -25,7 +25,7 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:text="Open BOVI to load your schedule"
-    android:textColor="#EEEDF2"
+    android:textColor="#F2F2F2"
     android:textSize="18sp"
     android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:text=""
-    android:textColor="#C4C8D4"
+    android:textColor="#C8C8C8"
     android:textSize="13sp" />
 
   <TextView
@@ -47,7 +47,7 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:text=""
-    android:textColor="#F9A8D4"
+    android:textColor="#D6D6D6"
     android:textSize="13sp" />
 
   <TextView
@@ -57,6 +57,6 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:text=""
-    android:textColor="#5EEAD4"
+    android:textColor="#7CC4A1"
     android:textSize="13sp" />
 </LinearLayout>

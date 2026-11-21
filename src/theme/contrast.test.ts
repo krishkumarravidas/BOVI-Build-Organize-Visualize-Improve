@@ -8,7 +8,7 @@ describe('readableOn', () => {
   });
   it('uses white on dark and black on light', () => {
     expect(readableOn('#111111')).toBe('#FFFFFF');
-    expect(readableOn('#FDE68A')).toBe('#111827');
+    expect(readableOn('#FDE68A')).toBe('#111111');
   });
 });
 
