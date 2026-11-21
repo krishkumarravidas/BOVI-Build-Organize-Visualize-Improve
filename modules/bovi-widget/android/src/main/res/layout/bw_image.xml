@@ -16,7 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Open BOVI to load"
-    android:textColor="#9CA3AF"
+    android:textColor="#9A97A5"
     android:textSize="13sp"
     android:maxLines="2"
     android:ellipsize="end"

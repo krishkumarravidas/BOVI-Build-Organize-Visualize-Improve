@@ -68,7 +68,7 @@ export interface WidgetSources {
 }
 
 const DAYS_AHEAD = 7;
-const COLORS = { exam: '#F87171', event: '#818CF8', life: '#2DD4BF', class: '#818CF8' };
+const COLORS = { exam: '#F07470', event: '#A594F9', life: '#4CC9A0', class: '#A594F9' };
 
 export function buildWidgetData({ college, habitState, projects, events, mode, screenLimitMin, now, projectsLabel = 'Projects' }: WidgetSources): WidgetData {
   const today = toDateKey(now);

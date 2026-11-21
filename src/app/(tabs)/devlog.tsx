@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Pressable, ScrollView, Share, StyleSheet, Text, TextInput, View } from 'react-native';
 
@@ -69,7 +70,7 @@ export default function DevlogTab() {
               {shortDate(e.date)} · {e.project.name}
             </Text>
             <Pressable onPress={() => p.removeLog(e.project.id, e.id)} accessibilityRole="button" accessibilityLabel={`Delete entry from ${shortDate(e.date)}`} hitSlop={8}>
-              <Text style={{ color: theme.danger }}>✕</Text>
+              <Ionicons name="close" size={20} color={theme.muted} />
             </Pressable>
           </View>
           <Text style={{ color: theme.text, fontSize: 15 }}>{e.text}</Text>

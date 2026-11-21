@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTheme } from '@/hooks/useTheme';
@@ -25,7 +26,7 @@ export function HabitRow({ name, done, streak, onToggle, onPress }: Props) {
           { borderColor: theme.primary, backgroundColor: done ? theme.primary : 'transparent' },
         ]}
       >
-        {done ? <Text style={[styles.checkMark, { color: theme.onPrimary }]}>✓</Text> : null}
+        {done ? <Ionicons name="checkmark" size={16} color={theme.onPrimary} /> : null}
       </Pressable>
       <Pressable onPress={onPress} style={styles.body} accessibilityRole="button" accessibilityHint="Edit habit">
         <Text

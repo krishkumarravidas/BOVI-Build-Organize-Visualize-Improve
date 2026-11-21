@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 
@@ -131,7 +132,7 @@ export default function ScopeScreen() {
       <SectionTitle>Vertical slice</SectionTitle>
       <Card>
         <Text style={{ color: theme.muted }}>Adds the standard slice milestones (core loop, one level, one enemy, one key moment, menus, final-quality area, packaged build) to this project’s roadmap.</Text>
-        <Button title={hasSlice ? 'Slice milestones added ✓' : 'Add vertical-slice milestones'} variant="plain" onPress={addSlice} disabled={hasSlice} />
+        <Button title={hasSlice ? 'Slice milestones added' : 'Add vertical-slice milestones'} variant="plain" onPress={addSlice} disabled={hasSlice} />
       </Card>
     </ScrollView>
   );
@@ -168,7 +169,7 @@ function FeatureRow({
         onToggle={onToggle}
         onPress={() => setOpen((o) => !o)}
         color={f.priority === 'must' ? theme.primary : theme.accent}
-        right={suggestCut ? <Text style={{ color: theme.danger, fontWeight: '700' }}>✂</Text> : null}
+        right={suggestCut ? <Ionicons name="cut-outline" size={18} color={theme.danger} accessibilityLabel="Suggested cut" /> : null}
       />
       {open ? (
         <View style={{ gap: 8, paddingLeft: 38 }}>

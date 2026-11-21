@@ -48,18 +48,19 @@ export function BottomBar({ mode, current, onNavigate }: { mode: AppMode; curren
         accessibilityLabel={t.label}
         style={styles.tab}
       >
-        <Ionicons name={on ? t.iconActive : t.icon} size={22} color={on ? theme.primary : theme.muted} />
-        <Text style={[styles.label, { color: on ? theme.primary : theme.muted }]} numberOfLines={1}>
+        <Ionicons name={on ? t.iconActive : t.icon} size={22} color={on ? theme.text : theme.muted} />
+        <Text style={[styles.label, { color: on ? theme.text : theme.muted, fontWeight: on ? '700' : '500' }]} numberOfLines={1}>
           {t.label}
         </Text>
+        <View style={[styles.indicator, { backgroundColor: on ? theme.primary : 'transparent' }]} />
       </Pressable>
     );
   };
 
   const calOn = current === CALENDAR_ROUTE;
   return (
-    <View style={[styles.wrap, { paddingBottom: Math.max(insets.bottom, 10), backgroundColor: theme.background }]}>
-      <View style={[styles.bar, { backgroundColor: theme.surface, borderColor: theme.border }]}>
+    <View style={[styles.wrap, { paddingBottom: Math.max(insets.bottom, 8), backgroundColor: theme.surface, borderTopColor: theme.border }]}>
+      <View style={styles.bar}>
         {tab(tabs[0])}
         {tab(tabs[1])}
         <Pressable
@@ -67,9 +68,9 @@ export function BottomBar({ mode, current, onNavigate }: { mode: AppMode; curren
           accessibilityRole="tab"
           accessibilityState={{ selected: calOn }}
           accessibilityLabel="Calendar"
-          style={[styles.center, { backgroundColor: theme.primary, borderColor: theme.background }]}
+          style={({ pressed }) => [styles.center, { backgroundColor: calOn ? theme.primary : theme.raised, transform: [{ scale: pressed ? 0.96 : 1 }] }]}
         >
-          <Ionicons name={calOn ? 'calendar' : 'calendar-outline'} size={28} color={theme.onPrimary} />
+          <Ionicons name={calOn ? 'calendar' : 'calendar-outline'} size={24} color={calOn ? theme.onPrimary : theme.text} />
         </Pressable>
         {tab(tabs[2])}
         {tab(tabs[3])}
@@ -79,9 +80,10 @@ export function BottomBar({ mode, current, onNavigate }: { mode: AppMode; curren
 }
 
 const styles = StyleSheet.create({
-  wrap: { paddingHorizontal: 12, paddingTop: 6 },
-  bar: { flexDirection: 'row', alignItems: 'center', borderRadius: 22, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: 6, height: 64 },
-  tab: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, height: '100%' },
-  label: { fontSize: 11, fontWeight: '600' },
-  center: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', marginTop: -26, borderWidth: 4, marginHorizontal: 4 },
+  wrap: { paddingHorizontal: 8, paddingTop: 6, borderTopWidth: StyleSheet.hairlineWidth },
+  bar: { flexDirection: 'row', alignItems: 'center', height: 60 },
+  tab: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3, height: '100%' },
+  label: { fontSize: 11, letterSpacing: 0.1 },
+  indicator: { width: 4, height: 4, borderRadius: 2 },
+  center: { width: 56, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', marginHorizontal: 6 },
 });

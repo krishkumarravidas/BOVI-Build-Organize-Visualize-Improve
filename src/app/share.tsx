@@ -103,7 +103,7 @@ export default function ShareScreen() {
     return (
       <View style={[styles.screen, { backgroundColor: theme.background }]}>
         <Stack.Screen options={{ headerShown: true, title: 'Saved' }} />
-        <Text style={[styles.big, { color: theme.accent }]}>Saved to {saved.label} ✓</Text>
+        <Text style={[styles.big, { color: theme.accent }]}>Saved to {saved.label}</Text>
         <Button title="Done" onPress={leave} />
         <Button
           title="Open in BOVI"

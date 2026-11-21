@@ -203,7 +203,7 @@ object Drawings {
       val cx = cellW * (i + 0.5f)
       val isToday = d.optString("day") == today
       if (isToday) canvas.drawCircle(cx, cy, radius + stroke, paint(Ui.SURFACE))
-      canvas.drawCircle(cx, cy, radius, paint(0xFF262B3A.toInt(), Paint.Style.STROKE).apply { strokeWidth = stroke })
+      canvas.drawCircle(cx, cy, radius, paint(0xFF2B2933.toInt(), Paint.Style.STROKE).apply { strokeWidth = stroke })
       val total = d.optInt("total")
       val pct = if (total > 0) d.optInt("done") * 100 / total else -1
       if (pct > 0) {

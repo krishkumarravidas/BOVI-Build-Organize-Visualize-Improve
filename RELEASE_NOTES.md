@@ -2,8 +2,12 @@
 
 A planner for college students and their own projects, built around a clock-style calendar. Android only. No account, no ads, no servers: everything stays on your phone.
 
+### New in 1.1
+- **A new look.** A calmer "ink & iris" palette, tonal buttons and chips, a flat bottom bar and a refreshed calendar dial, all checked for readable contrast in light and dark mode. Existing subjects move to the new colours automatically.
+- Website: https://krishkumarravidas.github.io/BOVI-Build-Organize-Visualize-Improve/
+
 ### Install
-1. Download **BOVI-v*.apk** below (on your phone).
+1. Download **BOVI.apk** below (on your phone).
 2. Open it. If Android asks, allow *Install unknown apps* for your browser or Files app.
 3. Open BOVI. A short setup asks for your college, subjects and what to call your second tab (Projects, Game dev, Work…). Every step can be skipped.
 

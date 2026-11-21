@@ -12,7 +12,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="BOVI"
-    android:textColor="#A5B4FC"
+    android:textColor="#C4B8FC"
     android:textSize="11sp"
     android:textStyle="bold"
     android:letterSpacing="0.08" />
@@ -25,7 +25,7 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:text="Open BOVI to load your schedule"
-    android:textColor="#F3F4F6"
+    android:textColor="#EEEDF2"
     android:textSize="18sp"
     android:textStyle="bold" />
 

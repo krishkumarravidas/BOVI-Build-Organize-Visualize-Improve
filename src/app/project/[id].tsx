@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, Share, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -130,11 +131,11 @@ export default function ProjectFormScreen() {
                 accessibilityLabel={t.title}
                 style={[styles.check, { borderColor: theme.primary, backgroundColor: t.done ? theme.primary : 'transparent' }]}
               >
-                {t.done ? <Text style={{ color: theme.onPrimary, fontWeight: '800' }}>✓</Text> : null}
+                {t.done ? <Ionicons name="checkmark" size={16} color={theme.onPrimary} /> : null}
               </Pressable>
               <Text style={[styles.taskText, { color: t.done ? theme.muted : theme.text }, t.done && styles.done]}>{t.title}</Text>
               <Pressable onPress={() => p.removeTask(existing.id, t.id)} accessibilityRole="button" accessibilityLabel={`Delete task ${t.title}`} hitSlop={8}>
-                <Text style={{ color: theme.danger, fontSize: 18 }}>✕</Text>
+                <Ionicons name="close" size={20} color={theme.muted} />
               </Pressable>
             </View>
           ))}
@@ -168,14 +169,14 @@ export default function ProjectFormScreen() {
                 accessibilityLabel={`Milestone ${m.title}`}
                 style={[styles.check, { borderColor: theme.accent, backgroundColor: m.done ? theme.accent : 'transparent' }]}
               >
-                {m.done ? <Text style={{ color: theme.background, fontWeight: '800' }}>✓</Text> : null}
+                {m.done ? <Ionicons name="checkmark" size={16} color={theme.background} /> : null}
               </Pressable>
               <Text style={[styles.taskText, { color: m.done ? theme.muted : theme.text }, m.done && styles.done]}>
                 {m.title}
                 {m.due ? <Text style={{ color: theme.muted }}>{`  ·  ${shortDate(m.due)}`}</Text> : null}
               </Text>
               <Pressable onPress={() => p.removeMilestone(existing.id, m.id)} accessibilityRole="button" accessibilityLabel={`Delete milestone ${m.title}`} hitSlop={8}>
-                <Text style={{ color: theme.danger, fontSize: 18 }}>✕</Text>
+                <Ionicons name="close" size={20} color={theme.muted} />
               </Pressable>
             </View>
           ))}
@@ -222,7 +223,7 @@ export default function ProjectFormScreen() {
                 <View style={styles.taskRow}>
                   <Text style={{ color: theme.muted, fontWeight: '700', flex: 1 }}>{shortDate(e.date)}</Text>
                   <Pressable onPress={() => p.removeLog(existing.id, e.id)} accessibilityRole="button" accessibilityLabel={`Delete entry from ${shortDate(e.date)}`} hitSlop={8}>
-                    <Text style={{ color: theme.danger }}>✕</Text>
+                    <Ionicons name="close" size={20} color={theme.muted} />
                   </Pressable>
                 </View>
                 <Text style={{ color: theme.text, fontSize: 15 }}>{e.text}</Text>

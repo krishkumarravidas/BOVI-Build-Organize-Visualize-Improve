@@ -25,6 +25,7 @@ import { buildTimeline, type TimelineItem } from '@/lib/timeline';
 import { timelinePress } from '@/lib/timelineNav';
 import { setTodoDone, untimedTodos, upsertTodo } from '@/lib/todos';
 import type { DateKey } from '@/lib/types';
+import { mix } from '@/theme/contrast';
 
 // Web-only: stop text selection while dragging the dial (not part of RN's style types).
 const NO_SELECT = Platform.OS === 'web' ? ({ userSelect: 'none' } as unknown as ViewStyle) : null;
@@ -168,9 +169,9 @@ export default function CalendarScreen() {
                 }}
                 accessibilityRole="button"
                 accessibilityLabel="Rotate to now"
-                style={[styles.periodChip, { borderColor: theme.danger, backgroundColor: theme.background }]}
+                style={[styles.periodChip, { backgroundColor: mix(theme.background, theme.danger, 0.16) }]}
               >
-                <Text style={{ color: theme.danger, fontWeight: '800', fontSize: 11 }}>Now</Text>
+                <Text style={{ color: theme.danger, fontWeight: '700', fontSize: 12 }}>Now</Text>
               </Pressable>
             ) : null}
             {PERIODS.map((p) => {
@@ -182,9 +183,9 @@ export default function CalendarScreen() {
                   accessibilityRole="tab"
                   accessibilityState={{ selected: on }}
                   accessibilityLabel={`${p.label}, ${String(p.startHour).padStart(2, '0')}:00 to ${String(p.startHour + 6).padStart(2, '0')}:00`}
-                  style={[styles.periodChip, { borderColor: on ? theme.primary : theme.border, backgroundColor: on ? theme.primary : theme.background }]}
+                  style={[styles.periodChip, { backgroundColor: on ? theme.text : theme.raised }]}
                 >
-                  <Text style={{ color: on ? theme.onPrimary : theme.muted, fontWeight: '700', fontSize: 11 }}>{p.label}</Text>
+                  <Text style={{ color: on ? theme.background : theme.muted, fontWeight: '600', fontSize: 12 }}>{p.label}</Text>
                 </Pressable>
               );
             })}
@@ -195,7 +196,7 @@ export default function CalendarScreen() {
           <Pressable
             onPress={() => router.push({ pathname: '/college/exam/[id]', params: { id: soonExam.exam.id } })}
             accessibilityRole="button"
-            style={[styles.banner, { backgroundColor: theme.surface, borderColor: theme.danger }]}
+            style={[styles.banner, { backgroundColor: mix(theme.background, theme.danger, 0.13) }]}
           >
             <Ionicons name="alert-circle" size={18} color={theme.danger} />
             <Text style={{ color: theme.text, flex: 1 }} numberOfLines={2}>
@@ -345,7 +346,7 @@ function CheckRow({ label, hint, done, onPress, onLongPress, danger }: { label: 
   return (
     <Pressable onPress={onPress} onLongPress={onLongPress} accessibilityRole="checkbox" accessibilityState={{ checked: done }} accessibilityLabel={`${label}, ${hint}`} style={styles.itemRow}>
       <View style={[styles.check, { borderColor: danger ? theme.danger : theme.primary, backgroundColor: done ? (danger ? theme.danger : theme.primary) : 'transparent' }]}>
-        {done ? <Text style={{ color: theme.background, fontWeight: '800', fontSize: 12 }}>✓</Text> : null}
+        {done ? <Ionicons name="checkmark" size={16} color={theme.background} /> : null}
       </View>
       <Text style={[{ flex: 1, color: done ? theme.muted : theme.text, fontSize: 15 }, done && styles.strike]} numberOfLines={1}>
         {label}
@@ -363,8 +364,8 @@ const styles = StyleSheet.create({
   badgeNum: { fontSize: 26, fontWeight: '800', marginTop: -2 },
   title: { fontSize: 26, fontWeight: '800', fontFamily: 'serif' },
   periods: { position: 'absolute', left: 12, top: 8, gap: 6 },
-  periodChip: { borderWidth: 1, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 5 },
-  banner: { flexDirection: 'row', alignItems: 'center', gap: 8, padding: 10, borderRadius: 12, borderWidth: 1 },
+  periodChip: { borderRadius: 9, paddingHorizontal: 10, paddingVertical: 6 },
+  banner: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 12, paddingHorizontal: 14, borderRadius: 14 },
   card: { borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, padding: 12, gap: 8 },
   cardTitle: { fontSize: 12, fontWeight: '800', letterSpacing: 0.6 },
   itemRow: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 34 },
@@ -373,5 +374,5 @@ const styles = StyleSheet.create({
   dot: { width: 10, height: 10, borderRadius: 5 },
   check: { width: 22, height: 22, borderRadius: 6, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
   strike: { textDecorationLine: 'line-through' },
-  fab: { position: 'absolute', right: 18, bottom: 74, width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', elevation: 6, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 8, shadowOffset: { width: 0, height: 3 } },
+  fab: { position: 'absolute', right: 18, bottom: 74, width: 56, height: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center', elevation: 6, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 8, shadowOffset: { width: 0, height: 3 } },
 });

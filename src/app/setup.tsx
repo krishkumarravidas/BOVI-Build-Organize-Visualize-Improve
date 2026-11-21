@@ -145,7 +145,7 @@ export default function SetupScreen() {
               <Text style={{ color: theme.text }}>BOVI then shows your % per subject, how many classes you can still miss, and keeps counting as you mark classes.</Text>
             </View>
             <Button title="Import attendance now" onPress={() => router.push('/college/attendance-import')} />
-            {c.college.attendanceSyncedAt ? <Text style={{ color: theme.accent, fontWeight: '600' }}>Attendance imported ✓</Text> : null}
+            {c.college.attendanceSyncedAt ? <Text style={{ color: theme.accent, fontWeight: '600' }}>Attendance imported</Text> : null}
             <Nav onBack={back} onNext={next} nextLabel={c.college.attendanceSyncedAt ? 'Next' : 'Skip for now'} />
           </>
         ) : null}
@@ -185,7 +185,7 @@ export default function SetupScreen() {
                   onPress={async () => {
                     const ok = await ensurePermission();
                     update({ remindersEnabled: ok });
-                    setNotifStatus(ok ? 'Notifications on ✓' : 'Notifications are blocked. You can allow them later in your phone’s settings.');
+                    setNotifStatus(ok ? 'Notifications are on.' : 'Notifications are blocked. You can allow them later in your phone’s settings.');
                   }}
                 />
                 {notifStatus ? <Text style={{ color: theme.muted }}>{notifStatus}</Text> : null}

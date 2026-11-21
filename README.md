@@ -17,9 +17,14 @@
 
 <p align="center"><b>Build · Organize · Visualize · Improve</b></p>
 
+<p align="center">
+  <a href="https://krishkumarravidas.github.io/BOVI-Build-Organize-Visualize-Improve/"><b>Website</b></a> ·
+  <a href="../../releases/latest"><b>Download the APK</b></a>
+</p>
+
 ## Download
 
-**[⬇ Get the latest APK from Releases](../../releases/latest)**: open it on your Android phone, allow *Install unknown apps* if asked, and follow the short setup. No account needed; everything stays on your phone.
+**[Get the latest APK from Releases](../../releases/latest)**: open it on your Android phone, allow *Install unknown apps* if asked, and follow the short setup. No account needed; everything stays on your phone.
 
 Prefer to build it yourself? See [Install on your Android phone](#install-on-your-android-phone).
 

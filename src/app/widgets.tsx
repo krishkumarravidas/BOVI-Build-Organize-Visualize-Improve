@@ -10,7 +10,7 @@ import { canPinWidgets, pinWidget, placedWidgets, widgetAvailable, type WidgetKi
 
 const widgetList = (tab: string): { kind: WidgetKind; name: string; size: string; what: string }[] => [
   { kind: 'habits', name: 'Habits', size: '2×3', what: 'Tick off today’s habits right on the home screen.' },
-  { kind: 'attendance', name: 'Attendance', size: '4×3', what: 'After a class starts it asks “Were you in Maths?” with ✓ / ✗, and shows how many classes you can skip per subject.' },
+  { kind: 'attendance', name: 'Attendance', size: '4×3', what: 'After a class starts it asks “Were you in Maths?” with a yes / no button, and shows how many classes you can skip per subject.' },
   { kind: 'gamedev', name: tab, size: '4×2', what: 'Your project’s next milestone, a focus timer you can start and stop, and a quick “+ Idea” button.' },
   { kind: 'today', name: 'Today', size: '4×3', what: 'All of today’s classes (cancelled ones struck through, changes tagged) and assignments due, with a tick.' },
   { kind: 'dial', name: 'Dial', size: '2×3', what: '12 hours on a clock face, like the calendar dial. ◀ ▶ turn it 3 hours at a time, through today and the next two days; tap the label for now.' },

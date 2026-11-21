@@ -73,7 +73,7 @@ export default function ProjectsScreen() {
           <Text style={[styles.cardTitle, { color: theme.text }]}>
             <Ionicons name="flame" size={18} color={days ? theme.danger : theme.muted} /> {days ? `${days}-day streak` : 'No streak yet'}
           </Text>
-          <Text style={{ color: theme.muted, fontSize: 12 }}>{activity.has(today) ? 'worked today ✓' : 'not yet today'}</Text>
+          <Text style={{ color: theme.muted, fontSize: 12 }}>{activity.has(today) ? 'worked today' : 'not yet today'}</Text>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentOffset={{ x: 10_000, y: 0 }}>
           <Heatmap days={activity} today={today} />
@@ -116,15 +116,7 @@ export default function ProjectsScreen() {
             {nextMilestone(p) ? <Text style={{ color: theme.accent, fontWeight: '600' }}>Milestone: {nextMilestone(p)!.title}</Text> : null}
             <LinkChips links={p.links} />
             {p.tasks.map((t) => (
-              <Text
-                key={t.id}
-                onPress={() => toggleTask(p.id, t.id)}
-                accessibilityRole="checkbox"
-                accessibilityState={{ checked: t.done }}
-                style={[styles.task, { color: t.done ? theme.muted : theme.text }, t.done && styles.done]}
-              >
-                {t.done ? '☑' : '☐'}  {t.title}
-              </Text>
+              <CheckRow key={t.id} done={t.done} title={t.title} onToggle={() => toggleTask(p.id, t.id)} color={theme.primary} />
             ))}
             {prog.total ? <Text style={{ color: theme.muted }}>{prog.done} of {prog.total} tasks done</Text> : null}
             <Button title="Open project" variant="plain" onPress={() => open(p.id)} />

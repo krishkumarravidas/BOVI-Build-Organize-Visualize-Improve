@@ -19,7 +19,7 @@ export function SummaryView({ s }: { s: PeriodSummary }) {
         <StatRow>
           <Stat value={hours(s.gamedevMin)} label="focus" />
           <Stat value={String(s.gamedevDays)} label="active days" />
-          <Stat value={s.streak ? `${s.streak}🔥` : '0'} label="streak" />
+          <Stat value={s.streak ? `${s.streak} d` : '0'} label="streak" />
         </StatRow>
         <StatRow>
           <Stat value={String(s.tasksDone)} label="tasks/features" />

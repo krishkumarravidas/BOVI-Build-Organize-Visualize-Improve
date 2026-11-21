@@ -36,7 +36,7 @@ export default function QuickIdeaScreen() {
       <Stack.Screen options={{ presentation: 'transparentModal', animation: 'fade', headerShown: false }} />
       <Pressable style={StyleSheet.absoluteFill} onPress={close} accessibilityLabel="Close" />
       <View style={[styles.sheet, { backgroundColor: theme.surface, borderColor: theme.border }]}>
-        <Text style={[styles.title, { color: theme.text }]}>{saved ? 'Saved to your ideas ✓' : 'Quick idea'}</Text>
+        <Text style={[styles.title, { color: theme.text }]}>{saved ? 'Saved to your ideas' : 'Quick idea'}</Text>
         {saved ? null : (
           <>
             <TextInput

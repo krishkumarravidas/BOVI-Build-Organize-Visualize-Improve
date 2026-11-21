@@ -59,7 +59,7 @@ export default function AssetsScreen() {
               accessibilityLabel={`${a.name} used in the game`}
               style={[local.toggle, { borderColor: theme.accent, backgroundColor: a.status === 'used' ? theme.accent : 'transparent' }]}
             >
-              <Text style={{ color: a.status === 'used' ? theme.background : theme.accent, fontWeight: '700' }}>{a.status === 'used' ? 'Used ✓' : 'Not used yet'}</Text>
+              <Text style={{ color: a.status === 'used' ? theme.background : theme.accent, fontWeight: '700' }}>{a.status === 'used' ? 'Used' : 'Not used yet'}</Text>
             </Pressable>
             {a.url ? <Button title="Open" variant="plain" onPress={() => openLink(a.url!)} /> : null}
             <Button title="Delete" variant="danger" onPress={() => confirmDestructive('Delete asset?', a.name, 'Delete', () => p.apply((s) => removeItem(s, 'assets', a.id)))} />

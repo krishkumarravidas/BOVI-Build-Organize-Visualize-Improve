@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -27,7 +28,7 @@ export default function AssignmentsScreen() {
           accessibilityLabel={a.title}
           style={[styles.check, { borderColor: theme.primary, backgroundColor: a.done ? theme.primary : 'transparent' }]}
         >
-          {a.done ? <Text style={{ color: theme.onPrimary, fontWeight: '800' }}>✓</Text> : null}
+          {a.done ? <Ionicons name="checkmark" size={16} color={theme.onPrimary} /> : null}
         </Pressable>
         <Pressable style={{ flex: 1 }} onPress={() => router.push({ pathname: '/college/assignment/[id]', params: { id: a.id } })} accessibilityRole="button" accessibilityHint="Edit assignment">
           <Text style={[styles.title, { color: a.done ? theme.muted : theme.text }, a.done && styles.strike]}>{a.title}</Text>

@@ -186,7 +186,24 @@ export const emptyCollege = (): CollegeState => ({
   study: [],
 });
 
-export const SUBJECT_COLORS = ['#4F46E5', '#0D9488', '#D97706', '#DB2777', '#2563EB', '#7C3AED', '#059669', '#DC2626', '#64748B'];
+/** Previous default subject colours → their replacements in the current palette (applied on load). */
+const LEGACY_SUBJECT_COLORS: Record<string, string> = {
+  '#4F46E5': '#6E56CF',
+  '#0D9488': '#187A63',
+  '#D97706': '#D9822B',
+  '#DB2777': '#C2417A',
+  '#2563EB': '#376FBE',
+  '#7C3AED': '#8E6C3A',
+  '#059669': '#2E9BB5',
+  '#DC2626': '#B54A3C',
+  '#64748B': '#5E6577',
+};
+
+/** Swaps an old default colour for its current-palette equivalent; custom colours are left alone. */
+export const refreshSubjectColor = (c: string) => LEGACY_SUBJECT_COLORS[c.toUpperCase()] ?? c;
+
+/** Curated subject palette: distinct at a glance, calm together, readable with white or ink text. */
+export const SUBJECT_COLORS = ['#6E56CF', '#187A63', '#D9822B', '#C2417A', '#376FBE', '#8E6C3A', '#2E9BB5', '#B54A3C', '#5E6577'];
 
 // ---------- validation ----------
 
@@ -419,7 +436,10 @@ export function migrateCollege(value: unknown): CollegeState | null {
     ...(typeof v.attendanceSyncedAt === 'string' ? { attendanceSyncedAt: v.attendanceSyncedAt } : {}),
     attendanceTarget: typeof v.attendanceTarget === 'number' ? v.attendanceTarget : base.attendanceTarget,
     grade: { ...base.grade, ...(v.grade ?? {}) },
-    subjects: v.subjects!.map((sub) => (sub.links === undefined ? sub : { ...sub, links: sanitizeLinks(sub.links) })),
+    subjects: v.subjects!.map((sub) => {
+      const color = typeof sub.color === 'string' ? refreshSubjectColor(sub.color) : sub.color;
+      return sub.links === undefined ? { ...sub, color } : { ...sub, color, links: sanitizeLinks(sub.links) };
+    }),
   } as CollegeState;
 }
 

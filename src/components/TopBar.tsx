@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTheme } from '@/hooks/useTheme';
+import { radius } from '@/theme/colors';
 import type { AppMode } from '@/lib/settings';
 
 /** COLLEGE | <your second tab name> switch with a settings button, shown above every tab. */
@@ -16,7 +17,7 @@ export function TopBar({ mode, onChange, projectsLabel }: { mode: AppMode; onCha
   const insets = useSafeAreaInsets();
   return (
     <View style={[styles.bar, { paddingTop: insets.top + 8, backgroundColor: theme.background }]}>
-      <View style={[styles.switch, { backgroundColor: theme.surface, borderColor: theme.border }]} accessibilityRole="tablist">
+      <View style={[styles.switch, { backgroundColor: theme.raised }]} accessibilityRole="tablist">
         {MODES.map((m) => {
           const on = m.mode === mode;
           return (
@@ -26,9 +27,11 @@ export function TopBar({ mode, onChange, projectsLabel }: { mode: AppMode; onCha
               accessibilityRole="tab"
               accessibilityState={{ selected: on }}
               accessibilityLabel={`${m.label} mode`}
-              style={[styles.segment, on && { backgroundColor: theme.primary }]}
+              style={[styles.segment, on && { backgroundColor: theme.text }]}
             >
-              <Text style={[styles.segmentText, { color: on ? theme.onPrimary : theme.muted }]}>{m.label.toUpperCase()}</Text>
+              <Text style={[styles.segmentText, { color: on ? theme.background : theme.muted }]} numberOfLines={1}>
+                {m.label}
+              </Text>
             </Pressable>
           );
         })}
@@ -37,9 +40,9 @@ export function TopBar({ mode, onChange, projectsLabel }: { mode: AppMode; onCha
         onPress={() => router.push('/settings')}
         accessibilityRole="button"
         accessibilityLabel="Settings and more"
-        style={[styles.gear, { backgroundColor: theme.surface, borderColor: theme.border }]}
+        style={({ pressed }) => [styles.gear, { backgroundColor: pressed ? theme.border : theme.raised }]}
       >
-        <Ionicons name="settings-outline" size={22} color={theme.text} />
+        <Ionicons name="options-outline" size={21} color={theme.text} />
       </Pressable>
     </View>
   );
@@ -47,8 +50,8 @@ export function TopBar({ mode, onChange, projectsLabel }: { mode: AppMode; onCha
 
 const styles = StyleSheet.create({
   bar: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingBottom: 8 },
-  switch: { flex: 1, flexDirection: 'row', borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, padding: 4 },
-  segment: { flex: 1, alignItems: 'center', paddingVertical: 9, borderRadius: 10 },
-  segmentText: { fontWeight: '800', fontSize: 13, letterSpacing: 0.6 },
-  gear: { width: 46, height: 46, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' },
+  switch: { flex: 1, flexDirection: 'row', borderRadius: radius.md, padding: 3 },
+  segment: { flex: 1, alignItems: 'center', paddingVertical: 9, borderRadius: radius.sm + 1 },
+  segmentText: { fontWeight: '600', fontSize: 14, letterSpacing: 0.1 },
+  gear: { width: 44, height: 44, borderRadius: radius.md, alignItems: 'center', justifyContent: 'center' },
 });

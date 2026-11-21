@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
 import { useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -58,7 +59,7 @@ export function CheckRow({
         hitSlop={8}
         style={[styles.check, { borderColor: c, backgroundColor: done ? c : 'transparent' }]}
       >
-        {done ? <Text style={{ color: theme.background, fontWeight: '800' }}>✓</Text> : null}
+        {done ? <Ionicons name="checkmark" size={16} color={theme.background} /> : null}
       </Pressable>
       <Pressable style={{ flex: 1 }} onPress={onPress ?? onToggle} disabled={!onPress && !onToggle} accessibilityRole={onPress ? 'button' : undefined}>
         <Text style={[styles.checkTitle, { color: done ? theme.muted : theme.text }, done && styles.strike]}>{title}</Text>

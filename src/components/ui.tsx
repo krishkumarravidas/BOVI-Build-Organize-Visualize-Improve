@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import {
   Alert,
   KeyboardAvoidingView,
@@ -15,7 +15,10 @@ import {
 } from 'react-native';
 
 import { useTheme } from '@/hooks/useTheme';
-import { readableOn } from '@/theme/contrast';
+import { Ionicons } from '@expo/vector-icons';
+
+import { radius } from '@/theme/colors';
+import { mix, readableOn } from '@/theme/contrast';
 
 /** Stack header themed like the rest of the app. */
 export function ScreenHeader({ title, modal }: { title: string; modal?: boolean }) {
@@ -27,8 +30,9 @@ export function ScreenHeader({ title, modal }: { title: string; modal?: boolean 
         title,
         presentation: modal ? 'modal' : 'card',
         headerStyle: { backgroundColor: theme.background },
-        headerTitleStyle: { color: theme.text },
-        headerTintColor: theme.primary,
+        headerTitleStyle: { color: theme.text, fontWeight: '700' },
+        headerTintColor: theme.text,
+        headerShadowVisible: false,
       }}
     />
   );
@@ -52,17 +56,26 @@ export function FormScreen({ children }: { children: ReactNode }) {
 
 export function Field({ label, hint, ...input }: TextInputProps & { label: string; hint?: string }) {
   const theme = useTheme();
+  const [focused, setFocused] = useState(false);
   return (
     <View style={styles.field}>
-      <Text style={[styles.label, { color: theme.text }]}>{label}</Text>
+      <Text style={[styles.label, { color: theme.muted }]}>{label}</Text>
       <TextInput
         placeholderTextColor={theme.muted}
         accessibilityLabel={label}
         {...input}
+        onFocus={(e) => {
+          setFocused(true);
+          input.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          setFocused(false);
+          input.onBlur?.(e);
+        }}
         style={[
           styles.input,
           input.multiline && styles.multiline,
-          { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border },
+          { color: theme.text, backgroundColor: theme.raised, borderColor: focused ? theme.primary : 'transparent' },
         ]}
       />
       {hint ? <Text style={{ color: theme.muted, fontSize: 13 }}>{hint}</Text> : null}
@@ -113,9 +126,10 @@ export function Chip({ label, selected, onPress, color }: { label: string; selec
       accessibilityRole="radio"
       accessibilityState={{ selected }}
       accessibilityLabel={label}
-      style={[styles.chip, { borderColor: c, backgroundColor: selected ? c : 'transparent' }]}
+      style={({ pressed }) => [styles.chip, { backgroundColor: selected ? c : theme.raised, opacity: pressed ? 0.85 : 1 }]}
     >
-      <Text style={{ color: selected ? (color ? readableOn(color) : theme.onPrimary) : theme.text, fontWeight: '600' }} numberOfLines={1}>
+      {color && !selected ? <View style={[styles.chipDot, { backgroundColor: color }]} /> : null}
+      <Text style={[styles.chipText, { color: selected ? (color ? readableOn(color) : theme.onPrimary) : theme.text }]} numberOfLines={1}>
         {label}
       </Text>
     </Pressable>
@@ -148,6 +162,7 @@ export function ListRow({
 }) {
   const theme = useTheme();
   const badgeColor = badge?.tone === 'danger' ? theme.danger : badge?.tone === 'accent' ? theme.accent : theme.muted;
+  const dot = color || theme.primary;
   return (
     <Pressable
       onPress={onPress}
@@ -156,10 +171,10 @@ export function ListRow({
       accessibilityHint={hint}
       style={({ pressed }) => [
         styles.listRow,
-        { backgroundColor: theme.surface, borderColor: theme.border, opacity: pressed ? 0.8 : 1 },
+        { backgroundColor: pressed ? theme.raised : theme.surface, borderColor: theme.border },
       ]}
     >
-      <View style={[styles.bar, { backgroundColor: color || theme.primary }]} />
+      <View style={[styles.dot, { backgroundColor: dot }]} />
       <View style={{ flex: 1, gap: 2 }}>
         <View style={styles.titleRow}>
           <Text
@@ -169,7 +184,7 @@ export function ListRow({
             {title}
           </Text>
           {badge ? (
-            <Text style={[styles.badge, { color: badgeColor, borderColor: badgeColor }]}>{badge.text}</Text>
+            <Text style={[styles.badge, { color: badgeColor, backgroundColor: mix(theme.surface, badgeColor, 0.15) }]}>{badge.text}</Text>
           ) : null}
         </View>
         {subtitle ? (
@@ -183,6 +198,7 @@ export function ListRow({
           </Text>
         ) : null}
       </View>
+      {onPress ? <Ionicons name="chevron-forward" size={18} color={theme.muted} style={styles.chevron} /> : null}
     </Pressable>
   );
 }
@@ -198,23 +214,26 @@ export function EmptyText({ children }: { children: string }) {
 }
 
 const styles = StyleSheet.create({
-  form: { padding: 16, gap: 18, paddingBottom: 40 },
-  field: { gap: 8 },
-  label: { fontSize: 15, fontWeight: '700' },
-  input: { borderWidth: 1, borderRadius: 12, paddingHorizontal: 14, paddingVertical: 12, fontSize: 16 },
+  form: { padding: 20, gap: 18, paddingBottom: 48 },
+  field: { gap: 6 },
+  label: { fontSize: 13, fontWeight: '600', letterSpacing: 0.2 },
+  input: { borderWidth: 1.5, borderRadius: radius.sm + 2, paddingHorizontal: 14, paddingVertical: 12, fontSize: 16 },
   multiline: { minHeight: 96, textAlignVertical: 'top' },
   row: { flexDirection: 'row', gap: 12 },
-  card: { borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, padding: 14, gap: 10 },
-  sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 10, minHeight: 32 },
-  section: { fontSize: 14, fontWeight: '700', textTransform: 'uppercase' },
+  card: { borderRadius: radius.lg, borderWidth: StyleSheet.hairlineWidth, padding: 16, gap: 10 },
+  sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 14, minHeight: 28 },
+  section: { fontSize: 12, fontWeight: '700', letterSpacing: 1.1, textTransform: 'uppercase' },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  chip: { borderWidth: 2, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 7, maxWidth: '100%' },
-  listRow: { flexDirection: 'row', gap: 12, padding: 12, borderRadius: 12, borderWidth: StyleSheet.hairlineWidth },
-  bar: { width: 4, borderRadius: 2 },
+  chip: { flexDirection: 'row', alignItems: 'center', gap: 6, borderRadius: radius.sm, paddingHorizontal: 12, paddingVertical: 8, maxWidth: '100%' },
+  chipDot: { width: 8, height: 8, borderRadius: 4 },
+  chipText: { fontSize: 14, fontWeight: '600' },
+  listRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, paddingHorizontal: 14, borderRadius: radius.md + 2, borderWidth: StyleSheet.hairlineWidth },
+  dot: { width: 10, height: 10, borderRadius: 5, alignSelf: 'flex-start', marginTop: 6 },
+  chevron: { marginLeft: 2 },
   titleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8 },
   rowTitle: { flex: 1, fontSize: 16, fontWeight: '600' },
   strike: { textDecorationLine: 'line-through' },
-  badge: { fontSize: 12, fontWeight: '700', borderWidth: 1, borderRadius: 8, paddingHorizontal: 6, paddingVertical: 1, overflow: 'hidden' },
+  badge: { fontSize: 12, fontWeight: '700', borderRadius: radius.pill, paddingHorizontal: 8, paddingVertical: 2, overflow: 'hidden' },
 });
 
 /** Destructive confirmation (native alert; web confirms immediately, as Alert buttons don't work there). */

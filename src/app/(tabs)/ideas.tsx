@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -50,7 +51,7 @@ export default function IdeasTab() {
             <Text style={{ color: theme.primary, fontWeight: '700' }}>Make project</Text>
           </Pressable>
           <Pressable onPress={() => removeIdea(i.id)} accessibilityRole="button" accessibilityLabel={`Delete idea ${i.text}`} hitSlop={8}>
-            <Text style={{ color: theme.danger, fontSize: 18 }}>✕</Text>
+            <Ionicons name="close" size={20} color={theme.muted} />
           </Pressable>
         </View>
       ))}

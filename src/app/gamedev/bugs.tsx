@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -57,7 +58,7 @@ export default function BugsScreen() {
             hitSlop={8}
             style={[local.fix, { borderColor: theme.accent, backgroundColor: b.status === 'fixed' ? theme.accent : 'transparent' }]}
           >
-            <Text style={{ color: b.status === 'fixed' ? theme.background : theme.accent, fontWeight: '800' }}>✓</Text>
+            <Ionicons name="checkmark" size={16} color={b.status === 'fixed' ? theme.background : theme.accent} />
           </Pressable>
         </Pressable>
       ))}

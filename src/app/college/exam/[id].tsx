@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -127,11 +128,11 @@ export default function ExamFormScreen() {
                 accessibilityLabel={t.title}
                 style={[styles.check, { borderColor: theme.primary, backgroundColor: t.done ? theme.primary : 'transparent' }]}
               >
-                {t.done ? <Text style={{ color: theme.onPrimary, fontWeight: '800' }}>✓</Text> : null}
+                {t.done ? <Ionicons name="checkmark" size={16} color={theme.onPrimary} /> : null}
               </Pressable>
               <Text style={[styles.taskText, { color: t.done ? theme.muted : theme.text }, t.done && styles.strike]}>{t.title}</Text>
               <Pressable onPress={() => removeTopic(t.id)} accessibilityRole="button" accessibilityLabel={`Delete topic ${t.title}`} hitSlop={8}>
-                <Text style={{ color: theme.danger, fontSize: 18 }}>✕</Text>
+                <Ionicons name="close" size={20} color={theme.muted} />
               </Pressable>
             </View>
           ))}
@@ -202,7 +203,7 @@ export default function ExamFormScreen() {
                 accessibilityLabel={`${s.title} ${shortDate(s.date)}`}
                 style={[styles.check, { borderColor: theme.accent, backgroundColor: s.done ? theme.accent : 'transparent' }]}
               >
-                {s.done ? <Text style={{ color: theme.background, fontWeight: '800' }}>✓</Text> : null}
+                {s.done ? <Ionicons name="checkmark" size={16} color={theme.background} /> : null}
               </Pressable>
               <Text style={[styles.taskText, { color: s.done ? theme.muted : theme.text }, s.done && styles.strike]}>
                 {shortDate(s.date)} · {s.start}–{s.end}
@@ -210,7 +211,7 @@ export default function ExamFormScreen() {
                 <Text style={{ color: theme.muted }}>{s.title}</Text>
               </Text>
               <Pressable onPress={() => c.deleteStudy(s.id)} accessibilityRole="button" accessibilityLabel={`Delete session ${shortDate(s.date)} ${s.start}`} hitSlop={8}>
-                <Text style={{ color: theme.danger, fontSize: 18 }}>✕</Text>
+                <Ionicons name="close" size={20} color={theme.muted} />
               </Pressable>
             </View>
           ))}
