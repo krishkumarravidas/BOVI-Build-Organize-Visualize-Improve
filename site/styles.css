@@ -140,8 +140,8 @@ h4 { font-size: 16px; margin: 0 0 6px; }
 
 /* ---------- gallery ---------- */
 .gallery { padding: 24px 0 88px; }
-.gallery-track { display: flex; gap: 20px; overflow-x: auto; padding: 8px max(20px, (100% - 1120px) / 2) 24px; scroll-snap-type: x mandatory; }
-.gallery-track .phone { flex: 0 0 230px; scroll-snap-align: start; }
+.gallery-track { --edge: max(20px, calc((100% - 1120px) / 2)); display: flex; gap: 20px; overflow-x: auto; padding: 8px var(--edge) 24px; scroll-padding-inline: var(--edge); scroll-snap-type: x mandatory; }
+.gallery-track .phone { flex: 0 0 auto; width: 220px; min-width: 0; height: auto; scroll-snap-align: start; }
 
 /* ---------- privacy ---------- */
 .privacy { padding: 72px 0; border-top: 1px solid var(--border); }
@@ -189,4 +189,5 @@ h4 { font-size: 16px; margin: 0 0 6px; }
   .phone-front { transform: translateX(-5%); }
   .phone-back { transform: translateX(-88%) rotate(-6deg); }
   .footer-inner { flex-direction: column; gap: 8px; }
+  .gallery-track .phone { width: 170px; }
 }
