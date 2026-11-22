@@ -77,6 +77,7 @@ export default function SettingsScreen() {
       <ListRow title="Weekly review" subtitle="How the week went, then plan the next" color={theme.primary} onPress={() => router.push('/review')} />
       <ListRow title="Monthly report" subtitle="A shareable summary of the month" color={theme.primary} onPress={() => router.push('/report')} />
       <ListRow title="Insights" subtitle="Your week: habits, focus, attendance, screen time" onPress={() => router.push('/insights')} />
+      <ListRow title="Claude connector" subtitle={settings.claudeSync ? 'Connected: Claude can read and add to BOVI' : 'Ask Claude about your timetable, attendance and tasks'} color={theme.primary} onPress={() => router.push('/claude')} />
       <ListRow title="Run setup again" subtitle="College, subjects, attendance import, tab name, reminders" color={theme.muted} onPress={() => router.push('/setup')} />
       <ListRow title="Backup & restore" subtitle="Export everything, or restore from a backup" color={theme.muted} onPress={() => router.push('/backup')} />
 

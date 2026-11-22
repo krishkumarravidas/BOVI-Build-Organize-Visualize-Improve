@@ -2,6 +2,10 @@
 
 A planner for college students and their own projects, built around a clock-style calendar. Android only. No account, no ads, no servers: everything stays on your phone.
 
+### New in 1.4
+- **Attendance, day by day.** A month calendar showing which days you were present, absent or missed some classes. Tap a day to see each class and mark it. Also new: your attendance streak, this month's %, the weekday you miss most, perfect days, an 8-week trend, and each subject's last 12 classes.
+- **Connect BOVI to Claude (optional).** Ask Claude *"can I skip Friday's class?"* or *"what's due this week?"*, and let it add tasks, assignments, exams and ideas. It runs on your own free server, set up with one command. Guide: [docs/claude-connector.md](https://github.com/krishkumarravidas/BOVI-Build-Organize-Visualize-Improve/blob/main/docs/claude-connector.md)
+
 ### New in 1.3
 - **The keyboard no longer covers what you're typing.** Every screen scrolls the field you tap into view above the keyboard.
 - **Clock and calendar pickers.** Times and dates (classes, exams, tasks, habits, deadlines…) open Android's clock and calendar dialogs instead of asking you to type `08:30` or `2026-11-23`. They follow BOVI's black-and-white look and your light/dark setting.

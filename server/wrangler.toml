@@ -1,0 +1,12 @@
+# Your personal BOVI connector. Deploy with `npm run setup` (first time) or `npm run deploy`.
+name = "bovi-connector"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+
+[[durable_objects.bindings]]
+name = "STORE"
+class_name = "BoviStore"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["BoviStore"]

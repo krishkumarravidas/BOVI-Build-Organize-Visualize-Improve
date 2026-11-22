@@ -1,0 +1,1712 @@
+{
+ "version": 1,
+ "generatedAt": "2026-11-16T10:00:00.000Z",
+ "today": "2026-11-16",
+ "weekday": "Mon",
+ "timeZone": "UTC",
+ "projectsTabName": "Game dev",
+ "subjects": [
+  {
+   "name": "Data Structures & Algorithms",
+   "short": "DSA",
+   "code": "CS305"
+  },
+  {
+   "name": "OOPS with Java",
+   "short": "Java",
+   "code": "CS303"
+  },
+  {
+   "name": "Artificial Intelligence",
+   "short": "AI",
+   "code": "CS302"
+  },
+  {
+   "name": "Digital Design & Computer Org.",
+   "short": "DDCO",
+   "code": "CS304"
+  },
+  {
+   "name": "Probability & Statistics for ML",
+   "short": "PSML",
+   "code": "MA301"
+  },
+  {
+   "name": "Societal Project",
+   "short": "Societal",
+   "code": "HS308"
+  },
+  {
+   "name": "AEC Labs",
+   "short": "AEC Lab",
+   "code": "CSL307X"
+  },
+  {
+   "name": "DSA / AI Lab",
+   "short": "Lab",
+   "code": "CSL306"
+  },
+  {
+   "name": "Additional Maths-I",
+   "short": "Add. Maths",
+   "code": "MA310"
+  }
+ ],
+ "weeklyTimetable": [
+  {
+   "day": "Mon",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Data Structures & Algorithms",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Mon",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "OOPS with Java",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Mon",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Artificial Intelligence",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Mon",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Mon",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": "Probability & Statistics for ML",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Mon",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": "Societal Project",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Tue",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Digital Design & Computer Org.",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Tue",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Data Structures & Algorithms",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Tue",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "OOPS with Java",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Tue",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Probability & Statistics for ML",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Tue",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": null,
+   "title": "Proctoring",
+   "room": "Room 204"
+  },
+  {
+   "day": "Tue",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": null,
+   "title": "NCMC Yoga",
+   "room": "Room 204"
+  },
+  {
+   "day": "Wed",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Artificial Intelligence",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Wed",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Probability & Statistics for ML",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Wed",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Data Structures & Algorithms",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Wed",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Wed",
+   "start": "13:25",
+   "end": "15:20",
+   "subject": "AEC Labs",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Wed",
+   "start": "15:20",
+   "end": "16:10",
+   "subject": null,
+   "title": "Remedial",
+   "room": "Room 204"
+  },
+  {
+   "day": "Thu",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "OOPS with Java",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Thu",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Artificial Intelligence",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Thu",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Probability & Statistics for ML",
+   "title": null,
+   "room": "Room 204"
+  },
+  {
+   "day": "Thu",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "OOPS with Java",
+   "title": "OOPS Tutorial",
+   "room": "Room 204"
+  },
+  {
+   "day": "Thu",
+   "start": "13:25",
+   "end": "16:10",
+   "subject": "DSA / AI Lab",
+   "title": "DSA Lab B1 / AI Lab B2",
+   "room": "Room 204"
+  },
+  {
+   "day": "Fri",
+   "start": "08:30",
+   "end": "10:20",
+   "subject": "DSA / AI Lab",
+   "title": "DSA Lab B2 / AI Lab B1",
+   "room": "Room 204"
+  },
+  {
+   "day": "Fri",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "OOPS with Java",
+   "title": "OOPS Tutorial",
+   "room": "Room 204"
+  },
+  {
+   "day": "Fri",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Probability & Statistics for ML",
+   "title": "PSML Tutorial",
+   "room": "Room 204"
+  },
+  {
+   "day": "Fri",
+   "start": "13:25",
+   "end": "15:15",
+   "subject": "Additional Maths-I",
+   "title": null,
+   "room": "Sir C V Raman Block, CR 302"
+  },
+  {
+   "day": "Fri",
+   "start": "15:15",
+   "end": "15:30",
+   "subject": null,
+   "title": "Proctoring",
+   "room": "Room 204"
+  }
+ ],
+ "timetable": [
+  {
+   "date": "2026-11-09",
+   "weekday": "Mon",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-09",
+   "weekday": "Mon",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-09",
+   "weekday": "Mon",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-09",
+   "weekday": "Mon",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-09",
+   "weekday": "Mon",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-09",
+   "weekday": "Mon",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": "Societal Project",
+   "title": "Societal Project",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-10",
+   "weekday": "Tue",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-10",
+   "weekday": "Tue",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-10",
+   "weekday": "Tue",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-10",
+   "weekday": "Tue",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-10",
+   "weekday": "Tue",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": null,
+   "title": "Proctoring",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-10",
+   "weekday": "Tue",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": null,
+   "title": "NCMC Yoga",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-11",
+   "weekday": "Wed",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-11",
+   "weekday": "Wed",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-11",
+   "weekday": "Wed",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-11",
+   "weekday": "Wed",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-11",
+   "weekday": "Wed",
+   "start": "13:25",
+   "end": "15:20",
+   "subject": "AEC Labs",
+   "title": "AEC Labs",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-11",
+   "weekday": "Wed",
+   "start": "15:20",
+   "end": "16:10",
+   "subject": null,
+   "title": "Remedial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-12",
+   "weekday": "Thu",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-12",
+   "weekday": "Thu",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-12",
+   "weekday": "Thu",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-12",
+   "weekday": "Thu",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "OOPS with Java",
+   "title": "OOPS Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-12",
+   "weekday": "Thu",
+   "start": "13:25",
+   "end": "16:10",
+   "subject": "DSA / AI Lab",
+   "title": "DSA Lab B1 / AI Lab B2",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-13",
+   "weekday": "Fri",
+   "start": "08:30",
+   "end": "10:20",
+   "subject": "DSA / AI Lab",
+   "title": "DSA Lab B2 / AI Lab B1",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-13",
+   "weekday": "Fri",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "OOPS with Java",
+   "title": "OOPS Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-13",
+   "weekday": "Fri",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Probability & Statistics for ML",
+   "title": "PSML Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-13",
+   "weekday": "Fri",
+   "start": "13:25",
+   "end": "15:15",
+   "subject": "Additional Maths-I",
+   "title": "Additional Maths-I",
+   "room": "Sir C V Raman Block, CR 302",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-13",
+   "weekday": "Fri",
+   "start": "15:15",
+   "end": "15:30",
+   "subject": null,
+   "title": "Proctoring",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-16",
+   "weekday": "Mon",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-16",
+   "weekday": "Mon",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-16",
+   "weekday": "Mon",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-16",
+   "weekday": "Mon",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-16",
+   "weekday": "Mon",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-16",
+   "weekday": "Mon",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": "Societal Project",
+   "title": "Societal Project",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-17",
+   "weekday": "Tue",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-17",
+   "weekday": "Tue",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-17",
+   "weekday": "Tue",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-17",
+   "weekday": "Tue",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-17",
+   "weekday": "Tue",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": null,
+   "title": "Proctoring",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-17",
+   "weekday": "Tue",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": null,
+   "title": "NCMC Yoga",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-18",
+   "weekday": "Wed",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-18",
+   "weekday": "Wed",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-18",
+   "weekday": "Wed",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-18",
+   "weekday": "Wed",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-18",
+   "weekday": "Wed",
+   "start": "13:25",
+   "end": "15:20",
+   "subject": "AEC Labs",
+   "title": "AEC Labs",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-18",
+   "weekday": "Wed",
+   "start": "15:20",
+   "end": "16:10",
+   "subject": null,
+   "title": "Remedial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-19",
+   "weekday": "Thu",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-19",
+   "weekday": "Thu",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-19",
+   "weekday": "Thu",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-19",
+   "weekday": "Thu",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "OOPS with Java",
+   "title": "OOPS Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-19",
+   "weekday": "Thu",
+   "start": "13:25",
+   "end": "16:10",
+   "subject": "DSA / AI Lab",
+   "title": "DSA Lab B1 / AI Lab B2",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-20",
+   "weekday": "Fri",
+   "start": "08:30",
+   "end": "10:20",
+   "subject": "DSA / AI Lab",
+   "title": "DSA Lab B2 / AI Lab B1",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-20",
+   "weekday": "Fri",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "OOPS with Java",
+   "title": "OOPS Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-20",
+   "weekday": "Fri",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Probability & Statistics for ML",
+   "title": "PSML Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-20",
+   "weekday": "Fri",
+   "start": "13:25",
+   "end": "15:15",
+   "subject": "Additional Maths-I",
+   "title": "Additional Maths-I",
+   "room": "Sir C V Raman Block, CR 302",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-20",
+   "weekday": "Fri",
+   "start": "15:15",
+   "end": "15:30",
+   "subject": null,
+   "title": "Proctoring",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-23",
+   "weekday": "Mon",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-23",
+   "weekday": "Mon",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-23",
+   "weekday": "Mon",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-23",
+   "weekday": "Mon",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-23",
+   "weekday": "Mon",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-23",
+   "weekday": "Mon",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": "Societal Project",
+   "title": "Societal Project",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-24",
+   "weekday": "Tue",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-24",
+   "weekday": "Tue",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-24",
+   "weekday": "Tue",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-24",
+   "weekday": "Tue",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-24",
+   "weekday": "Tue",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": null,
+   "title": "Proctoring",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-24",
+   "weekday": "Tue",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": null,
+   "title": "NCMC Yoga",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-25",
+   "weekday": "Wed",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-25",
+   "weekday": "Wed",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-25",
+   "weekday": "Wed",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-25",
+   "weekday": "Wed",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-25",
+   "weekday": "Wed",
+   "start": "13:25",
+   "end": "15:20",
+   "subject": "AEC Labs",
+   "title": "AEC Labs",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-25",
+   "weekday": "Wed",
+   "start": "15:20",
+   "end": "16:10",
+   "subject": null,
+   "title": "Remedial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-26",
+   "weekday": "Thu",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-26",
+   "weekday": "Thu",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-26",
+   "weekday": "Thu",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-26",
+   "weekday": "Thu",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "OOPS with Java",
+   "title": "OOPS Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-26",
+   "weekday": "Thu",
+   "start": "13:25",
+   "end": "16:10",
+   "subject": "DSA / AI Lab",
+   "title": "DSA Lab B1 / AI Lab B2",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-27",
+   "weekday": "Fri",
+   "start": "08:30",
+   "end": "10:20",
+   "subject": "DSA / AI Lab",
+   "title": "DSA Lab B2 / AI Lab B1",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-27",
+   "weekday": "Fri",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "OOPS with Java",
+   "title": "OOPS Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-27",
+   "weekday": "Fri",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Probability & Statistics for ML",
+   "title": "PSML Tutorial",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-27",
+   "weekday": "Fri",
+   "start": "13:25",
+   "end": "15:15",
+   "subject": "Additional Maths-I",
+   "title": "Additional Maths-I",
+   "room": "Sir C V Raman Block, CR 302",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-27",
+   "weekday": "Fri",
+   "start": "15:15",
+   "end": "15:30",
+   "subject": null,
+   "title": "Proctoring",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-30",
+   "weekday": "Mon",
+   "start": "08:30",
+   "end": "09:25",
+   "subject": "Data Structures & Algorithms",
+   "title": "Data Structures & Algorithms",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-30",
+   "weekday": "Mon",
+   "start": "09:25",
+   "end": "10:20",
+   "subject": "OOPS with Java",
+   "title": "OOPS with Java",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-30",
+   "weekday": "Mon",
+   "start": "10:40",
+   "end": "11:35",
+   "subject": "Artificial Intelligence",
+   "title": "Artificial Intelligence",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-30",
+   "weekday": "Mon",
+   "start": "11:35",
+   "end": "12:30",
+   "subject": "Digital Design & Computer Org.",
+   "title": "Digital Design & Computer Org.",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-30",
+   "weekday": "Mon",
+   "start": "13:25",
+   "end": "14:20",
+   "subject": "Probability & Statistics for ML",
+   "title": "Probability & Statistics for ML",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  },
+  {
+   "date": "2026-11-30",
+   "weekday": "Mon",
+   "start": "14:20",
+   "end": "16:10",
+   "subject": "Societal Project",
+   "title": "Societal Project",
+   "room": "Room 204",
+   "status": "regular",
+   "attendance": null
+  }
+ ],
+ "attendance": {
+  "target": 75,
+  "overall": {
+   "present": 0,
+   "total": 0,
+   "percent": null
+  },
+  "subjects": [
+   {
+    "subject": "Data Structures & Algorithms",
+    "short": "DSA",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   },
+   {
+    "subject": "OOPS with Java",
+    "short": "Java",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   },
+   {
+    "subject": "Artificial Intelligence",
+    "short": "AI",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   },
+   {
+    "subject": "Digital Design & Computer Org.",
+    "short": "DDCO",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   },
+   {
+    "subject": "Probability & Statistics for ML",
+    "short": "PSML",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   },
+   {
+    "subject": "Societal Project",
+    "short": "Societal",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   },
+   {
+    "subject": "AEC Labs",
+    "short": "AEC Lab",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   },
+   {
+    "subject": "DSA / AI Lab",
+    "short": "Lab",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   },
+   {
+    "subject": "Additional Maths-I",
+    "short": "Add. Maths",
+    "present": 0,
+    "total": 0,
+    "percent": null,
+    "canMissNow": 0,
+    "mustAttendToReachTarget": 0,
+    "classesLeftThisSemester": null,
+    "canMissOfRemaining": null,
+    "bestPossibleFinalPercent": null,
+    "portalCountsAsOf": null
+   }
+  ]
+ },
+ "exams": [
+  {
+   "id": "ia1-psml",
+   "subject": "Probability & Statistics for ML",
+   "series": "IA1",
+   "title": "Probability & Statistics for ML",
+   "date": "2026-11-16",
+   "start": "09:30",
+   "end": "11:00",
+   "room": null,
+   "daysLeft": 0,
+   "syllabus": "Modules 1–2",
+   "topics": {
+    "done": 0,
+    "total": 2,
+    "notDone": [
+     "Module 1",
+     "Module 2"
+    ]
+   },
+   "readiness": {
+    "score": 0,
+    "verdict": "behind",
+    "tip": "Tick off more syllabus topics."
+   }
+  },
+  {
+   "id": "ia1-ai",
+   "subject": "Artificial Intelligence",
+   "series": "IA1",
+   "title": "Artificial Intelligence",
+   "date": "2026-11-16",
+   "start": "14:00",
+   "end": "15:30",
+   "room": null,
+   "daysLeft": 0,
+   "syllabus": "Modules 1–2 up to Unification (Resolution not included)",
+   "topics": {
+    "done": 0,
+    "total": 2,
+    "notDone": [
+     "Module 1",
+     "Module 2 up to Unification"
+    ]
+   },
+   "readiness": {
+    "score": 0,
+    "verdict": "behind",
+    "tip": "Tick off more syllabus topics."
+   }
+  },
+  {
+   "id": "ia1-java",
+   "subject": "OOPS with Java",
+   "series": "IA1",
+   "title": "OOPS with Java",
+   "date": "2026-11-17",
+   "start": "09:30",
+   "end": "11:00",
+   "room": null,
+   "daysLeft": 1,
+   "syllabus": null,
+   "topics": {
+    "done": 0,
+    "total": 0,
+    "notDone": []
+   },
+   "readiness": {
+    "score": 0,
+    "verdict": "behind",
+    "tip": "Put in some study time on this subject."
+   }
+  },
+  {
+   "id": "ia1-ddco",
+   "subject": "Digital Design & Computer Org.",
+   "series": "IA1",
+   "title": "DLCO (DDCO)",
+   "date": "2026-11-17",
+   "start": "14:00",
+   "end": "15:30",
+   "room": null,
+   "daysLeft": 1,
+   "syllabus": "Only up to latches and flip-flops (no registers)",
+   "topics": {
+    "done": 0,
+    "total": 3,
+    "notDone": [
+     "Combinational logic",
+     "Latches",
+     "Flip-flops"
+    ]
+   },
+   "readiness": {
+    "score": 0,
+    "verdict": "behind",
+    "tip": "Tick off more syllabus topics."
+   }
+  },
+  {
+   "id": "ia1-dsa",
+   "subject": "Data Structures & Algorithms",
+   "series": "IA1",
+   "title": "Data Structures & Algorithms",
+   "date": "2026-11-18",
+   "start": "09:30",
+   "end": "11:00",
+   "room": null,
+   "daysLeft": 2,
+   "syllabus": null,
+   "topics": {
+    "done": 0,
+    "total": 0,
+    "notDone": []
+   },
+   "readiness": {
+    "score": 0,
+    "verdict": "behind",
+    "tip": "Put in some study time on this subject."
+   }
+  },
+  {
+   "id": "ia1-maths",
+   "subject": "Additional Maths-I",
+   "series": "IA1",
+   "title": "Additional Maths-I",
+   "date": "2026-11-20",
+   "start": null,
+   "end": null,
+   "room": null,
+   "daysLeft": 4,
+   "syllabus": "Lateral entry only. Time not announced.",
+   "topics": {
+    "done": 0,
+    "total": 0,
+    "notDone": []
+   },
+   "readiness": {
+    "score": 0,
+    "verdict": "behind",
+    "tip": "Put in some study time on this subject."
+   }
+  }
+ ],
+ "assignments": [],
+ "tasks": [
+  {
+   "id": "t1",
+   "title": "Return library book",
+   "date": "2026-11-16",
+   "time": null,
+   "overdue": false,
+   "notes": null
+  }
+ ],
+ "habitsToday": [],
+ "events": [
+  {
+   "title": "Robotics Workshop (club)",
+   "startDate": "2026-11-19",
+   "endDate": "2026-11-20",
+   "note": null
+  }
+ ],
+ "studySessions": [],
+ "marks": [],
+ "projects": [
+  {
+   "id": "shadow-hall",
+   "name": "Shadow Hall",
+   "status": "active",
+   "summary": "PC · first-person horror",
+   "nextStep": "Write the middle acts",
+   "nextMilestone": "Full story outline (all acts)",
+   "openMilestones": [
+    {
+     "title": "Full story outline (all acts)",
+     "due": null
+    },
+    {
+     "title": "Vertical slice",
+     "due": null
+    },
+    {
+     "title": "Steam Coming Soon page",
+     "due": null
+    }
+   ],
+   "openTasks": [
+    "Write middle acts",
+    "Enemy AI",
+    "Concept art"
+   ],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  },
+  {
+   "id": "rail-runner",
+   "name": "Rail Runner",
+   "status": "long-term",
+   "summary": "Post-apocalyptic train game",
+   "nextStep": "Rebuild the train system",
+   "nextMilestone": "Train system rebuilt",
+   "openMilestones": [
+    {
+     "title": "Train system rebuilt",
+     "due": null
+    }
+   ],
+   "openTasks": [
+    "Fuel",
+    "Segment transitions",
+    "Car management"
+   ],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  },
+  {
+   "id": "board-ghost",
+   "name": "Board Ghost",
+   "status": "concept",
+   "summary": "Board-game horror",
+   "nextStep": null,
+   "nextMilestone": null,
+   "openMilestones": [],
+   "openTasks": [],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  },
+  {
+   "id": "portfolio",
+   "name": "Portfolio site",
+   "status": "planned",
+   "summary": "Show finished work",
+   "nextStep": "Start after exams",
+   "nextMilestone": null,
+   "openMilestones": [],
+   "openTasks": [],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  },
+  {
+   "id": "visualizer",
+   "name": "Music visualizer",
+   "status": "planned",
+   "summary": null,
+   "nextStep": "Start after exams",
+   "nextMilestone": null,
+   "openMilestones": [],
+   "openTasks": [],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  },
+  {
+   "id": "anim-test",
+   "name": "Animation test",
+   "status": "planned",
+   "summary": "Hit-reaction animations",
+   "nextStep": "After exams",
+   "nextMilestone": null,
+   "openMilestones": [],
+   "openTasks": [],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  },
+  {
+   "id": "vr-proto",
+   "name": "VR prototype",
+   "status": "paused",
+   "summary": "Club project",
+   "nextStep": "Talk with the club lead",
+   "nextMilestone": null,
+   "openMilestones": [],
+   "openTasks": [],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  },
+  {
+   "id": "puzzle",
+   "name": "Puzzle game",
+   "status": "parked",
+   "summary": "Small puzzle game",
+   "nextStep": null,
+   "nextMilestone": null,
+   "openMilestones": [],
+   "openTasks": [],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  },
+  {
+   "id": "studio-name",
+   "name": "Studio name",
+   "status": "decide",
+   "summary": "Pick a studio name",
+   "nextStep": "Decide, then buy the domain",
+   "nextMilestone": null,
+   "openMilestones": [],
+   "openTasks": [],
+   "deadline": null,
+   "lastDevlog": null,
+   "focusMinutesLast7Days": 0
+  }
+ ],
+ "ideas": []
+}

@@ -43,4 +43,13 @@ describe('backup', () => {
     expect([...m.keys()].sort()).toEqual(['habit-tracker/college', 'habit-tracker/projects', 'habit-tracker/settings', 'habit-tracker/state']);
     expect(JSON.parse(m.get(COLLEGE_KEY)!).profile).toBe('Sem 3 · Section A');
   });
+
+  it('never puts the Claude connector key in a backup', () => {
+    const d = data();
+    d.settings = { ...d.settings, claudeSync: { url: 'https://bovi.me.workers.dev', key: 'secret-key-0123456789abcdef' }, claudeSyncAt: 5 };
+    const text = buildBackup(d, new Date());
+    expect(text).not.toContain('secret-key-0123456789abcdef');
+    const parsed = parseBackup(text);
+    expect(parsed.ok && parsed.data.settings.claudeSync).toBe(null);
+  });
 });

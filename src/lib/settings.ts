@@ -27,6 +27,16 @@ export interface Settings {
   projectsTabName: string;
   /** First-run setup finished (existing installs with data count as done). */
   setupDone: boolean;
+  /** Your own BOVI connector server (see server/), for Claude. Null = off. Never included in backups. */
+  claudeSync: ClaudeSyncConfig | null;
+  /** Last successful sync with that server (epoch ms). */
+  claudeSyncAt: number | null;
+}
+
+export interface ClaudeSyncConfig {
+  /** e.g. https://bovi-connector.you.workers.dev */
+  url: string;
+  key: string;
 }
 
 export const DEFAULT_PROJECTS_TAB = 'Projects';
@@ -47,6 +57,8 @@ export const defaultSettings: Settings = {
   autoBackupAt: null,
   projectsTabName: DEFAULT_PROJECTS_TAB,
   setupDone: false,
+  claudeSync: null,
+  claudeSyncAt: null,
 };
 
 export const SETTINGS_KEY = 'habit-tracker/settings';
@@ -73,10 +85,30 @@ export function sanitizeSettings(value: unknown): Settings {
     autoBackupAt: typeof v.autoBackupAt === 'number' && Number.isFinite(v.autoBackupAt) ? v.autoBackupAt : null,
     projectsTabName: cleanTabName(v.projectsTabName),
     setupDone: typeof v.setupDone === 'boolean' ? v.setupDone : defaultSettings.setupDone,
+    claudeSync: sanitizeClaudeSync(v.claudeSync),
+    claudeSyncAt: typeof v.claudeSyncAt === 'number' && Number.isFinite(v.claudeSyncAt) ? v.claudeSyncAt : null,
   };
 }
 
 /** Trimmed, length-limited tab name; falls back to "Projects". */
+/** Normalises a server address: adds https://, drops trailing slashes and a pasted /mcp/... or /sync path. */
+export function normalizeServerUrl(input: string): string | null {
+  let u = input.trim().replace(/\s+/g, '');
+  if (!u) return null;
+  if (!/^https?:\/\//i.test(u)) u = `https://${u}`;
+  const m = /^(https?:\/\/[a-z0-9.-]+(?::\d+)?)(\/.*)?$/i.exec(u);
+  if (!m || !m[1].slice(m[1].indexOf('//') + 2).includes('.') && !/localhost|127\.0\.0\.1/.test(m[1])) return null;
+  return m[1].toLowerCase();
+}
+
+function sanitizeClaudeSync(v: unknown): ClaudeSyncConfig | null {
+  if (!v || typeof v !== 'object') return null;
+  const c = v as Partial<ClaudeSyncConfig>;
+  const url = typeof c.url === 'string' ? normalizeServerUrl(c.url) : null;
+  const key = typeof c.key === 'string' ? c.key.trim() : '';
+  return url && key.length >= 16 && key.length <= 200 ? { url, key } : null;
+}
+
 export function cleanTabName(v: unknown): string {
   const t = typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, MAX_TAB_NAME) : '';
   return t || DEFAULT_PROJECTS_TAB;

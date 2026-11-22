@@ -6,6 +6,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { AppLockGate } from '@/components/AppLockGate';
 import { useAutoBackup } from '@/hooks/useAutoBackup';
+import { useClaudeSync } from '@/hooks/useClaudeSync';
 import { CollegeProvider } from '@/hooks/useCollege';
 import { HabitsProvider } from '@/hooks/useHabits';
 import { ProjectsProvider } from '@/hooks/useProjects';
@@ -19,6 +20,7 @@ function AppShell() {
   useWidgetSync();
   useStudyTicker();
   useAutoBackup({ auto: true });
+  useClaudeSync();
   const { settings } = useSettings();
   // Native dialogs (clock/calendar pickers, alerts) follow BOVI's own light/dark choice, not just the phone's.
   useEffect(() => {

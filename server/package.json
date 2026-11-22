@@ -1,0 +1,16 @@
+{
+  "name": "bovi-connector",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Your own BOVI sync server and Claude connector (MCP), on Cloudflare Workers.",
+  "type": "module",
+  "scripts": {
+    "setup": "node setup.mjs",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "node --experimental-strip-types --no-warnings test/run.ts"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

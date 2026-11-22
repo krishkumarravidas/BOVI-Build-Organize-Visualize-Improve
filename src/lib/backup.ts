@@ -22,7 +22,9 @@ interface BackupFile {
 }
 
 export function buildBackup(data: BackupData, now: Date): string {
-  const file: BackupFile = { app: 'habit-tracker', format: 1, exportedAt: now.toISOString(), data };
+  // The Claude connector key gives access to your data: it never goes into a backup file.
+  const settings = { ...data.settings, claudeSync: null, claudeSyncAt: null };
+  const file: BackupFile = { app: 'habit-tracker', format: 1, exportedAt: now.toISOString(), data: { ...data, settings } };
   return JSON.stringify(file);
 }
 

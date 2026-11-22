@@ -1,4 +1,4 @@
-import { defaultSettings, loadSettings, saveSettings } from './settings';
+import { defaultSettings, loadSettings, normalizeServerUrl, saveSettings } from './settings';
 
 const fake = (initial?: string) => {
   const data = new Map<string, string>();
@@ -17,7 +17,7 @@ describe('settings', () => {
 
   it('round-trips', async () => {
     const store = fake();
-    const all = { theme: 'dark' as const, remindersEnabled: false, calendarIds: ['a', 'b'], screenTimeLimitMin: 180, examReminders: false, mode: 'gamedev' as const, briefingTime: null, appLock: true, autoBackupDir: 'content://tree/x', autoBackupAt: 5, projectsTabName: 'Work', setupDone: true };
+    const all = { theme: 'dark' as const, remindersEnabled: false, calendarIds: ['a', 'b'], screenTimeLimitMin: 180, examReminders: false, mode: 'gamedev' as const, briefingTime: null, appLock: true, autoBackupDir: 'content://tree/x', autoBackupAt: 5, projectsTabName: 'Work', setupDone: true, claudeSync: { url: 'https://bovi.me.workers.dev', key: 'k'.repeat(32) }, claudeSyncAt: 9 };
     await saveSettings(all, store);
     expect(await loadSettings(store)).toEqual(all);
   });
@@ -36,6 +36,8 @@ describe('settings', () => {
       autoBackupAt: null,
       projectsTabName: 'Projects',
       setupDone: false,
+      claudeSync: null,
+      claudeSyncAt: null,
     });
     expect((await loadSettings(fake('{"projectsTabName":"   Side   projects  "}'))).projectsTabName).toBe('Side projects');
     expect((await loadSettings(fake('{"projectsTabName":""}'))).projectsTabName).toBe('Projects');
@@ -45,5 +47,21 @@ describe('settings', () => {
     expect((await loadSettings(fake('{"calendarIds":[1,2]}'))).calendarIds).toBeNull();
     expect((await loadSettings(fake('{"screenTimeLimitMin":-5}'))).screenTimeLimitMin).toBeNull();
     expect((await loadSettings(fake('{"screenTimeLimitMin":99999}'))).screenTimeLimitMin).toBeNull();
+  });
+
+  it('cleans up a pasted connector address and rejects junk', () => {
+    expect(normalizeServerUrl('bovi-connector.me.workers.dev')).toBe('https://bovi-connector.me.workers.dev');
+    expect(normalizeServerUrl(' https://Bovi.me.workers.dev/ ')).toBe('https://bovi.me.workers.dev');
+    expect(normalizeServerUrl('https://bovi.me.workers.dev/mcp/abcdef')).toBe('https://bovi.me.workers.dev');
+    expect(normalizeServerUrl('http://localhost:8787')).toBe('http://localhost:8787');
+    expect(normalizeServerUrl('not a url')).toBeNull();
+    expect(normalizeServerUrl('')).toBeNull();
+  });
+
+  it('drops a connector config with a too-short key', async () => {
+    const s = await loadSettings(fake(JSON.stringify({ claudeSync: { url: 'bovi.me.workers.dev', key: 'short' } })));
+    expect(s.claudeSync).toBeNull();
+    const ok = await loadSettings(fake(JSON.stringify({ claudeSync: { url: 'bovi.me.workers.dev/', key: 'x'.repeat(32) } })));
+    expect(ok.claudeSync).toEqual({ url: 'https://bovi.me.workers.dev', key: 'x'.repeat(32) });
   });
 });

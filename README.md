@@ -44,6 +44,7 @@ Prefer to build it yourself? See [Install on your Android phone](#install-on-you
   - [Insights](#insights)
   - [Home-screen widgets](#home-screen-widgets)
   - [Backup and restore](#backup-and-restore)
+- [Connect to Claude](#connect-to-claude)
 - [Screenshots](#screenshots)
 - [Install on your Android phone](#install-on-your-android-phone)
 - [Troubleshooting the Windows build](#troubleshooting-the-windows-build)
@@ -235,6 +236,9 @@ A clock-style view of your day, inspired by radial planners.
 **Attendance**
 - Overall and **per-subject %** against your minimum (65/75/80/85%).
 - Tells you how many classes you **can miss**, or how many you **must attend in a row** to get back above the line.
+- **Day by day:** a month calendar showing which days you were present, absent or missed some classes, from your own marks and the portal's absence dates. Tap a day to see each class and mark or change it. Filter by subject.
+- **Stats:** current and best attendance streak, this month's %, the weekday you miss most, perfect days, and an 8-week trend against your target.
+- Each subject shows a bar to the target and its **last 12 classes** (filled = present, hollow = absent), plus the dates of every absence.
 - A **catch-up list** of the last 7 days' unmarked classes with one-tap Present / Absent. Cancelled classes don't count.
 
 **Tasks**
@@ -357,6 +361,14 @@ How they stay in sync:
 
 ---
 
+## Connect to Claude
+
+Ask Claude about your timetable, attendance, exams and tasks, and let it add tasks, assignments, exams and ideas to BOVI. This works through a small private server that you deploy to your own free Cloudflare account with one command (`cd server && npm install && npm run setup`). It's off unless you set it up.
+
+Full guide: [docs/claude-connector.md](docs/claude-connector.md).
+
+---
+
 ## Screenshots
 
 > Taken from the web build with fictional sample data (fixed date Monday 16 Nov; sample phone-use numbers). On a phone, the calendar also shows your phone's calendar events.
@@ -368,6 +380,7 @@ How they stay in sync:
 | <img src="docs/screenshots/05-attendance.png" width="230"/><br/>Attendance | <img src="docs/screenshots/06-tasks.png" width="230"/><br/>Tasks | <img src="docs/screenshots/12-settings.png" width="230"/><br/>⚙ hub & settings |
 | <img src="docs/screenshots/08-projects.png" width="230"/><br/>Projects | <img src="docs/screenshots/09-focus.png" width="230"/><br/>Focus timer | <img src="docs/screenshots/10-devlog.png" width="230"/><br/>Devlog |
 | <img src="docs/screenshots/11-ideas.png" width="230"/><br/>Ideas inbox | <img src="docs/screenshots/13-screen-time.png" width="230"/><br/>Screen time | <img src="docs/screenshots/14-insights.png" width="230"/><br/>Insights |
+| <img src="docs/screenshots/18-attendance-calendar.png" width="230"/><br/>Attendance day by day | <img src="docs/screenshots/19-claude-connector.png" width="230"/><br/>Claude connector | <img src="docs/screenshots/17-attendance-import.png" width="230"/><br/>Attendance import |
 
 ---
 
@@ -502,7 +515,7 @@ docs/screenshots/           README screenshots
 
 ## Data and privacy
 
-- **Everything stays on the phone** (AsyncStorage). No accounts, analytics or network calls.
+- **Everything stays on the phone** (AsyncStorage). No accounts, no analytics, and no network calls, unless you set up the optional [Claude connector](docs/claude-connector.md). That sends a summary to a server you own and nobody else.
 - Calendar events are read from the phone, and usage stats come from Android. Neither is copied anywhere.
 - Back up with *⚙ → Backup & restore* if you change phones or reinstall.
 
