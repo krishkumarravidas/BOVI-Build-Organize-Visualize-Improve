@@ -34,7 +34,9 @@ You need a computer with [Node.js](https://nodejs.org) 20 or newer, and a free [
    npm install
    npm run setup
    ```
-   A browser opens: sign in to Cloudflare and allow access. The script then deploys your server, creates a random key and prints something like:
+   **On Windows PowerShell**, type `npm.cmd` instead of `npm` (PowerShell blocks `npm` by default): `npm.cmd install`, then `npm.cmd run setup`.
+
+   A browser opens: sign in to Cloudflare and allow access. If Cloudflare asks to **register a workers.dev subdomain**, answer yes and pick any name; it becomes part of your address. The script then deploys your server, creates a random key and prints something like:
    ```
    In the BOVI app → Settings → Claude connector:
       Server   https://bovi-connector.your-name.workers.dev
@@ -62,6 +64,9 @@ You need a computer with [Node.js](https://nodejs.org) 20 or newer, and a free [
 | *The server rejected the key* | Copy the key again from the setup output, or from `server/.bovi-secret`. |
 | *That address isn't a BOVI connector* | Use the `…workers.dev` address only, without `/mcp/…`. |
 | *The server isn't finished setting up* | Run `npm run setup` again. |
+| *You need to register a workers.dev subdomain* | Open dash.cloudflare.com → Workers & Pages, choose a subdomain, then run `npm run setup` again. |
+| PowerShell: *running scripts is disabled* | Use `npm.cmd` instead of `npm`. |
+| `cd server` fails | Your copy of BOVI is older than the connector: `git pull`, or download the ZIP again. |
 | Claude says the data may be out of date | Open BOVI so it syncs. |
 | Claude can't find a subject | It uses BOVI's subject names; ask it to check `bovi_overview`. |
 

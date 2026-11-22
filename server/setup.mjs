@@ -3,7 +3,9 @@
 // what to paste into the BOVI app and into Claude. Safe to run again (keeps the same key).
 import { spawn, spawnSync } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { createInterface } from 'node:readline/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -11,15 +13,29 @@ const here = dirname(fileURLToPath(import.meta.url));
 const SECRET_FILE = join(here, '.bovi-secret');
 const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
 
-function run(args, { input, capture } = {}) {
+// The terminal stays attached so wrangler can ask questions (e.g. registering a workers.dev subdomain).
+function run(args, { input, env } = {}) {
   return new Promise((resolve, reject) => {
-    const child = spawn(npx, ['wrangler', ...args], { cwd: here, stdio: [input === undefined ? 'inherit' : 'pipe', capture ? 'pipe' : 'inherit', 'inherit'], shell: process.platform === 'win32' });
-    let out = '';
-    if (capture) child.stdout.on('data', (d) => { out += d; process.stdout.write(d); });
+    const child = spawn(npx, ['wrangler', ...args], { cwd: here, stdio: [input === undefined ? 'inherit' : 'pipe', 'inherit', 'inherit'], shell: process.platform === 'win32', env: { ...process.env, ...env } });
     if (input !== undefined) { child.stdin.write(input); child.stdin.end(); }
     child.on('error', reject);
-    child.on('close', (code) => (code === 0 ? resolve(out) : reject(new Error(`wrangler ${args[0]} failed (exit ${code})`))));
+    child.on('close', (code) => (code === 0 ? resolve() : reject(new Error(`wrangler ${args[0]} failed (exit ${code})`))));
   });
+}
+
+/** The workers.dev address from wrangler's machine-readable output file. */
+function deployedUrl(file) {
+  if (!existsSync(file)) return null;
+  for (const line of readFileSync(file, 'utf8').split('\n')) {
+    try {
+      const e = JSON.parse(line);
+      const t = (e.targets ?? []).find((u) => /workers\.dev/.test(u)) ?? e.targets?.[0];
+      if (e.type === 'deploy' && t) return t.replace(/\/$/, '');
+    } catch {
+      // not JSON
+    }
+  }
+  return null;
 }
 
 const step = (n, t) => console.log(`\n\x1b[1m${n}. ${t}\x1b[0m`);
@@ -33,9 +49,25 @@ try {
   } else console.log('Already signed in.');
 
   step(2, 'Deploying the connector');
-  const out = await run(['deploy'], { capture: true });
-  const url = (out.match(/https:\/\/[a-z0-9.-]+\.workers\.dev/i) ?? [])[0];
-  if (!url) throw new Error('Deployed, but could not find the workers.dev address in the output above. Copy it from there.');
+  console.log('If Cloudflare asks to register a workers.dev subdomain, answer yes and pick any name (it becomes part of your address).');
+  const outFile = join(tmpdir(), `bovi-wrangler-${process.pid}.ndjson`);
+  rmSync(outFile, { force: true });
+  try {
+    await run(['deploy'], { env: { WRANGLER_OUTPUT_FILE_PATH: outFile } });
+  } catch (e) {
+    console.error(`
+If the error above mentions a workers.dev subdomain: open https://dash.cloudflare.com → Workers & Pages,
+pick a subdomain there (it's free), then run this setup again.`);
+    throw e;
+  }
+  let url = deployedUrl(outFile);
+  rmSync(outFile, { force: true });
+  if (!url) {
+    const rl = createInterface({ input: process.stdin, output: process.stdout });
+    url = (await rl.question('Paste the https://….workers.dev address printed above: ')).trim().replace(/\/$/, '');
+    rl.close();
+  }
+  if (!/^https:\/\/\S+$/.test(url)) throw new Error('That does not look like an https address. Run the setup again.');
 
   step(3, 'Secret key');
   let secret = existsSync(SECRET_FILE) ? readFileSync(SECRET_FILE, 'utf8').trim() : '';

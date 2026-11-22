@@ -2,6 +2,8 @@
 name = "bovi-connector"
 main = "src/index.ts"
 compatibility_date = "2025-09-01"
+# Use this folder's tsconfig, not the app's (which needs the Expo packages).
+tsconfig = "tsconfig.json"
 
 [[durable_objects.bindings]]
 name = "STORE"
