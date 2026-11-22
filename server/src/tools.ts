@@ -103,7 +103,7 @@ const overview: Tool = {
   name: 'bovi_overview',
   title: 'Today in BOVI',
   description:
-    "The user's day at a glance from their BOVI planner: today's classes (with attendance marked so far), tasks due today or overdue, assignments due within 7 days, exams within 14 days with readiness, today's habits, and subjects below the attendance target. Start here for questions like \"what's on today?\" or \"what should I focus on?\".",
+    "The user's day at a glance from their BOVI planner: the current semester (name, dates, week), today's classes (with attendance marked so far), tasks due today or overdue, assignments due within 7 days, exams within 14 days with readiness, today's habits, and subjects below the attendance target. Start here for questions like \"what's on today?\" or \"what should I focus on?\".",
   inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   annotations: READ,
   async run(_a, ctx) {
@@ -119,6 +119,7 @@ const overview: Tool = {
       today,
       weekday: snap.weekday,
       timeZone: snap.timeZone,
+      semester: snap.semester ?? null,
       classesToday: arr(snap.timetable).filter((c) => c.date === today),
       tasks: arr(snap.tasks).filter((t) => s(t.date) <= today),
       assignmentsDueSoon: arr(snap.assignments).filter((a) => s(a.due) <= in7),

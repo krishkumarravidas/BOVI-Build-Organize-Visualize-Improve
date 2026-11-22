@@ -2,6 +2,10 @@
 
 A planner for college students and their own projects, built around a clock-style calendar. Android only. No account, no ads, no servers: everything stays on your phone.
 
+### New in 1.5
+- **Semesters.** Give your semester a name and dates, and classes only show between them. When it ends, start a new one: the old semester is saved with its subjects, timetable, attendance, exams and marks, and you can keep the same subjects and timetable if they don't change. Switch back to any saved semester any time (Classes → Semester).
+- Claude connector: Claude now knows which semester and week you're in. The setup also works when your Cloudflare account has no workers.dev subdomain yet.
+
 ### New in 1.4
 - **Attendance, day by day.** A month calendar showing which days you were present, absent or missed some classes. Tap a day to see each class and mark it. Also new: your attendance streak, this month's %, the weekday you miss most, perfect days, an 8-week trend, and each subject's last 12 classes.
 - **Connect BOVI to Claude (optional).** Ask Claude *"can I skip Friday's class?"* or *"what's due this week?"*, and let it add tasks, assignments, exams and ideas. It runs on your own free server, set up with one command. Guide: [docs/claude-connector.md](https://github.com/krishkumarravidas/BOVI-Build-Organize-Visualize-Improve/blob/main/docs/claude-connector.md)

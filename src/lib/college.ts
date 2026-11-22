@@ -167,6 +167,32 @@ export interface CollegeState {
   attendanceBaseline?: Record<string, AttendanceBaseline>;
   /** Latest portal snapshot date applied (so a bundled snapshot is applied once). */
   attendanceSyncedAt?: DateKey;
+  /** The semester the fields above belong to (added later; absent = one unnamed semester). */
+  semester?: SemesterInfo;
+  /** Earlier (or other) semesters, each with its own copy of the per-semester fields. */
+  pastSemesters?: StoredSemester[];
+}
+
+export interface SemesterInfo {
+  id: string;
+  /** e.g. "Semester 4" */
+  name: string;
+  /** Classes only happen from `start` to `end` (inclusive) when set. */
+  start?: DateKey;
+  end?: DateKey;
+}
+
+/** Everything that belongs to one semester. Habits, tasks and projects are not per-semester. */
+export const SEMESTER_FIELDS = ['subjects', 'slots', 'changes', 'exams', 'events', 'attendance', 'assignments', 'marks', 'study', 'cards', 'attendanceBaseline', 'attendanceSyncedAt'] as const;
+export type SemesterData = Pick<CollegeState, (typeof SEMESTER_FIELDS)[number]>;
+export interface StoredSemester extends SemesterInfo {
+  data: SemesterData;
+}
+
+/** Whether `date` falls inside the current semester's dates (always true when no dates are set). */
+export function inSemester(state: Pick<CollegeState, 'semester'>, date: DateKey): boolean {
+  const s = state.semester;
+  return !s || ((!s.start || date >= s.start) && (!s.end || date <= s.end));
 }
 
 export const emptyCollege = (): CollegeState => ({
@@ -253,6 +279,8 @@ export function subjectName(state: CollegeState, subjectId?: string, title?: str
 
 /** All classes on `date` after applying one-off changes, sorted by start. Cancelled ones are included and marked. */
 export function resolveDay(state: CollegeState, date: DateKey): ClassOccurrence[] {
+  // Outside the semester's dates there are no classes (holidays between semesters, before it starts...).
+  if (!inSemester(state, date)) return [];
   const weekday = weekdayOf(date);
   const changes = state.changes.filter((c) => c.date === date);
   const subjectOf = (id?: string) => state.subjects.find((s) => s.id === id);
@@ -435,6 +463,8 @@ export function migrateCollege(value: unknown): CollegeState | null {
     ...(v.cards === undefined ? {} : { cards: Array.isArray(v.cards) ? v.cards : [] }),
     ...(v.attendanceBaseline && typeof v.attendanceBaseline === 'object' ? { attendanceBaseline: v.attendanceBaseline } : {}),
     ...(typeof v.attendanceSyncedAt === 'string' ? { attendanceSyncedAt: v.attendanceSyncedAt } : {}),
+    semester: sanitizeSemesterInfo(v.semester),
+    pastSemesters: Array.isArray(v.pastSemesters) ? v.pastSemesters.flatMap((p) => sanitizeStored(p)) : undefined,
     attendanceTarget: typeof v.attendanceTarget === 'number' ? v.attendanceTarget : base.attendanceTarget,
     grade: { ...base.grade, ...(v.grade ?? {}) },
     subjects: v.subjects!.map((sub) => {
@@ -442,6 +472,32 @@ export function migrateCollege(value: unknown): CollegeState | null {
       return sub.links === undefined ? { ...sub, color } : { ...sub, color, links: sanitizeLinks(sub.links) };
     }),
   } as CollegeState;
+}
+
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+function sanitizeSemesterInfo(v: unknown): SemesterInfo | undefined {
+  if (!v || typeof v !== 'object') return undefined;
+  const s = v as Partial<SemesterInfo>;
+  if (typeof s.id !== 'string' || typeof s.name !== 'string') return undefined;
+  return {
+    id: s.id,
+    name: s.name,
+    ...(typeof s.start === 'string' && DATE_RE.test(s.start) ? { start: s.start } : {}),
+    ...(typeof s.end === 'string' && DATE_RE.test(s.end) ? { end: s.end } : {}),
+  };
+}
+
+/** A stored semester's data goes through the same migration as the live data. */
+function sanitizeStored(v: unknown): StoredSemester[] {
+  const info = sanitizeSemesterInfo(v);
+  const raw = (v as { data?: unknown } | null)?.data;
+  if (!info || !raw || typeof raw !== 'object') return [];
+  const migrated = migrateCollege({ ...emptyCollege(), ...(raw as object), version: 1 });
+  if (!migrated) return [];
+  const data = {} as Record<string, unknown>;
+  for (const k of SEMESTER_FIELDS) if (migrated[k] !== undefined) data[k] = migrated[k];
+  return [{ ...info, data: data as unknown as SemesterData }];
 }
 
 export function setSubjectLinks(state: CollegeState, subjectId: string, links: ResourceLink[]): CollegeState {

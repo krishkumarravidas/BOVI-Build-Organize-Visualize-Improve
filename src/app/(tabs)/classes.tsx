@@ -9,6 +9,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { nextClassDay, overlappingClassKeys, resolveDay } from '@/lib/college';
 import { attendanceFor } from '@/lib/collegeStats';
 import { addDays, toDateKey } from '@/lib/dates';
+import { currentSemester, semesterProgress } from '@/lib/semesters';
 
 const STATUS_BADGE = {
   changed: { text: 'Changed', tone: 'accent' },
@@ -31,6 +32,9 @@ export default function ClassesScreen() {
   const clashing = overlappingClassKeys(classes);
   const plural = (n: number, word: string, many = `${word}s`) => `${n} ${n === 1 ? word : many}`;
   const label = (d: string) => (d === today ? 'Today' : d === addDays(today, 1) ? 'Tomorrow' : shortDate(d));
+  const sem = currentSemester(college);
+  const semProgress = semesterProgress(sem, today);
+  const semLine = semProgress?.status === 'during' ? `${sem.name} · week ${semProgress.week}${semProgress.weeks ? ` of ${semProgress.weeks}` : ''}` : sem.name;
 
   return (
     <KeyboardScroll
@@ -38,6 +42,14 @@ export default function ClassesScreen() {
       contentContainerStyle={[styles.content, { paddingTop: 8 }]}
     >
       {college.profile ? <Text style={{ color: theme.muted }}>{college.profile}</Text> : null}
+      {semProgress && semProgress.status !== 'during' ? (
+        <ListRow
+          title={semProgress.status === 'after' ? `${sem.name} has ended` : `${sem.name} starts ${shortDate(sem.start!)}`}
+          subtitle={semProgress.status === 'after' ? 'No classes are shown after its end date. Start the next semester.' : 'Classes show from the start date.'}
+          color={theme.warn}
+          onPress={() => router.push('/college/semester')}
+        />
+      ) : null}
 
       <SectionTitle right={<Button title="Add class" variant="plain" onPress={() => router.push({ pathname: '/college/extra', params: { date: day } })} />}>
         {`Classes · ${label(day)}`}
@@ -80,6 +92,7 @@ export default function ClassesScreen() {
       )}
 
       <SectionTitle>Manage</SectionTitle>
+      <ListRow title="Semester" subtitle={`${semLine}${(college.pastSemesters?.length ?? 0) ? ` · ${college.pastSemesters!.length} more saved` : ''}`} color={theme.primary} onPress={() => router.push('/college/semester')} />
       <ListRow title="Weekly timetable" subtitle={`${plural(college.slots.length, 'class', 'classes')} a week`} onPress={() => router.push('/college/timetable')} />
       <ListRow title="Subjects" subtitle={`${plural(college.subjects.length, 'subject')} · default room ${college.defaultRoom || 'not set'}`} onPress={() => router.push('/college/subjects')} />
       <ListRow title="Marks & grades" subtitle="IA marks and what you need in the final" onPress={() => router.push('/college/marks')} />

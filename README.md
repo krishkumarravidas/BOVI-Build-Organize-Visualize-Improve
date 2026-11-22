@@ -233,6 +233,11 @@ A clock-style view of your day, inspired by radial planners.
 - **Marks & grades:** enter IA/lab marks per subject and see the **final-exam score you need** for a target %. The scheme is editable (internal weight, final max, target).
 - **Reminders:** 8 PM the evening before (with time, portions and clashes) and 1 hour before (07:30 if the time isn't announced yet).
 
+**Semesters**
+- Give the semester a **name and dates**. Classes only appear between them, on the calendar, attendance, widgets and reminders.
+- **Start a new semester** (Classes → Semester): the current one is saved whole (subjects, timetable, attendance, exams, marks), and you start fresh, optionally keeping the same subjects and timetable.
+- **Switch** to any saved semester to look back or fix something, then switch back. Tasks, habits and projects aren't per-semester.
+
 **Attendance**
 - Overall and **per-subject %** against your minimum (65/75/80/85%).
 - Tells you how many classes you **can miss**, or how many you **must attend in a row** to get back above the line.

@@ -11,6 +11,7 @@ import { addDays, daysBetween, isValidDateKey, toDateKey, weekdayOf } from './da
 import { habitsForDay, isCompleted } from './habits';
 import { addIdea, nextMilestone, sortedLog, type ProjectsState } from './projects';
 import { examReadiness } from './readiness';
+import { currentSemester, semesterProgress } from './semesters';
 import { upsertTodo } from './todos';
 import type { DateKey, HabitState } from './types';
 
@@ -131,6 +132,11 @@ export function buildAgentSnapshot({ college, habits, projects, projectsLabel, n
     weekday: WEEKDAYS[weekdayOf(today)],
     timeZone: timeZone(),
     projectsTabName: projectsLabel,
+    semester: (() => {
+      const sem = currentSemester(college);
+      const p = semesterProgress(sem, today);
+      return { name: sem.name, start: sem.start ?? null, end: sem.end ?? null, week: p?.status === 'during' ? p.week : null, weeks: p?.weeks ?? null, status: p?.status ?? null, otherSemesters: (college.pastSemesters ?? []).map((x) => x.name) };
+    })(),
     subjects: college.subjects.map((s) => ({ name: s.name, short: s.short, code: s.code ?? null })),
     weeklyTimetable: college.slots
       .slice()

@@ -4,8 +4,9 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
-import { Chip, ChipRow, Field, KeyboardScroll } from '@/components/ui';
+import { Chip, ChipRow, DateField, Field, KeyboardScroll } from '@/components/ui';
 import { newId, useCollege } from '@/hooks/useCollege';
+import { currentSemester, updateSemesterInfo } from '@/lib/semesters';
 import { useProjects } from '@/hooks/useProjects';
 import { useSettings } from '@/hooks/useSettings';
 import { useTheme } from '@/hooks/useTheme';
@@ -33,6 +34,9 @@ export default function SetupScreen() {
   const [step, setStep] = useState(0);
   const [profile, setProfile] = useState(c.college.profile ?? '');
   const [room, setRoom] = useState(c.college.defaultRoom ?? '');
+  const [semName, setSemName] = useState(c.college.semester?.name ?? '');
+  const [semStart, setSemStart] = useState(c.college.semester?.start ?? '');
+  const [semEnd, setSemEnd] = useState(c.college.semester?.end ?? '');
   const [subjectName, setSubjectName] = useState('');
   const [subjectShort, setSubjectShort] = useState('');
   const [subjectCode, setSubjectCode] = useState('');
@@ -43,7 +47,14 @@ export default function SetupScreen() {
   const next = () => setStep((s) => Math.min(STEPS.length - 1, s + 1));
   const back = () => setStep((s) => Math.max(0, s - 1));
 
-  const saveCollege = () => c.setProfile({ profile: profile.trim(), defaultRoom: room.trim() });
+  const saveCollege = () => {
+    c.setProfile({ profile: profile.trim(), defaultRoom: room.trim() });
+    // Only store a semester when something was entered, and never with dates the wrong way round.
+    if (semName.trim() || semStart || semEnd) {
+      const end = semStart && semEnd && semEnd < semStart ? undefined : semEnd || undefined;
+      c.apply((s) => updateSemesterInfo(s, { name: semName.trim() || currentSemester(s).name, start: semStart || undefined, end }));
+    }
+  };
   const addSubject = () => {
     const name = subjectName.trim();
     if (!name) return;
@@ -104,6 +115,12 @@ export default function SetupScreen() {
             <Text style={[styles.h1, { color: theme.text }]}>Your college</Text>
             <Field label="Course and section" value={profile} onChangeText={setProfile} placeholder="e.g. B.Tech CSE · Sem 3 · Section A" />
             <Field label="Usual classroom (optional)" value={room} onChangeText={setRoom} placeholder="e.g. Room 204" />
+            <Field label="Semester (optional)" value={semName} onChangeText={setSemName} placeholder="e.g. Semester 3" />
+            <View style={{ flexDirection: 'row', gap: 12 }}>
+              <DateField label="Starts" value={semStart} onChange={setSemStart} optional style={{ flex: 1 }} />
+              <DateField label="Ends" value={semEnd} onChange={setSemEnd} optional style={{ flex: 1 }} />
+            </View>
+            <Text style={{ color: theme.muted, fontSize: 13 }}>Classes only show between these dates. When the semester ends, start the next one from Classes → Semester.</Text>
             <Text style={[styles.h2, { color: theme.text }]}>Subjects</Text>
             <Text style={{ color: theme.muted }}>Add the subjects you have this semester. The course code helps match your attendance file later.</Text>
             {c.college.subjects.map((s) => (
