@@ -1,10 +1,10 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { Share, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { SummaryView } from '@/components/SummaryView';
-import { Chip, ChipRow, Field, ScreenHeader, SectionTitle } from '@/components/ui';
+import { Chip, ChipRow, Field, KeyboardScroll, ScreenHeader, SectionTitle } from '@/components/ui';
 import { newId, useCollege } from '@/hooks/useCollege';
 import { useHabits } from '@/hooks/useHabits';
 import { useProjects } from '@/hooks/useProjects';
@@ -46,7 +46,7 @@ export default function ReviewScreen() {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
       <ScreenHeader title="Weekly review" />
       <ChipRow>
         <Chip label="This week" selected={week === current} onPress={() => setWeek(current)} />
@@ -80,7 +80,7 @@ export default function ReviewScreen() {
         </View>
       </View>
       <Button title="Monthly report" variant="plain" onPress={() => router.push('/report')} />
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

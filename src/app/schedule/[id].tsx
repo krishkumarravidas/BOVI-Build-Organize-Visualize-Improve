@@ -1,16 +1,6 @@
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import {
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Switch,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Alert, Platform, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { DayPicker } from '@/components/DayPicker';
@@ -18,6 +8,7 @@ import { useHabits } from '@/hooks/useHabits';
 import { useTheme } from '@/hooks/useTheme';
 import { isOvernight, validateBlock } from '@/lib/schedule';
 import type { Weekday } from '@/lib/types';
+import { KeyboardScroll, TimeField } from '@/components/ui';
 
 export default function BlockFormScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -60,7 +51,7 @@ export default function BlockFormScreen() {
   const inputStyle = [styles.input, { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border }];
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <View style={{ flex: 1 }}>
       <Stack.Screen
         options={{
           headerShown: true,
@@ -71,7 +62,7 @@ export default function BlockFormScreen() {
           headerTintColor: theme.primary,
         }}
       />
-      <ScrollView
+      <KeyboardScroll
         style={{ backgroundColor: theme.background }}
         contentContainerStyle={styles.content}
         keyboardShouldPersistTaps="handled"
@@ -100,29 +91,11 @@ export default function BlockFormScreen() {
             <View style={styles.timeRow}>
               <View style={[styles.field, { flex: 1 }]}>
                 <Text style={[styles.label, { color: theme.text }]}>Start</Text>
-                <TextInput
-                  value={start}
-                  onChangeText={setStart}
-                  placeholder="HH:mm"
-                  placeholderTextColor={theme.muted}
-                  style={inputStyle}
-                  keyboardType="numbers-and-punctuation"
-                  maxLength={5}
-                  accessibilityLabel="Start time"
-                />
+                <TimeField value={start} onChange={setStart} accessibilityLabel="Start time" />
               </View>
               <View style={[styles.field, { flex: 1 }]}>
                 <Text style={[styles.label, { color: theme.text }]}>End</Text>
-                <TextInput
-                  value={end}
-                  onChangeText={setEnd}
-                  placeholder="HH:mm"
-                  placeholderTextColor={theme.muted}
-                  style={inputStyle}
-                  keyboardType="numbers-and-punctuation"
-                  maxLength={5}
-                  accessibilityLabel="End time"
-                />
+                <TimeField value={end} onChange={setEnd} accessibilityLabel="End time" fallback={start || '10:00'} />
               </View>
             </View>
             {overnight ? <Text style={{ color: theme.muted }}>Ends the next day.</Text> : null}
@@ -145,8 +118,8 @@ export default function BlockFormScreen() {
             {existing ? <Button title="Delete block" variant="danger" onPress={confirmDelete} /> : null}
           </>
         )}
-      </ScrollView>
-    </KeyboardAvoidingView>
+      </KeyboardScroll>
+    </View>
   );
 }
 

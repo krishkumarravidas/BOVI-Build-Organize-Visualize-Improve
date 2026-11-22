@@ -1,9 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { EmptyText, SectionTitle, shortDate } from '@/components/ui';
+import { EmptyText, KeyboardScroll, SectionTitle, shortDate } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { toDateKey } from '@/lib/dates';
@@ -42,12 +42,12 @@ export default function AssignmentsScreen() {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       {open.length === 0 ? <EmptyText>No open assignments.</EmptyText> : open.map(row)}
       <Button title="Add assignment" onPress={() => router.push({ pathname: '/college/assignment/[id]', params: { id: 'new' } })} />
       {done.length ? <SectionTitle>Done</SectionTitle> : null}
       {done.map(row)}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

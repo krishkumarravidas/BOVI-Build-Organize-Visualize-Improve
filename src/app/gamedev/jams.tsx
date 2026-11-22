@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { openLink } from '@/components/LinkList';
 import { AddPanel, styles } from '@/components/gamedev/common';
-import { Card, Chip, ChipRow, EmptyText, ErrorText, Field, ScreenHeader, SectionTitle, confirmDestructive } from '@/components/ui';
+import { Card, Chip, ChipRow, DateField, EmptyText, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle, TimeField, confirmDestructive } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
@@ -28,7 +28,7 @@ export default function JamsScreen() {
   const past = jams.filter((j) => jamStatus(j, now).state === 'ended').reverse();
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title="Game jams" />
       <AddPanel label="Add a jam">{(close) => <JamForm onSave={(j) => { p.apply((s) => upsertItem(s, 'jams', j)); close(); }} onCancel={close} />}</AddPanel>
       {current.length === 0 ? <EmptyText>No upcoming jams. Add one to get a countdown, a phase plan and reminders (theme reveal, scope check, 2 hours left).</EmptyText> : null}
@@ -42,7 +42,7 @@ export default function JamsScreen() {
           {j.theme ? ` · “${j.theme}”` : ''}
         </Text>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 
@@ -108,8 +108,8 @@ function JamForm({ onSave, onCancel }: { onSave: (j: GameJam) => void; onCancel:
   return (
     <>
       <Field label="Jam" value={name} onChangeText={setName} placeholder="e.g. GMTK Game Jam" autoFocus maxLength={60} />
-      <Field label="Start date" value={date} onChangeText={setDate} placeholder="YYYY-MM-DD" autoCapitalize="none" />
-      <Field label="Start time (your time)" value={time} onChangeText={setTime} placeholder="HH:mm" autoCapitalize="none" hint="When the theme is revealed, in your local time." />
+      <DateField label="Start date" value={date} onChange={setDate} />
+      <TimeField label="Start time (your time)" value={time} onChange={setTime} hint="When the theme is revealed, in your local time." />
       <ChipRow>
         {[24, 48, 72, 168].map((h) => (
           <Chip key={h} label={h === 168 ? '1 week' : `${h} h`} selected={hours === h} onPress={() => setHours(h)} />

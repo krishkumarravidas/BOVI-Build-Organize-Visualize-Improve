@@ -1,10 +1,10 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { FocusTimer } from '@/components/FocusTimer';
 import { BarChart } from '@/components/gamedev/common';
-import { ScreenHeader, SectionTitle } from '@/components/ui';
+import { KeyboardScroll, ScreenHeader, SectionTitle } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
@@ -30,7 +30,7 @@ export default function StudyScreen() {
   const exams = upcomingExams(college, today).slice(0, 6);
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
       <ScreenHeader title="Study" />
       <FocusTimer kind="study" initialSubjectId={subject} />
 
@@ -70,7 +70,7 @@ export default function StudyScreen() {
           </Pressable>
         );
       })}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

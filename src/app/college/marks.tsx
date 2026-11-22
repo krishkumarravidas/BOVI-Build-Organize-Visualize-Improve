@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { Card, Field, ListRow, ScreenHeader, SectionTitle } from '@/components/ui';
+import { Card, Field, KeyboardScroll, ListRow, ScreenHeader, SectionTitle } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { subjectMarks } from '@/lib/collegeStats';
@@ -34,7 +34,7 @@ export default function MarksScreen() {
   const g = college.grade;
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
       <ScreenHeader title="Marks & grades" />
       <Card>
         <Text style={{ color: theme.muted }}>How your final grade is made up (check your college&apos;s scheme):</Text>
@@ -90,7 +90,7 @@ export default function MarksScreen() {
           </View>
         );
       })}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Share, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Share, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { openLink } from '@/components/LinkList';
 import { AddPanel, NotFound, styles, useRouteProject } from '@/components/gamedev/common';
-import { EmptyText, ErrorText, Field, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
+import { DateField, EmptyText, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { fromDateKey, isValidDateKey, toDateKey } from '@/lib/dates';
@@ -21,7 +21,7 @@ export default function BuildsScreen() {
   const last = lastBuild(p.state, project.id);
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title={`${project.name}: builds`} />
       <AddPanel label="New build">
         {(close) => (
@@ -52,7 +52,7 @@ export default function BuildsScreen() {
           </View>
         </View>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 
@@ -77,7 +77,7 @@ function BuildForm({ state, projectId, last, onSave, onCancel }: { state: Projec
   return (
     <>
       <Field label="Version" value={version} onChangeText={setVersion} autoCapitalize="none" maxLength={30} />
-      <Field label="Date" value={date} onChangeText={setDate} autoCapitalize="none" />
+      <DateField label="Date" value={date} onChange={setDate} />
       <Field label="What changed" value={notes} onChangeText={setNotes} multiline placeholder="Changes in this build" />
       <Text style={{ color: theme.muted, fontSize: 13 }}>
         {auto ? `Filled in from what you finished since ${last ? last.version : 'the start'}: milestones ★, features +, tasks •, bug fixes. Edit freely.` : 'Nothing ticked off since the last build. Write the changes here.'}

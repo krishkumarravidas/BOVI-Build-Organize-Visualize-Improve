@@ -1,9 +1,9 @@
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { ScreenHeader } from '@/components/ui';
+import { KeyboardScroll, ScreenHeader } from '@/components/ui';
 import { useSettings } from '@/hooks/useSettings';
 import { useTheme } from '@/hooks/useTheme';
 import { canPinWidgets, pinWidget, placedWidgets, widgetAvailable, type WidgetKind } from '../../modules/bovi-widget';
@@ -44,7 +44,7 @@ export default function WidgetsScreen() {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <ScreenHeader title="Widgets" />
       {!widgetAvailable ? (
         <View style={[styles.card, { backgroundColor: theme.surface, borderColor: theme.border }]}>
@@ -77,7 +77,7 @@ export default function WidgetsScreen() {
           </View>
         );
       })}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

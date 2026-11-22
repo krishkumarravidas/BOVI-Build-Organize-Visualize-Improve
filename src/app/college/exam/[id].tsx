@@ -6,7 +6,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Button } from '@/components/Button';
 import { LinkList } from '@/components/LinkList';
 import { SubjectPicker } from '@/components/SubjectPicker';
-import { Card, Chip, ChipRow, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, TimeRangeFields, confirmDestructive, shortDate } from '@/components/ui';
+import { Card, Chip, ChipRow, DateField, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, TimeRangeFields, confirmDestructive, shortDate } from '@/components/ui';
 import { useCalendarEvents } from '@/hooks/useCalendarEvents';
 import { useHabits } from '@/hooks/useHabits';
 import { newId, useCollege } from '@/hooks/useCollege';
@@ -107,7 +107,7 @@ export default function ExamFormScreen() {
         </>
       ) : null}
       <Field label="Title (optional)" value={title} onChangeText={setTitle} placeholder="Overrides the subject name" maxLength={60} />
-      <Field label="Date" value={date} onChangeText={setDate} placeholder="YYYY-MM-DD" autoCapitalize="none" />
+      <DateField label="Date" value={date} onChange={setDate} />
       <TimeRangeFields start={start} end={end} onStart={setStart} onEnd={setEnd} />
       <Field label="Room" value={room} onChangeText={setRoom} placeholder="Optional" />
       <Field label="Syllabus / portions" value={syllabus} onChangeText={setSyllabus} placeholder="e.g. Modules 1–2" multiline />

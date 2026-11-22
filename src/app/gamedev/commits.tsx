@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { openLink } from '@/components/LinkList';
 import { NotFound, Stat, StatRow, styles, useRouteProject } from '@/components/gamedev/common';
-import { Card, Chip, ChipRow, EmptyText, ErrorText, Field, ScreenHeader, SectionTitle } from '@/components/ui';
+import { Card, Chip, ChipRow, EmptyText, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle } from '@/components/ui';
 import { useCommitCache } from '@/hooks/useCommitCache';
 import { useTheme } from '@/hooks/useTheme';
 import { fromDateKey, toDateKey } from '@/lib/dates';
@@ -65,7 +65,7 @@ export default function CommitsScreen() {
   const thisWeek = commitsThisWeek(commits, fromDateKey(weekStart(toDateKey(new Date()))).getTime());
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title={`${project.name}: commits`} />
       {!repo ? (
         <Card>
@@ -140,7 +140,7 @@ export default function CommitsScreen() {
           </View>
         </View>
       </Card>
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

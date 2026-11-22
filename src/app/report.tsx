@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { Share, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { SummaryView } from '@/components/SummaryView';
-import { ScreenHeader } from '@/components/ui';
+import { KeyboardScroll, ScreenHeader } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useHabits } from '@/hooks/useHabits';
 import { useProjects } from '@/hooks/useProjects';
@@ -34,7 +34,7 @@ export default function ReportScreen() {
   const label = monthLabel(month) + (month === thisMonth ? ' (so far)' : '');
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <ScreenHeader title="Monthly report" />
       <View style={styles.row}>
         <Button title="‹" variant="plain" onPress={() => setMonth(shift(month, -1))} />
@@ -44,7 +44,7 @@ export default function ReportScreen() {
       <SummaryView s={s} />
       <Button title="Share report" onPress={() => Share.share({ message: summaryText(label, s, settings.projectsTabName), title: `BOVI · ${label}` }).catch(() => {})} />
       <Text style={{ color: theme.muted, fontSize: 12 }}>Shares as text. Take a screenshot of this screen if you want the card look.</Text>
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

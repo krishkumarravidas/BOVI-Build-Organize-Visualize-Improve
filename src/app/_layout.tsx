@@ -1,5 +1,8 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import { Appearance, Platform } from 'react-native';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { AppLockGate } from '@/components/AppLockGate';
 import { useAutoBackup } from '@/hooks/useAutoBackup';
@@ -17,6 +20,11 @@ function AppShell() {
   useStudyTicker();
   useAutoBackup({ auto: true });
   const { settings } = useSettings();
+  // Native dialogs (clock/calendar pickers, alerts) follow BOVI's own light/dark choice, not just the phone's.
+  useEffect(() => {
+    if (Platform.OS === 'web') return;
+    Appearance.setColorScheme(settings.theme === 'system' ? 'unspecified' : settings.theme);
+  }, [settings.theme]);
   return (
     <>
       <StatusBar style={settings.theme === 'system' ? 'auto' : settings.theme === 'dark' ? 'light' : 'dark'} />
@@ -29,14 +37,16 @@ function AppShell() {
 
 export default function RootLayout() {
   return (
-    <SettingsProvider>
-      <HabitsProvider>
-        <CollegeProvider>
-          <ProjectsProvider>
-            <AppShell />
-          </ProjectsProvider>
-        </CollegeProvider>
-      </HabitsProvider>
-    </SettingsProvider>
+    <KeyboardProvider>
+      <SettingsProvider>
+        <HabitsProvider>
+          <CollegeProvider>
+            <ProjectsProvider>
+              <AppShell />
+            </ProjectsProvider>
+          </CollegeProvider>
+        </HabitsProvider>
+      </SettingsProvider>
+    </KeyboardProvider>
   );
 }

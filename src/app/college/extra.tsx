@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button } from '@/components/Button';
 import { SubjectPicker } from '@/components/SubjectPicker';
-import { Chip, ChipRow, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, TimeRangeFields, shortDate } from '@/components/ui';
+import { Chip, ChipRow, DateField, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, TimeRangeFields, shortDate } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { validateTimeRange } from '@/lib/college';
 import { addDays, isValidDateKey, toDateKey } from '@/lib/dates';
@@ -43,7 +43,7 @@ export default function ExtraClassScreen() {
           <Chip key={d} label={shortDate(d)} selected={d === date} onPress={() => setDate(d)} />
         ))}
       </ChipRow>
-      <Field label="Date" value={date} onChangeText={setDate} placeholder="YYYY-MM-DD" autoCapitalize="none" />
+      <DateField label="Date" value={date} onChange={setDate} />
       <TimeRangeFields start={start} end={end} onStart={setStart} onEnd={setEnd} />
       <Field label="Room" value={room} onChangeText={setRoom} placeholder={c.college.defaultRoom} />
       <Field label="Note" value={note} onChangeText={setNote} placeholder="Optional" />

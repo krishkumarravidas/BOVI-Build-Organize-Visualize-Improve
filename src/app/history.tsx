@@ -1,6 +1,6 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { ScreenHeader } from '@/components/ui';
+import { KeyboardScroll, ScreenHeader } from '@/components/ui';
 import { useHabits } from '@/hooks/useHabits';
 import { useTheme } from '@/hooks/useTheme';
 import { fromDateKey, toDateKey } from '@/lib/dates';
@@ -17,7 +17,7 @@ export default function HistoryScreen() {
   const habits = state.habits.filter((h) => !h.archivedAt);
 
   return (
-    <ScrollView
+    <KeyboardScroll
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={[styles.content, { paddingTop: 16 }]}
     >
@@ -69,7 +69,7 @@ export default function HistoryScreen() {
           );
         })
       )}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { Chip, ChipRow, EmptyText, ListRow, SectionTitle, shortDate } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, KeyboardScroll, ListRow, SectionTitle, shortDate } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { nextClassDay, overlappingClassKeys, resolveDay } from '@/lib/college';
@@ -33,7 +33,7 @@ export default function ClassesScreen() {
   const label = (d: string) => (d === today ? 'Today' : d === addDays(today, 1) ? 'Tomorrow' : shortDate(d));
 
   return (
-    <ScrollView
+    <KeyboardScroll
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={[styles.content, { paddingTop: 8 }]}
     >
@@ -84,7 +84,7 @@ export default function ClassesScreen() {
       <ListRow title="Subjects" subtitle={`${plural(college.subjects.length, 'subject')} · default room ${college.defaultRoom || 'not set'}`} onPress={() => router.push('/college/subjects')} />
       <ListRow title="Marks & grades" subtitle="IA marks and what you need in the final" onPress={() => router.push('/college/marks')} />
       <ListRow title="Events & clubs" subtitle={plural(college.events.length, 'event')} onPress={() => router.push('/college/events')} />
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

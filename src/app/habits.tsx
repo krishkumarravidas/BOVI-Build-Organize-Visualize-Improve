@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { HabitRow } from '@/components/HabitRow';
-import { EmptyText, ListRow, ScreenHeader, SectionTitle } from '@/components/ui';
+import { EmptyText, KeyboardScroll, ListRow, ScreenHeader, SectionTitle } from '@/components/ui';
 import { useHabits } from '@/hooks/useHabits';
 import { useTheme } from '@/hooks/useTheme';
 import { toDateKey } from '@/lib/dates';
@@ -20,7 +20,7 @@ export default function HabitsScreen() {
   const doneCount = todays.filter((h) => isCompleted(state, h.id, today)).length;
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <ScreenHeader title="Habits" />
       <SectionTitle>{todays.length ? `Today · ${doneCount} of ${todays.length} done` : 'Today'}</SectionTitle>
       {todays.length === 0 ? <EmptyText>No habits scheduled today.</EmptyText> : null}
@@ -41,7 +41,7 @@ export default function HabitsScreen() {
       <Button title="Add habit" onPress={() => router.push({ pathname: '/habit/[id]', params: { id: 'new' } })} />
       <ListRow title="Habit history" subtitle="Streaks and the last 7 days" color={theme.accent} onPress={() => router.push('/history')} />
       <Text style={{ color: theme.muted }}>Habits also appear on the calendar: timed ones on the timeline, the rest in the to-do list.</Text>
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

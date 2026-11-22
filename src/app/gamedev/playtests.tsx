@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { AddPanel, NotFound, Stat, StatRow, styles, useRouteProject } from '@/components/gamedev/common';
-import { Chip, ChipRow, EmptyText, ErrorText, Field, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { isValidDateKey, toDateKey } from '@/lib/dates';
@@ -19,7 +19,7 @@ export default function PlaytestsScreen() {
   const defaultBuild = lastBuild(p.state, project.id)?.version;
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title={`${project.name}: playtests`} />
       <StatRow>
         <Stat value={String(sum.count)} label="sessions" />
@@ -57,7 +57,7 @@ export default function PlaytestsScreen() {
           <Button title="Delete" variant="danger" onPress={() => confirmDestructive('Delete playtest?', `${t.tester} · ${t.date}`, 'Delete', () => p.apply((s) => removeItem(s, 'playtests', t.id)))} />
         </View>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

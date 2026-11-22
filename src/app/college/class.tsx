@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 import { AttendanceButtons } from '@/components/AttendanceButtons';
 import { Button } from '@/components/Button';
 import { LinkList } from '@/components/LinkList';
-import { Card, Chip, ChipRow, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, TimeRangeFields, confirmDestructive, shortDate } from '@/components/ui';
+import { Card, Chip, ChipRow, DateField, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, TimeRangeFields, confirmDestructive, shortDate } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { resolveDay, validateTimeRange } from '@/lib/college';
@@ -112,7 +112,7 @@ export default function ClassOccurrenceScreen() {
               <Chip key={d} label={shortDate(d)} selected={d === target} onPress={() => setTarget(d)} />
             ))}
           </ChipRow>
-          <Field label="Date" value={target} onChangeText={setTarget} placeholder="YYYY-MM-DD" autoCapitalize="none" hint="Pick above or type any date." />
+          <DateField label="Date" value={target} onChange={setTarget} hint="Pick a day above, or tap to choose any date." />
           <TimeRangeFields start={mStart} end={mEnd} onStart={setMStart} onEnd={setMEnd} />
           <ErrorText>{moveError}</ErrorText>
           <Button title="Move class" variant="plain" onPress={move} />

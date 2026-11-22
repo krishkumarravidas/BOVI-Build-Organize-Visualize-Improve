@@ -1,10 +1,10 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { AddPanel, Stat, StatRow } from '@/components/gamedev/common';
-import { Chip, ChipRow, EmptyText, ErrorText, Field, ScreenHeader, SectionTitle, confirmDestructive } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle, confirmDestructive } from '@/components/ui';
 import { newId, useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { toDateKey } from '@/lib/dates';
@@ -26,7 +26,7 @@ export default function CardsScreen() {
   const topics = exam?.topics ?? [];
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
       <ScreenHeader title={`${title}: flashcards`} />
       <StatRow>
         <Stat value={String(st.total)} label="cards" />
@@ -66,7 +66,7 @@ export default function CardsScreen() {
           </Text>
         </Pressable>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

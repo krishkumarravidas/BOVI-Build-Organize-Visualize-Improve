@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { Pressable, Text, TextInput, View } from 'react-native';
 import Svg, { Circle, Line, Polyline, Text as SvgText } from 'react-native-svg';
 
 import { Button } from '@/components/Button';
 import { AddPanel, CheckRow, NotFound, Stat, StatRow, styles, useRouteProject } from '@/components/gamedev/common';
-import { Card, ErrorText, Field, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
+import { Card, DateField, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { daysBetween, isValidDateKey, toDateKey } from '@/lib/dates';
@@ -40,7 +40,7 @@ export default function LaunchScreen() {
 
   const patchProject = (patch: { launchDate?: string; wishlistGoal?: number }) =>
     p.apply((s) => ({ ...s, projects: s.projects.map((x) => (x.id === project.id ? { ...x, ...patch } : x)) }));
-  const saveDate = () => {
+  const saveDate = (launchDate: string) => {
     if (launchDate && !isValidDateKey(launchDate)) return setError('Use a date like 2027-10-01, or leave it empty');
     setError(null);
     patchProject({ launchDate: launchDate || undefined });
@@ -51,10 +51,10 @@ export default function LaunchScreen() {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title={`${project.name}: launch`} />
       <Card>
-        <Field label="Planned release date" value={launchDate} onChangeText={setLaunchDate} onBlur={saveDate} onSubmitEditing={saveDate} placeholder="YYYY-MM-DD" autoCapitalize="none" hint="Each step gets a typical date counted back from this. Change any step's date by tapping it." />
+        <DateField label="Planned release date" value={launchDate} onChange={(v) => { setLaunchDate(v); saveDate(v); }} optional hint="Each step gets a typical date counted back from this. Change any step's date by tapping it." />
         <ErrorText>{error}</ErrorText>
         <StatRow>
           <Stat value={`${done}/${items.length}`} label="steps done" />
@@ -120,37 +120,29 @@ export default function LaunchScreen() {
           </Text>
         </Pressable>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 
 function LaunchRow({ item, onToggle, onDate }: { item: LaunchItem; onToggle: () => void; onDate: (d: string | null) => void }) {
   const theme = useTheme();
   const [editing, setEditing] = useState(false);
-  const [value, setValue] = useState(item.date ?? '');
   const detail = `${item.date ? shortDate(item.date) : 'Set a release date'}${item.late ? ' · overdue' : ''}${item.hint ? `\n${item.hint}` : ''}`;
   return (
     <View style={{ gap: 6 }}>
       <CheckRow done={item.done} title={item.title} detail={detail} onToggle={onToggle} onPress={() => setEditing((e) => !e)} color={item.late ? theme.danger : theme.accent} />
       {editing ? (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingLeft: 38 }}>
-          <TextInput
-            value={value}
-            onChangeText={setValue}
-            placeholder="YYYY-MM-DD"
-            placeholderTextColor={theme.muted}
-            autoCapitalize="none"
-            accessibilityLabel={`Date for ${item.title}`}
-            style={{ flex: 1, borderWidth: 1, borderRadius: 10, padding: 8, color: theme.text, borderColor: theme.border }}
-          />
-          <Button
-            title="Set"
-            variant="plain"
-            onPress={() => {
-              if (value && !isValidDateKey(value)) return;
-              onDate(value || null);
+          <DateField
+            value={item.date ?? ''}
+            onChange={(v) => {
+              if (v && !isValidDateKey(v)) return;
+              onDate(v || null);
               setEditing(false);
             }}
+            optional
+            accessibilityLabel={`Date for ${item.title}`}
+            style={{ flex: 1 }}
           />
         </View>
       ) : null}
@@ -173,7 +165,7 @@ function WishlistForm({ projectId, onSave, onCancel }: { projectId: string; onSa
   };
   return (
     <>
-      <Field label="Date" value={date} onChangeText={setDate} autoCapitalize="none" />
+      <DateField label="Date" value={date} onChange={setDate} />
       <Field label="Total wishlists" value={wishlists} onChangeText={setWishlists} keyboardType="numeric" autoFocus />
       <Field label="Followers (optional)" value={followers} onChangeText={setFollowers} keyboardType="numeric" />
       <ErrorText>{error}</ErrorText>

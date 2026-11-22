@@ -1,6 +1,7 @@
 import { Stack, router } from 'expo-router';
 import { useState } from 'react';
-import { BackHandler, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { BackHandler, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
 import { Button } from '@/components/Button';
 import { useProjects } from '@/hooks/useProjects';
@@ -32,7 +33,7 @@ export default function QuickIdeaScreen() {
   };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.backdrop}>
+    <KeyboardAvoidingView behavior="padding" style={styles.backdrop}>
       <Stack.Screen options={{ presentation: 'transparentModal', animation: 'fade', headerShown: false }} />
       <Pressable style={StyleSheet.absoluteFill} onPress={close} accessibilityLabel="Close" />
       <View style={[styles.sheet, { backgroundColor: theme.surface, borderColor: theme.border }]}>

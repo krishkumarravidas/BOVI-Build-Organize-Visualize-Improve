@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { Chip, ChipRow, EmptyText, ListRow, ScreenHeader } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, KeyboardScroll, ListRow, ScreenHeader } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { subjectName } from '@/lib/college';
@@ -27,7 +27,7 @@ export default function TimetableScreen() {
   const slots = college.slots.filter((s) => s.day === day).sort((a, b) => a.start.localeCompare(b.start));
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <ScreenHeader title="Weekly timetable" />
       <ChipRow>
         {DAYS.map((d) => (
@@ -51,7 +51,7 @@ export default function TimetableScreen() {
       )}
       <Button title="Add class to this day" onPress={() => router.push({ pathname: '/college/slot/[id]', params: { id: 'new', day: String(day) } })} />
       <EmptyText>Changes here apply every week. To change a single day, tap the class on the College tab.</EmptyText>
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

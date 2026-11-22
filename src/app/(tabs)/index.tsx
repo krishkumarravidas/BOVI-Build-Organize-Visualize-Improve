@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View, useWindowDimensions, type ViewStyle } from 'react-native';
+import { Platform, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type ViewStyle } from 'react-native';
 
 import { CalendarAccessNotice } from '@/components/CalendarAccessNotice';
 import { DayRings } from '@/components/DayRings';
@@ -26,6 +26,7 @@ import { timelinePress } from '@/lib/timelineNav';
 import { setTodoDone, untimedTodos, upsertTodo } from '@/lib/todos';
 import type { DateKey } from '@/lib/types';
 import { mix } from '@/theme/contrast';
+import { KeyboardScroll } from '@/components/ui';
 
 // Web-only: stop text selection while dragging the dial (not part of RN's style types).
 const NO_SELECT = Platform.OS === 'web' ? ({ userSelect: 'none' } as unknown as ViewStyle) : null;
@@ -125,7 +126,7 @@ export default function CalendarScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
-      <ScrollView
+      <KeyboardScroll
         contentContainerStyle={styles.scroll}
         scrollEnabled={!rotation.dragging}
         onScroll={rotation.onScroll}
@@ -292,7 +293,7 @@ export default function CalendarScreen() {
             />
           ))}
         </View>
-      </ScrollView>
+      </KeyboardScroll>
 
       <Pressable
         onPress={() => router.push({ pathname: '/add', params: { date: day } })}

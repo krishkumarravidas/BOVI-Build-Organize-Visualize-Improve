@@ -1,7 +1,7 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { FocusTimer } from '@/components/FocusTimer';
-import { EmptyText, SectionTitle, shortDate } from '@/components/ui';
+import { EmptyText, KeyboardScroll, SectionTitle, shortDate } from '@/components/ui';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
 import { addDays, fromDateKey, toDateKey } from '@/lib/dates';
@@ -29,7 +29,7 @@ export default function FocusTab() {
   const maxDay = Math.max(30, ...perDay.map((x) => x.min));
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <FocusTimer />
 
       <SectionTitle>{`This week · ${hours(total)}`}</SectionTitle>
@@ -66,7 +66,7 @@ export default function FocusTab() {
           <Text style={{ color: theme.muted }}>{name(s.projectId)}</Text>
         </Text>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

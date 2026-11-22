@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { openLink } from '@/components/LinkList';
 import { AddPanel, styles } from '@/components/gamedev/common';
-import { Chip, ChipRow, EmptyText, ErrorText, Field, ScreenHeader, SectionTitle, confirmDestructive } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle, confirmDestructive } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
@@ -27,7 +27,7 @@ export default function LearningScreen() {
   const save = (item: LearningItem) => p.apply((s) => upsertItem(s, 'learning', item));
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title="Learning queue" />
       <Text style={{ color: theme.muted }}>Courses and tutorials you need for your games. When you finish one, note where you used it.</Text>
       <AddPanel label="Add to queue">{(close) => <LearningForm onSave={(i) => { save(i); close(); }} onCancel={close} />}</AddPanel>
@@ -44,7 +44,7 @@ export default function LearningScreen() {
           </View>
         );
       })}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

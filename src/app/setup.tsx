@@ -1,10 +1,10 @@
 import { Stack, router } from 'expo-router';
 import { useState } from 'react';
-import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
-import { Chip, ChipRow, Field } from '@/components/ui';
+import { Chip, ChipRow, Field, KeyboardScroll } from '@/components/ui';
 import { newId, useCollege } from '@/hooks/useCollege';
 import { useProjects } from '@/hooks/useProjects';
 import { useSettings } from '@/hooks/useSettings';
@@ -74,14 +74,14 @@ export default function SetupScreen() {
   const card = [styles.card, { backgroundColor: theme.surface, borderColor: theme.border }];
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, backgroundColor: theme.background }}>
+    <View style={{ flex: 1, backgroundColor: theme.background }}>
       <Stack.Screen options={{ headerShown: false, gestureEnabled: false }} />
       <View style={[styles.progress, { paddingTop: insets.top + 12 }]}>
         {STEPS.map((s, i) => (
           <View key={s} style={[styles.dot, { backgroundColor: i <= step ? theme.primary : theme.border }]} accessibilityLabel={`Step ${i + 1} of ${STEPS.length}: ${s}`} />
         ))}
       </View>
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <KeyboardScroll contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         {step === 0 ? (
           <>
             <Image source={require('../../assets/icon.png')} style={styles.logo} accessibilityIgnoresInvertColors />
@@ -218,8 +218,8 @@ export default function SetupScreen() {
             <Button title="Set up my timetable first" variant="plain" onPress={() => finish('/college/timetable')} />
           </>
         ) : null}
-      </ScrollView>
-    </KeyboardAvoidingView>
+      </KeyboardScroll>
+    </View>
   );
 }
 

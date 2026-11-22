@@ -1,8 +1,8 @@
 import { router } from 'expo-router';
-import { ScrollView, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { Card, EmptyText, Field, ListRow, ScreenHeader, SectionTitle } from '@/components/ui';
+import { Card, EmptyText, Field, KeyboardScroll, ListRow, ScreenHeader, SectionTitle } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 
@@ -12,7 +12,7 @@ export default function SubjectsScreen() {
   const { college } = c;
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
       <ScreenHeader title="Subjects" />
       <Card>
         <Field label="Course" value={college.profile} onChangeText={(v) => c.setProfile({ profile: v })} placeholder="e.g. B.Tech CSE · Sem 3 · Section A" />
@@ -34,7 +34,7 @@ export default function SubjectsScreen() {
         );
       })}
       <Button title="Add subject" onPress={() => router.push({ pathname: '/college/subject/[id]', params: { id: 'new' } })} />
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

@@ -6,7 +6,7 @@ import { Pressable, Share, StyleSheet, Text, TextInput, View } from 'react-nativ
 import { Button } from '@/components/Button';
 import { LinkList } from '@/components/LinkList';
 import { WorkspaceTiles } from '@/components/gamedev/WorkspaceTiles';
-import { Chip, ChipRow, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
+import { Chip, ChipRow, DateField, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
@@ -104,7 +104,7 @@ export default function ProjectFormScreen() {
       </ChipRow>
       <Field label="Summary" value={summary} onChangeText={setSummary} placeholder="e.g. Steam · first-person horror" maxLength={120} />
       <Field label="Next step" value={nextStep} onChangeText={setNextStep} placeholder="What's the very next thing?" maxLength={160} />
-      <Field label="Date (optional)" value={date} onChangeText={setDate} placeholder="YYYY-MM-DD" autoCapitalize="none" hint="When the next step starts or is due." />
+      <DateField label="Date (optional)" value={date} onChange={setDate} optional hint="When the next step starts or is due." />
       <Field label="Notes" value={notes} onChangeText={setNotes} placeholder="Decisions, ideas" multiline />
 
       <SectionTitle>Links</SectionTitle>
@@ -191,15 +191,7 @@ export default function ProjectFormScreen() {
             />
           </View>
           <View style={styles.taskRow}>
-            <TextInput
-              value={msDue}
-              onChangeText={setMsDue}
-              placeholder="Target date (optional) YYYY-MM-DD"
-              placeholderTextColor={theme.muted}
-              accessibilityLabel="Milestone date"
-              autoCapitalize="none"
-              style={[styles.taskInput, { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border }]}
-            />
+            <DateField value={msDue} onChange={setMsDue} optional placeholder="Target date (optional)" accessibilityLabel="Milestone date" style={{ flex: 1 }} />
             <Button title="Add" variant="plain" onPress={addMilestone} />
           </View>
           <ErrorText>{msError}</ErrorText>

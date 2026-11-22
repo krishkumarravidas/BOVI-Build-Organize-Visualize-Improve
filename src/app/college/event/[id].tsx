@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Text } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { ErrorText, Field, FormScreen, ScreenHeader, confirmDestructive } from '@/components/ui';
+import { DateField, ErrorText, Field, FormScreen, ScreenHeader, confirmDestructive } from '@/components/ui';
 import { newId, useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { isValidDateKey, toDateKey } from '@/lib/dates';
@@ -41,8 +41,8 @@ export default function EventFormScreen() {
     <FormScreen>
       <ScreenHeader title={existing ? 'Edit event' : 'New event'} modal />
       <Field label="Title" value={title} onChangeText={setTitle} placeholder="e.g. XR Workshop" maxLength={80} />
-      <Field label="Start date" value={startDate} onChangeText={setStartDate} placeholder="YYYY-MM-DD" autoCapitalize="none" />
-      <Field label="End date" value={endDate} onChangeText={setEndDate} placeholder="YYYY-MM-DD" autoCapitalize="none" />
+      <DateField label="Start date" value={startDate} onChange={setStartDate} />
+      <DateField label="End date" value={endDate} onChange={setEndDate} />
       <Field label="Note" value={note} onChangeText={setNote} placeholder="Optional" multiline />
       <ErrorText>{error}</ErrorText>
       <Button title="Save" onPress={save} />

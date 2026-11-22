@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { openLink } from '@/components/LinkList';
 import { AddPanel, NotFound, Stat, StatRow, styles, useRouteProject } from '@/components/gamedev/common';
-import { Chip, ChipRow, EmptyText, ErrorText, Field, ScreenHeader, SectionTitle, confirmDestructive } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle, confirmDestructive } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { ASSET_SOURCES, assetTotals, creditsText, forProject, removeItem, upsertItem, type AssetItem, type AssetSource } from '@/lib/gamedev';
@@ -23,7 +23,7 @@ export default function AssetsScreen() {
   const shown = assets.filter((a) => filter === 'all' || a.status === filter);
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title={`${project.name}: assets`} />
       <StatRow>
         <Stat value={String(t.count)} label="assets" />
@@ -66,7 +66,7 @@ export default function AssetsScreen() {
           </View>
         </View>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

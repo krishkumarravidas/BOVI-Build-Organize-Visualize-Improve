@@ -2,6 +2,10 @@
 
 A planner for college students and their own projects, built around a clock-style calendar. Android only. No account, no ads, no servers: everything stays on your phone.
 
+### New in 1.3
+- **The keyboard no longer covers what you're typing.** Every screen scrolls the field you tap into view above the keyboard.
+- **Clock and calendar pickers.** Times and dates (classes, exams, tasks, habits, deadlines…) open Android's clock and calendar dialogs instead of asking you to type `08:30` or `2026-11-23`. They follow BOVI's black-and-white look and your light/dark setting.
+
 ### New in 1.2
 - **Black and white.** A new 3D abstract logo and a monochrome look across the app, widgets and splash screen. Only red (problems), green (done) and amber (warnings) keep a colour, plus your subject colours on the calendar. A purple subject turns charcoal automatically.
 

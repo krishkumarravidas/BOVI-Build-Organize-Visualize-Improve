@@ -10,7 +10,7 @@ import { useCommitCache } from '@/hooks/useCommitCache';
 import { toDateKey } from '@/lib/dates';
 import { activityByDay, daysSinceActive, featuredJam, jamHeadline, nudgeFor, streak, thisWeek, weekTasks } from '@/lib/gamedev';
 import { commitDays, projectRepo, repoKey } from '@/lib/github';
-import { Card, EmptyText, ListRow, SectionTitle, shortDate } from '@/components/ui';
+import { Card, EmptyText, KeyboardScroll, ListRow, SectionTitle, shortDate } from '@/components/ui';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
 import { STATUS_LABEL, groupProjects, nextMilestone, taskProgress, type Project } from '@/lib/projects';
@@ -44,7 +44,7 @@ export default function ProjectsScreen() {
   const open = (id: string) => router.push({ pathname: '/project/[id]', params: { id } });
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={[styles.content, { paddingTop: 8 }]}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={[styles.content, { paddingTop: 8 }]}>
 
       {jam ? (
         <Pressable onPress={() => router.push('/gamedev/jams')} accessibilityRole="button" style={[styles.banner, { backgroundColor: theme.surface, borderColor: theme.accent }]}>
@@ -147,7 +147,7 @@ export default function ProjectsScreen() {
 
       <Button title="Add project" onPress={() => open('new')} />
 
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { EmptyText, shortDate } from '@/components/ui';
+import { EmptyText, KeyboardScroll, shortDate } from '@/components/ui';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
 
@@ -20,7 +20,7 @@ export default function IdeasTab() {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
       <TextInput
         value={idea}
         onChangeText={setIdea}
@@ -55,7 +55,7 @@ export default function IdeasTab() {
           </Pressable>
         </View>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

@@ -1,9 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
-import { Pressable, ScrollView, Share, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, Share, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { Chip, ChipRow, EmptyText, SectionTitle, shortDate } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, KeyboardScroll, SectionTitle, shortDate } from '@/components/ui';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
 import { addDays, toDateKey } from '@/lib/dates';
@@ -37,7 +37,7 @@ export default function DevlogTab() {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
       <ChipRow>
         {choices.slice(0, 8).map((x) => (
           <Chip key={x.id} label={x.name.length > 22 ? `${x.name.slice(0, 21)}…` : x.name} selected={projectId === x.id} onPress={() => setProjectId(x.id)} />
@@ -76,7 +76,7 @@ export default function DevlogTab() {
           <Text style={{ color: theme.text, fontSize: 15 }}>{e.text}</Text>
         </View>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

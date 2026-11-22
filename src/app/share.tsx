@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { BackHandler, Image, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { Chip, ChipRow, ErrorText, Field, SectionTitle } from '@/components/ui';
+import { Chip, ChipRow, ErrorText, Field, KeyboardScroll, SectionTitle } from '@/components/ui';
 import { newId, useCollege } from '@/hooks/useCollege';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
@@ -120,7 +120,7 @@ export default function ShareScreen() {
   const info = share.url ? linkInfo(share.url) : null;
   const needsProject = target === 'project' || target === 'ref' || target === 'bug' || target === 'learning';
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <Stack.Screen options={{ headerShown: true, title: 'Save to BOVI', headerStyle: { backgroundColor: theme.background }, headerTitleStyle: { color: theme.text }, headerTintColor: theme.primary }} />
 
       {share.images.length ? (
@@ -196,7 +196,7 @@ export default function ShareScreen() {
           <Button title="Save" onPress={save} />
         </View>
       </View>
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

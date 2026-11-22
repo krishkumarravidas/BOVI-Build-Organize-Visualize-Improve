@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 
 import { CalendarPicker } from '@/components/CalendarPicker';
-import { ListRow, ScreenHeader } from '@/components/ui';
+import { KeyboardScroll, ListRow, ScreenHeader } from '@/components/ui';
 import { useSettings } from '@/hooks/useSettings';
 import { useTheme } from '@/hooks/useTheme';
 import { appLockSupported, canUseAppLock, unlock } from '@/lib/appLock';
@@ -64,7 +64,7 @@ export default function SettingsScreen() {
   const card = [styles.card, { backgroundColor: theme.surface, borderColor: theme.border }];
 
   return (
-    <ScrollView
+    <KeyboardScroll
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={[styles.content, { paddingTop: 16 }]}
     >
@@ -213,7 +213,7 @@ export default function SettingsScreen() {
           </View>
         </>
       ) : null}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

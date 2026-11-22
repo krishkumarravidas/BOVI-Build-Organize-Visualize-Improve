@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Switch, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { Chip, ChipRow, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, confirmDestructive } from '@/components/ui';
+import { Chip, ChipRow, DateField, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, TimeField, confirmDestructive } from '@/components/ui';
 import { useHabits } from '@/hooks/useHabits';
 import { newId } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
@@ -72,8 +72,8 @@ export default function TaskScreen() {
           <Chip key={d.label} label={d.label} selected={date === d.value} onPress={() => setDate(d.value)} />
         ))}
       </ChipRow>
-      <Field label="Date" value={date} onChangeText={setDate} placeholder="YYYY-MM-DD" autoCapitalize="none" />
-      <Field label="Time (optional)" value={time} onChangeText={setTime} placeholder="HH:mm — leave empty for the day’s to-do list" autoCapitalize="none" hint="With a time it shows on the dial; without one it goes in the to-do list." />
+      <DateField label="Date" value={date} onChange={setDate} />
+      <TimeField label="Time (optional)" value={time} onChange={setTime} optional placeholder="No time: goes in the day’s to-do list" hint="With a time it shows on the dial; without one it goes in the to-do list." />
       {time.trim() ? (
         <>
           <SectionTitle>How long</SectionTitle>

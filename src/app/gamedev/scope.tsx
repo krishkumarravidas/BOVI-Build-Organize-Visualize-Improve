@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { AddPanel, BarChart, CheckRow, NotFound, Stat, StatRow, styles, useRouteProject } from '@/components/gamedev/common';
-import { Card, Chip, ChipRow, ErrorText, Field, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
+import { Card, Chip, ChipRow, DateField, ErrorText, Field, KeyboardScroll, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { isValidDateKey, toDateKey } from '@/lib/dates';
@@ -47,7 +47,7 @@ export default function ScopeScreen() {
   const patch = (id: string, change: Partial<Feature>) => update((fs) => fs.map((f) => (f.id === id ? { ...f, ...change } : f)));
   const cutSet = new Set(check.suggestCuts.map((f) => f.id));
 
-  const saveDeadline = () => {
+  const saveDeadline = (deadline: string) => {
     if (deadline && !isValidDateKey(deadline)) return setDeadlineError('Use a date like 2027-03-31, or leave it empty');
     setDeadlineError(null);
     p.apply((s) => ({ ...s, projects: s.projects.map((x) => (x.id === project.id ? { ...x, deadline: deadline || undefined } : x)) }));
@@ -61,11 +61,11 @@ export default function ScopeScreen() {
   const hasSlice = VERTICAL_SLICE.every((t) => project.milestones.some((m) => m.title === t));
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title={`${project.name}: scope`} />
 
       <Card>
-        <Field label="Deadline" value={deadline} onChangeText={setDeadline} onBlur={saveDeadline} onSubmitEditing={saveDeadline} placeholder="YYYY-MM-DD (vertical slice, demo, launch…)" autoCapitalize="none" />
+        <DateField label="Deadline" value={deadline} onChange={(v) => { setDeadline(v); saveDeadline(v); }} optional placeholder="Vertical slice, demo, launch…" />
         <ErrorText>{deadlineError}</ErrorText>
         <StatRow>
           <Stat value={`${check.hours.must}h`} label="Must left" color={check.mustFits === false ? theme.danger : theme.text} />
@@ -134,7 +134,7 @@ export default function ScopeScreen() {
         <Text style={{ color: theme.muted }}>Adds the standard slice milestones (core loop, one level, one enemy, one key moment, menus, final-quality area, packaged build) to this project’s roadmap.</Text>
         <Button title={hasSlice ? 'Slice milestones added' : 'Add vertical-slice milestones'} variant="plain" onPress={addSlice} disabled={hasSlice} />
       </Card>
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

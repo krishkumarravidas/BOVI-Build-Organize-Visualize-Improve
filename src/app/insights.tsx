@@ -1,6 +1,6 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { Card, ScreenHeader, SectionTitle } from '@/components/ui';
+import { Card, KeyboardScroll, ScreenHeader, SectionTitle } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useHabits } from '@/hooks/useHabits';
 import { useProjects } from '@/hooks/useProjects';
@@ -57,7 +57,7 @@ export default function InsightsScreen() {
       : null;
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <ScreenHeader title="Insights" />
       <Text style={{ color: theme.muted }}>This week (since Monday)</Text>
       <View style={styles.grid}>
@@ -125,7 +125,7 @@ export default function InsightsScreen() {
           Revision this week: {studyThisWeek.filter((s) => s.done).length} of {studyThisWeek.length} planned sessions done.
         </Text>
       ) : null}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

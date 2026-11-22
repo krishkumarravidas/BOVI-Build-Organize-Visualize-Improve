@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { EmptyText, ListRow, SectionTitle, shortDate } from '@/components/ui';
+import { EmptyText, KeyboardScroll, ListRow, SectionTitle, shortDate } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
@@ -22,7 +22,7 @@ export default function ExamsTab() {
   const past = college.exams.filter((e) => e.date < today).sort((a, b) => b.date.localeCompare(a.date));
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <ListRow title="Study timer & readiness" subtitle="Study a subject, see how ready you are for each exam" color={theme.primary} onPress={() => router.push('/study')} />
       <SectionTitle>Upcoming</SectionTitle>
       {upcoming.length === 0 ? <EmptyText>No upcoming exams.</EmptyText> : null}
@@ -65,7 +65,7 @@ export default function ExamsTab() {
           onPress={() => router.push({ pathname: '/college/exam/[id]', params: { id: exam.id } })}
         />
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

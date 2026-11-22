@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AttendanceButtons } from '@/components/AttendanceButtons';
-import { Card, Chip, ChipRow, EmptyText, ListRow, SectionTitle, shortDate } from '@/components/ui';
+import { Card, Chip, ChipRow, EmptyText, KeyboardScroll, ListRow, SectionTitle, shortDate } from '@/components/ui';
 import { useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { attendanceBySubject, attendanceFor, semesterOutlook, unmarkedClasses } from '@/lib/collegeStats';
@@ -23,7 +23,7 @@ export default function AttendanceScreen() {
   const synced = college.attendanceSyncedAt;
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <Card>
         <Text style={{ color: theme.muted, fontWeight: '600' }}>OVERALL</Text>
         <Text style={[styles.big, { color: overall.percent !== null && overall.percent < college.attendanceTarget ? theme.danger : theme.text }]}>
@@ -115,7 +115,7 @@ export default function AttendanceScreen() {
         </View>
       ))}
       <EmptyText>Only subject classes count. Cancelled classes are ignored.</EmptyText>
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

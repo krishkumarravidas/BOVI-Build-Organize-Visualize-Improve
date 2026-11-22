@@ -1,11 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { NotFound, Stat, StatRow, severityColor, styles, useRouteProject } from '@/components/gamedev/common';
-import { Chip, ChipRow, EmptyText, ScreenHeader } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, KeyboardScroll, ScreenHeader } from '@/components/ui';
 import { useTheme } from '@/hooks/useTheme';
 import { SEVERITY_LABEL, forProject, setBugStatus, sortedBugs } from '@/lib/gamedev';
 
@@ -21,7 +21,7 @@ export default function BugsScreen() {
   const edit = (bug: string) => router.push({ pathname: '/gamedev/bug', params: { id: project.id, bug } });
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen}>
       <ScreenHeader title={`${project.name}: bugs`} />
       <StatRow>
         <Stat value={String(open.length)} label="open" color={open.length ? theme.danger : theme.accent} />
@@ -62,7 +62,7 @@ export default function BugsScreen() {
           </Pressable>
         </Pressable>
       ))}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

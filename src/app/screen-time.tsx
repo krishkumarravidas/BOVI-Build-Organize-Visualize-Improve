@@ -1,6 +1,6 @@
-import { Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native';
 
-import { ScreenHeader } from '@/components/ui';
+import { KeyboardScroll, ScreenHeader } from '@/components/ui';
 import { Button } from '@/components/Button';
 import { useScreenTime } from '@/hooks/useScreenTime';
 import { useSettings } from '@/hooks/useSettings';
@@ -68,7 +68,7 @@ export default function ScreenTimeScreen() {
   const todayKey = usage.week[usage.week.length - 1]?.day;
 
   return (
-    <ScrollView
+    <KeyboardScroll
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={[styles.content, { paddingTop: 16 }]}
       refreshControl={
@@ -174,7 +174,7 @@ export default function ScreenTimeScreen() {
           Android keeps detailed usage for about a week; older days may show less.
         </Text>
       </View>
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

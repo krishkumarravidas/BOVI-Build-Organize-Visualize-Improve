@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { SubjectPicker } from '@/components/SubjectPicker';
-import { Chip, ChipRow, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
+import { Chip, ChipRow, DateField, ErrorText, Field, FormScreen, ScreenHeader, SectionTitle, confirmDestructive, shortDate } from '@/components/ui';
 import { newId, useCollege } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { addDays, isValidDateKey, toDateKey } from '@/lib/dates';
@@ -50,7 +50,7 @@ export default function AssignmentFormScreen() {
           <Chip key={d} label={shortDate(d)} selected={d === due} onPress={() => setDue(d)} />
         ))}
       </ChipRow>
-      <Field label="Due date" value={due} onChangeText={setDue} placeholder="YYYY-MM-DD" autoCapitalize="none" />
+      <DateField label="Due date" value={due} onChange={setDue} />
       <Field label="Notes" value={notes} onChangeText={setNotes} placeholder="Optional" multiline />
       <ErrorText>{error}</ErrorText>
       <Button title="Save" onPress={save} />

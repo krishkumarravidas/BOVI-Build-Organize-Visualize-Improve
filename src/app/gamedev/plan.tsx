@@ -1,10 +1,10 @@
 import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { CheckRow, styles } from '@/components/gamedev/common';
-import { Card, ScreenHeader, SectionTitle } from '@/components/ui';
+import { Card, KeyboardScroll, ScreenHeader, SectionTitle } from '@/components/ui';
 import { useProjects } from '@/hooks/useProjects';
 import { useTheme } from '@/hooks/useTheme';
 import { addDays, isValidDateKey, toDateKey } from '@/lib/dates';
@@ -26,7 +26,7 @@ export default function PlanScreen() {
   const toggle = (projectId: string, taskId: string) => p.apply((s) => prunePlan(togglePick(s, { week, projectId, taskId }), today));
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
       <ScreenHeader title="Plan the week" />
       <View style={local.weekRow}>
         <Button title="‹" variant="plain" onPress={() => setWeek(addDays(week, -7))} />
@@ -67,7 +67,7 @@ export default function PlanScreen() {
           </View>
         );
       })}
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

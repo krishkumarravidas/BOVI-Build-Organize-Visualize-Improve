@@ -2,10 +2,8 @@ import { Stack } from 'expo-router';
 import { useState, type ReactNode } from 'react';
 import {
   Alert,
-  KeyboardAvoidingView,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -16,6 +14,7 @@ import {
 
 import { useTheme } from '@/hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
+import { KeyboardAwareScrollView, type KeyboardAwareScrollViewProps } from 'react-native-keyboard-controller';
 
 import { radius } from '@/theme/colors';
 import { mix, readableOn } from '@/theme/contrast';
@@ -38,19 +37,21 @@ export function ScreenHeader({ title, modal }: { title: string; modal?: boolean 
   );
 }
 
+/**
+ * ScrollView that keeps the focused text field above the keyboard. Android draws edge-to-edge, so the
+ * window no longer resizes for the keyboard; this scrolls the field into view instead (Android and iOS).
+ */
+export function KeyboardScroll({ bottomOffset = 32, keyboardShouldPersistTaps = 'handled', ...props }: KeyboardAwareScrollViewProps) {
+  return <KeyboardAwareScrollView bottomOffset={bottomOffset} keyboardShouldPersistTaps={keyboardShouldPersistTaps} {...props} />;
+}
+
 /** Scrollable, keyboard-aware form body. */
 export function FormScreen({ children }: { children: ReactNode }) {
   const theme = useTheme();
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView
-        style={{ backgroundColor: theme.background }}
-        contentContainerStyle={styles.form}
-        keyboardShouldPersistTaps="handled"
-      >
-        {children}
-      </ScrollView>
-    </KeyboardAvoidingView>
+    <KeyboardScroll style={{ flex: 1, backgroundColor: theme.background }} contentContainerStyle={styles.form}>
+      {children}
+    </KeyboardScroll>
   );
 }
 
@@ -83,24 +84,7 @@ export function Field({ label, hint, ...input }: TextInputProps & { label: strin
   );
 }
 
-/** Two time fields side by side. */
-export function TimeRangeFields(props: {
-  start: string;
-  end: string;
-  onStart: (v: string) => void;
-  onEnd: (v: string) => void;
-}) {
-  return (
-    <View style={styles.row}>
-      <View style={{ flex: 1 }}>
-        <Field label="Start" value={props.start} onChangeText={props.onStart} placeholder="HH:mm" keyboardType="numbers-and-punctuation" maxLength={5} />
-      </View>
-      <View style={{ flex: 1 }}>
-        <Field label="End" value={props.end} onChangeText={props.onEnd} placeholder="HH:mm" keyboardType="numbers-and-punctuation" maxLength={5} />
-      </View>
-    </View>
-  );
-}
+export { DateField, TimeField, TimeRangeFields } from './pickers';
 
 export function Card({ children, style }: { children: ReactNode; style?: ViewStyle }) {
   const theme = useTheme();

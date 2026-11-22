@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View, useWindowDimensions } from 'react-native';
+import { Image, Modal, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { NotFound, styles, useRouteProject } from '@/components/gamedev/common';
-import { Chip, ChipRow, EmptyText, ErrorText, ScreenHeader, confirmDestructive } from '@/components/ui';
+import { Chip, ChipRow, EmptyText, ErrorText, KeyboardScroll, ScreenHeader, confirmDestructive } from '@/components/ui';
 import { newId } from '@/hooks/useCollege';
 import { useTheme } from '@/hooks/useTheme';
 import { REF_TAGS, forProject, removeItem, upsertItem, type RefImage, type RefTag } from '@/lib/gamedev';
@@ -38,7 +38,7 @@ export default function RefsScreen() {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen}>
+    <KeyboardScroll style={{ backgroundColor: theme.background }} contentContainerStyle={styles.screen}>
       <ScreenHeader title={`${project.name}: references`} />
       <Text style={{ color: theme.text, fontWeight: '700' }}>New image goes under</Text>
       <ChipRow>
@@ -77,7 +77,7 @@ export default function RefsScreen() {
           })
         }
       />
-    </ScrollView>
+    </KeyboardScroll>
   );
 }
 

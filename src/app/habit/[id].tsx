@@ -1,6 +1,6 @@
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Platform, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { DayPicker } from '@/components/DayPicker';
@@ -8,6 +8,7 @@ import { useHabits } from '@/hooks/useHabits';
 import { useTheme } from '@/hooks/useTheme';
 import { ALL_DAYS, type Weekday } from '@/lib/types';
 import { isValidReminderTime } from '@/lib/stats';
+import { KeyboardScroll, TimeField } from '@/components/ui';
 
 export default function HabitFormScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -49,7 +50,7 @@ export default function HabitFormScreen() {
   const inputStyle = [styles.input, { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border }];
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <View style={{ flex: 1 }}>
       <Stack.Screen
         options={{
           headerShown: true,
@@ -60,7 +61,7 @@ export default function HabitFormScreen() {
           headerTintColor: theme.primary,
         }}
       />
-      <ScrollView
+      <KeyboardScroll
         style={{ backgroundColor: theme.background }}
         contentContainerStyle={styles.content}
         keyboardShouldPersistTaps="handled"
@@ -91,15 +92,7 @@ export default function HabitFormScreen() {
 
             <View style={styles.field}>
               <Text style={[styles.label, { color: theme.text }]}>Reminder (optional)</Text>
-              <TextInput
-                value={reminder}
-                onChangeText={setReminder}
-                placeholder="HH:mm"
-                placeholderTextColor={theme.muted}
-                style={inputStyle}
-                keyboardType="numbers-and-punctuation"
-                maxLength={5}
-              />
+              <TimeField value={reminder} onChange={setReminder} optional placeholder="No reminder" accessibilityLabel="Reminder time" fallback="08:00" />
               {reminderError ? <Text style={{ color: theme.danger }}>{reminderError}</Text> : null}
             </View>
 
@@ -107,8 +100,8 @@ export default function HabitFormScreen() {
             {existing ? <Button title="Archive habit" variant="danger" onPress={confirmArchive} /> : null}
           </>
         )}
-      </ScrollView>
-    </KeyboardAvoidingView>
+      </KeyboardScroll>
+    </View>
   );
 }
 
