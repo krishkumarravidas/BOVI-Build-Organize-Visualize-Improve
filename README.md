@@ -298,7 +298,7 @@ The second tab set is called **Projects** by default; rename it in setup or *Set
 ### Screen time
 
 - Today's total, **top apps**, a **7-day chart**, and an optional **daily limit** (1–6 h) with an over-limit warning.
-- Hour-by-hour usage also appears on the calendar dial.
+- Hour-by-hour usage appears on the calendar dial's **outer ring**: grey under 15 min, amber 15–30 min, red 30+ min. A **Phone use** card under the dial explains it for the hours you're looking at: the total, today against your limit, minutes per hour, the busiest hour and which apps took it (tap an hour for its top apps).
 - Uses Android's **Usage access** permission (the app walks you through granting it). The data never leaves the phone.
 
 ### Share to BOVI

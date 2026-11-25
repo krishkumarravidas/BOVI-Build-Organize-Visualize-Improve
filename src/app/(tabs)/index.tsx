@@ -12,6 +12,8 @@ import { useRotatingDial } from '@/hooks/useDialRotation';
 import { useHabits } from '@/hooks/useHabits';
 import { useProjects } from '@/hooks/useProjects';
 import { useHourlyScreenTime } from '@/hooks/useHourlyScreenTime';
+import { useSettings } from '@/hooks/useSettings';
+import { PhoneUseCard } from '@/components/PhoneUseCard';
 import { useTheme } from '@/hooks/useTheme';
 import { formatEventTime } from '@/lib/agenda';
 import { dayProgress, dayScore } from '@/lib/calendarLayout';
@@ -48,6 +50,7 @@ export default function CalendarScreen() {
   // A day either side of the week, so the dial can show events across midnight at the week's edges.
   const calendar = useCalendarEvents(9, addDays(monday, -1));
   const hourly = useHourlyScreenTime(day);
+  const { settings } = useSettings();
 
   const dialW = width;
   const dialH = Math.max(300, Math.min(width * 1.3, winH * 0.56));
@@ -158,7 +161,7 @@ export default function CalendarScreen() {
             dayStart={dayStart}
             baseMin={rotation.baseMin}
             rotation={rotation.rotation}
-            hourly={hourly}
+            hourly={hourly.status === 'ok' ? hourly.hours.map((h) => h.minutes) : null}
             nowMin={nowMin}
           />
           <View style={styles.periods}>
@@ -208,6 +211,7 @@ export default function CalendarScreen() {
           </Pressable>
         ) : null}
         <CalendarAccessNotice access={calendar.access} onRequest={calendar.requestAccess} />
+        <PhoneUseCard data={hourly} startMin={startMin} isToday={day === today} limitMin={settings.screenTimeLimitMin} />
 
         <View style={[styles.card, { backgroundColor: theme.surface, borderColor: theme.border }]}>
             <Text style={[styles.cardTitle, { color: theme.muted }]}>TO DO</Text>

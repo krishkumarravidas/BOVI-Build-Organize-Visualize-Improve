@@ -122,7 +122,7 @@ export const RadialDay = memo(function RadialDay({ width, height, items, dayStar
             return <Circle key={ring} cx={C} cy={C} r={((fi + fo) / 2) * R} stroke={theme.surface} strokeWidth={(fo - fi) * R} fill="none" />;
           })}
 
-          {/* Phone use per hour on the outer edge */}
+          {/* Phone use per hour on the outer edge (explained by the phone-use card under the dial) */}
           {hourly
             ? Array.from({ length: 12 }, (_, i) => {
                 const hour = Math.floor((baseMin - CONTENT_BEFORE_MIN) / 60) + i;
@@ -134,7 +134,7 @@ export const RadialDay = memo(function RadialDay({ width, height, items, dayStar
                 const a1 = contentAngle((hour + 1) * 60 - baseMin) - 1;
                 if (a1 <= 0 || a0 >= 360) return null;
                 return (
-                  <Path key={`u${hour}`} d={arcPath(C, C, ((USAGE[0] + USAGE[1]) / 2) * R, Math.max(0, a0), Math.min(360, a1))} stroke={minutes >= 30 ? theme.danger : theme.accent} strokeWidth={w} fill="none" />
+                  <Path key={`u${hour}`} d={arcPath(C, C, ((USAGE[0] + USAGE[1]) / 2) * R, Math.max(0, a0), Math.min(360, a1))} stroke={minutes >= 30 ? theme.danger : minutes >= 15 ? theme.warn : theme.muted} strokeWidth={w} fill="none" />
                 );
               })
             : null}

@@ -46,3 +46,64 @@ export function limitStatus(totalMs: number, limitMin: number | null): LimitStat
   const limitMs = limitMin * MINUTE;
   return { ratio: totalMs / limitMs, over: totalMs >= limitMs, remainingMs: Math.max(0, limitMs - totalMs) };
 }
+
+// ---------- phone use per hour (the dial's outer ring) ----------
+
+export interface HourUsage {
+  /** Minutes of phone use in this hour (0–60). */
+  minutes: number;
+  /** Biggest apps that hour, largest first. */
+  top: UsageRow[];
+}
+
+export type UsageLevel = 'none' | 'light' | 'medium' | 'heavy';
+
+/** How an hour is drawn: light under 15 min, medium 15–29, heavy 30+. */
+export function usageLevel(minutes: number): UsageLevel {
+  if (minutes <= 0) return 'none';
+  if (minutes < 15) return 'light';
+  if (minutes < 30) return 'medium';
+  return 'heavy';
+}
+
+export interface WindowUsage {
+  /** Hours of this day shown (0–23), in order. */
+  hours: { hour: number; minutes: number; top: UsageRow[] }[];
+  totalMin: number;
+  /** The hour with the most use, if any. */
+  busiest: { hour: number; minutes: number; top: UsageRow[] } | null;
+  /** Hours with 30+ minutes. */
+  heavyHours: number;
+  /** Apps across the window, largest first. */
+  topApps: UsageRow[];
+}
+
+/** Phone use for `count` hours starting at `startHour` (hours outside 0–23 are left out). */
+export function windowUsage(day: readonly HourUsage[], startHour: number, count = 6): WindowUsage {
+  const hours = [];
+  for (let h = startHour; h < startHour + count; h++) {
+    if (h < 0 || h > 23 || !day[h]) continue;
+    hours.push({ hour: h, minutes: day[h].minutes, top: day[h].top });
+  }
+  const totalMin = hours.reduce((a, h) => a + h.minutes, 0);
+  const busiest = hours.reduce<WindowUsage['busiest']>((b, h) => (h.minutes > 0 && (!b || h.minutes > b.minutes) ? h : b), null);
+  const byApp = new Map<string, UsageRow>();
+  for (const h of hours)
+    for (const r of h.top) {
+      const cur = byApp.get(r.packageName);
+      byApp.set(r.packageName, cur ? { ...cur, foregroundMs: cur.foregroundMs + r.foregroundMs } : { ...r });
+    }
+  return {
+    hours,
+    totalMin,
+    busiest,
+    heavyHours: hours.filter((h) => h.minutes >= 30).length,
+    topApps: [...byApp.values()].sort((a, b) => b.foregroundMs - a.foregroundMs).slice(0, 3),
+  };
+}
+
+/** "9 AM", "12 PM", "12 AM". */
+export function hourLabel(hour: number): string {
+  const h = ((hour % 24) + 24) % 24;
+  return `${h % 12 || 12} ${h < 12 ? 'AM' : 'PM'}`;
+}

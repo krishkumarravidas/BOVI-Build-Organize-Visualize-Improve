@@ -2,6 +2,9 @@
 
 A planner for college students and their own projects, built around a clock-style calendar. Android only. No account, no ads, no servers: everything stays on your phone.
 
+### New in 1.6
+- **Phone use on the dial, explained.** A card under the calendar shows phone use for the hours you're looking at: the total, today against your limit, minutes per hour, the busiest hour and which apps took it (tap an hour for its top apps). The dial's outer ring now uses the same colours: grey under 15 min, amber 15–30 min, red 30+ min.
+
 ### New in 1.5
 - **Semesters.** Give your semester a name and dates, and classes only show between them. When it ends, start a new one: the old semester is saved with its subjects, timetable, attendance, exams and marks, and you can keep the same subjects and timetable if they don't change. Switch back to any saved semester any time (Classes → Semester).
 - Claude connector: Claude now knows which semester and week you're in. The setup also works when your Cloudflare account has no workers.dev subdomain yet.
