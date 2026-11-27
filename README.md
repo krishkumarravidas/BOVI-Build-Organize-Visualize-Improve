@@ -259,6 +259,13 @@ The second tab set is called **Projects** by default; rename it in setup or *Set
 - Per project: summary, next step, date, notes, **task checklist**, **milestones** (in roadmap order, with optional target dates) and a **devlog**.
 - **Project links:** GitHub repo, Drive folder, design docs, Figma, itch.io / Steam page… Paste a GitHub link and it's titled *you/repo* automatically. The active project's links appear as one-tap chips on the Focus card, and they open in the GitHub app if it's installed.
 
+**Courses** (Projects tab → *Courses*)
+- Follow self-paced courses (Udemy, YouTube series, a book) the way you'd follow a college subject.
+- **Paste the curriculum** and it becomes sections and lessons. It understands lines like *Section 2: Blueprints*, numbering, and durations like *12:34* or *15 min*. Tick lessons as you go; *Up next* always shows the next one.
+- **Weekly study times** work like a timetable: they appear on the calendar dial, and tapping one marks the session done. Missed ones show under *Did you study?* with Done / Skipped, so you see the % of sessions you kept and your streak.
+- **Pace:** set a finish date to see how many lessons a week you need, how many you're actually doing, and when you'll finish at that pace.
+- Optionally link a course to a project. Claude sees your courses through the connector.
+
 **Project workspace** (open a project → *Workspace* tiles)
 - **Scope:** features tagged **Must / Should / Could / Cut** with a size (S ≈ 4 h, M ≈ 12 h, L ≈ 30 h). Set a deadline and it checks the hours left against **your real pace** (focus hours over the last 4 weeks; 6 h/week assumed until there's data). If it doesn't fit, it names the **Could, then Should, features to cut**. Also shows things finished and focus hours per week for 8 weeks, plus a **forecast** for when the Musts land. A one-tap **vertical-slice template** adds the standard slice milestones.
 - **Bugs:** title, severity (crash/high/medium/low), steps to reproduce and a **screenshot**. Open bugs are listed first by severity, with one tap to mark fixed.

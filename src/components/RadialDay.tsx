@@ -65,6 +65,7 @@ export const RadialDay = memo(function RadialDay({ width, height, items, dayStar
     if (i.kind === 'class') return i.color || theme.primary;
     if (i.kind === 'exam') return theme.danger;
     if (i.kind === 'event') return theme.primary;
+    if (i.kind === 'course') return i.color;
     return theme.accent;
   };
 
@@ -81,7 +82,7 @@ export const RadialDay = memo(function RadialDay({ width, height, items, dayStar
     const a0 = a.a0 + inset;
     const a1 = Math.max(a0 + 0.01, a.a1 - inset);
     const color = colorOf(a);
-    const done = (a.item.kind === 'study' || a.item.kind === 'task') && a.item.done;
+    const done = (a.item.kind === 'study' || a.item.kind === 'task' || a.item.kind === 'course') && a.item.done;
     const fontSize = Math.max(9, Math.min(12, sw * 0.55));
     // Text needs room beyond the rounded caps; measure along the visible stroke.
     const label = fitLabel(a.item.title, (r * (a1 - a0) * Math.PI) / 180, fontSize, a.item.kind === 'class' ? a.item.short : undefined);

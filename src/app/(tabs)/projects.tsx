@@ -5,6 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { LinkChips } from '@/components/LinkList';
+import { CourseCard } from '@/components/CourseCard';
 import { CheckRow, Heatmap } from '@/components/gamedev/common';
 import { useCommitCache } from '@/hooks/useCommitCache';
 import { toDateKey } from '@/lib/dates';
@@ -24,6 +25,9 @@ function subtitleFor(p: Project): string | undefined {
 export default function ProjectsScreen() {
   const theme = useTheme();
   const { projects, ready, toggleTask, state } = useProjects();
+  const courses = state.courses ?? [];
+  const activeCourses = courses.filter((x) => x.status === 'active');
+  const [courseNow] = useState(() => new Date());
   const [cache] = useCommitCache();
   const [now] = useState(() => Date.now());
   if (!ready) return <View style={{ flex: 1, backgroundColor: theme.background }} />;
@@ -101,6 +105,16 @@ export default function ProjectsScreen() {
           </Pressable>
         ))}
       </View>
+
+      <SectionTitle right={<Pressable onPress={() => router.push('/courses')} accessibilityRole="button" hitSlop={8}><Text style={{ color: theme.text, fontWeight: '600' }}>{courses.length ? 'All' : 'Add'}</Text></Pressable>}>Courses</SectionTitle>
+      {activeCourses.length ? (
+        activeCourses.slice(0, 3).map((course) => <CourseCard key={course.id} course={course} now={courseNow} />)
+      ) : (
+        <Pressable onPress={() => router.push('/courses')} accessibilityRole="button" style={[styles.tool, { backgroundColor: theme.surface, borderColor: theme.border, alignSelf: 'stretch' }]}>
+          <Ionicons name="library" size={18} color={theme.primary} />
+          <Text style={{ color: theme.text, fontWeight: '600', flex: 1 }}>Follow a course: lessons, study times, progress</Text>
+        </Pressable>
+      )}
 
       <SectionTitle>Focus</SectionTitle>
       {active.length === 0 ? <EmptyText>No active project. Set one to Active to focus on it.</EmptyText> : null}

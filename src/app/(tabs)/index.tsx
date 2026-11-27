@@ -12,6 +12,7 @@ import { useRotatingDial } from '@/hooks/useDialRotation';
 import { useHabits } from '@/hooks/useHabits';
 import { useProjects } from '@/hooks/useProjects';
 import { useHourlyScreenTime } from '@/hooks/useHourlyScreenTime';
+import { markSession } from '@/lib/courses';
 import { useSettings } from '@/hooks/useSettings';
 import { PhoneUseCard } from '@/components/PhoneUseCard';
 import { useTheme } from '@/hooks/useTheme';
@@ -56,27 +57,34 @@ export default function CalendarScreen() {
   const dialH = Math.max(300, Math.min(width * 1.3, winH * 0.56));
   // Memoised so spinning the dial (header updates) doesn't rebuild or re-render the drawing.
   const timeline = useMemo(
-    () => buildTimeline(day, { events: calendar.events, blocks: state.blocks, habitState: state, college }),
-    [day, calendar.events, state, college],
+    () => buildTimeline(day, { events: calendar.events, blocks: state.blocks, habitState: state, college, courses: projects.state.courses }),
+    [day, calendar.events, state, college, projects.state.courses],
   );
   // The dial also draws yesterday's and tomorrow's items, so it reads continuously across midnight.
   const dialItems = useMemo(() => {
-    const src = { events: calendar.events, blocks: state.blocks, habitState: state, college };
+    const src = { events: calendar.events, blocks: state.blocks, habitState: state, college, courses: projects.state.courses };
     const seen = new Set(timeline.items.map((i) => i.key));
     const near = [addDays(day, -1), addDays(day, 1)].flatMap((d) => buildTimeline(d, src).items.filter((i) => !seen.has(i.key)).map((i) => ({ ...i, key: `${d}:${i.key}` })));
     return [...timeline.items, ...near];
-  }, [day, calendar.events, state, college, timeline]);
+  }, [day, calendar.events, state, college, projects.state.courses, timeline]);
   const dayStart = useMemo(() => fromDateKey(day), [day]);
   // Minutes from this day's midnight (negative or past 24 h for other days); the dial draws the hand only when it's in view.
   const nowMin = Math.round((now.getTime() - dayStart.getTime()) / 60_000);
 
   const toggleTask = (id: string, done: boolean) => applyHabits((s) => setTodoDone(s, id, done, Date.now()));
+  const applyProjects = projects.apply;
+  const toggleCourse = useCallback(
+    (courseId: string, slotId: string, date: DateKey, done: boolean) =>
+      applyProjects((s) => ({ ...s, courses: (s.courses ?? []).map((c) => (c.id === courseId ? markSession(c, date, slotId, done ? 'done' : null) : c)) })),
+    [applyProjects],
+  );
   // Items can come from the neighbouring days, so act on the item's own date.
   const press = (item: TimelineItem) => {
     const itemDay = toDateKey(item.start);
     if (item.kind === 'habit') toggle(item.habitId, itemDay, !item.done);
     else if (item.kind === 'study') toggleStudy(item.studyId);
     else if (item.kind === 'task') toggleTask(item.taskId, !item.done);
+    else if (item.kind === 'course') toggleCourse(item.courseId, item.slotId, itemDay, !item.done);
     else timelinePress(item, itemDay)?.();
   };
 
@@ -89,9 +97,10 @@ export default function CalendarScreen() {
       if (item.kind === 'habit') toggle(item.habitId, itemDay, !item.done);
       else if (item.kind === 'study') toggleStudy(item.studyId);
       else if (item.kind === 'task') applyHabits((s) => setTodoDone(s, item.taskId, !item.done, Date.now()));
+      else if (item.kind === 'course') toggleCourse(item.courseId, item.slotId, itemDay, !item.done);
       else timelinePress(item, itemDay)?.();
     },
-    [dialItems, dayStart, dialW, dialH, toggle, toggleStudy, applyHabits],
+    [dialItems, dayStart, dialW, dialH, toggle, toggleStudy, applyHabits, toggleCourse],
   );
   const dialSize = useMemo(() => ({ width: dialW, height: dialH }), [dialW, dialH]);
   // Spinning past midnight moves the calendar to the next/previous day.
@@ -324,11 +333,11 @@ export default function CalendarScreen() {
 function ItemRow({ item, day, onPress, onLongPress }: { item: TimelineItem; day: DateKey; onPress: () => void; onLongPress?: () => void }) {
   const theme = useTheme();
   const color =
-    item.kind === 'class' ? item.color || theme.primary : item.kind === 'exam' ? theme.danger : item.kind === 'event' ? theme.primary : item.kind === 'habit' ? theme.accent : theme.accent;
+    item.kind === 'class' ? item.color || theme.primary : item.kind === 'course' ? item.color : item.kind === 'exam' ? theme.danger : item.kind === 'event' ? theme.primary : theme.accent;
   const time = item.kind === 'habit' ? fmtTime(item.start) : formatEventTime({ start: item.start, end: item.end, allDay: false }, day, fmtTime);
   const kind =
-    item.kind === 'class' ? item.room : item.kind === 'exam' ? 'Exam' : item.kind === 'event' ? item.location || 'Calendar' : item.kind === 'study' ? 'Revision' : item.kind === 'habit' ? 'Habit' : item.kind === 'task' ? 'Task' : 'Schedule';
-  const done = (item.kind === 'habit' || item.kind === 'study' || item.kind === 'task') && item.done;
+    item.kind === 'class' ? item.room : item.kind === 'exam' ? 'Exam' : item.kind === 'event' ? item.location || 'Calendar' : item.kind === 'study' ? 'Revision' : item.kind === 'course' ? 'Course' : item.kind === 'habit' ? 'Habit' : item.kind === 'task' ? 'Task' : 'Schedule';
+  const done = (item.kind === 'habit' || item.kind === 'study' || item.kind === 'task' || item.kind === 'course') && item.done;
   return (
     <Pressable onPress={onPress} onLongPress={onLongPress} accessibilityRole="button" accessibilityLabel={`${item.title}, ${time}, ${kind}${done ? ', done' : ''}`} style={styles.itemRow}>
       <View style={[styles.dot, { backgroundColor: color }]} />
@@ -341,7 +350,7 @@ function ItemRow({ item, day, onPress, onLongPress }: { item: TimelineItem; day:
           {item.kind !== 'habit' && item.conflict ? ' · overlaps' : ''}
         </Text>
       </View>
-      {item.kind === 'habit' || item.kind === 'study' || item.kind === 'task' ? <Ionicons name={done ? 'checkmark-circle' : 'ellipse-outline'} size={22} color={done ? theme.accent : theme.muted} /> : null}
+      {item.kind === 'habit' || item.kind === 'study' || item.kind === 'task' || item.kind === 'course' ? <Ionicons name={done ? 'checkmark-circle' : 'ellipse-outline'} size={22} color={done ? theme.accent : theme.muted} /> : null}
     </Pressable>
   );
 }

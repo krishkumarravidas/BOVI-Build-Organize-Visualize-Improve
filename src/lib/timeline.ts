@@ -3,6 +3,7 @@ import { resolveDay, subjectName, type CollegeState } from './college';
 import { addDays, atTime, fromDateKey } from './dates';
 import { habitsForDay, isCompleted } from './habits';
 import { parseReminderTime } from './reminders';
+import { sessionStatus, slotsOn, type Course } from './courses';
 import { blockOccurrences } from './schedule';
 import type { DateKey, HabitState, ScheduleBlock } from './types';
 
@@ -33,7 +34,9 @@ export type TimelineItem =
     })
   | (Base & { kind: 'exam'; examId: string; series: string; end: Date; room?: string; conflict: boolean })
   | (Base & { kind: 'study'; studyId: string; end: Date; done: boolean; conflict: boolean })
-  | (Base & { kind: 'task'; taskId: string; end: Date; done: boolean; conflict: boolean });
+  | (Base & { kind: 'task'; taskId: string; end: Date; done: boolean; conflict: boolean })
+  /** A weekly study slot of a self-paced course; `done` = session marked done. */
+  | (Base & { kind: 'course'; courseId: string; slotId: string; end: Date; done: boolean; color: string; conflict: boolean });
 
 export interface DayTimeline {
   /** All-day events (and timed events covering the whole day). */
@@ -49,14 +52,16 @@ interface Sources {
   habitState?: HabitState;
   /** When given, the day's (non-cancelled) classes and timed exams are included; untimed exams go to all-day. */
   college?: CollegeState;
+  /** When given, active courses' study slots are included. */
+  courses?: readonly Course[];
 }
 
 /** Length used to draw a timed task that has no duration. */
 export const DEFAULT_TASK_MINUTES = 30;
 
-const KIND_ORDER = { exam: 0, class: 1, block: 2, event: 3, study: 4, task: 5, habit: 6 } as const;
+const KIND_ORDER = { exam: 0, class: 1, block: 2, event: 3, study: 4, course: 4, task: 5, habit: 6 } as const;
 
-export function buildTimeline(day: DateKey, { events = [], blocks = [], habitState, college }: Sources): DayTimeline {
+export function buildTimeline(day: DateKey, { events = [], blocks = [], habitState, college, courses = [] }: Sources): DayTimeline {
   const dayStart = fromDateKey(day);
   const dayEnd = fromDateKey(addDays(day, 1));
   const allDay: AgendaEvent[] = [];
@@ -67,6 +72,12 @@ export function buildTimeline(day: DateKey, { events = [], blocks = [], habitSta
     if (!touches) continue;
     if (e.allDay || (e.start <= dayStart && e.end >= dayEnd)) allDay.push(e);
     else items.push({ kind: 'event', key: `e:${e.id}:${e.start.getTime()}`, title: e.title, start: e.start, end: e.end, location: e.location, conflict: false });
+  }
+
+  for (const c of courses) {
+    for (const slot of slotsOn(c, day)) {
+      items.push({ kind: 'course', key: `co:${c.id}:${slot.id}`, courseId: c.id, slotId: slot.id, title: c.title, start: atTime(day, slot.start), end: atTime(day, slot.end), done: sessionStatus(c, day, slot.id) === 'done', color: c.color, conflict: false });
+    }
   }
 
   for (const o of blockOccurrences(blocks, day)) {

@@ -1,3 +1,4 @@
+import { sanitizeCourses, type Course } from './courses';
 import type { DateKey } from './types';
 import type { AssetItem, Bug, Build, Feature, GameJam, LaunchState, LearningItem, Playtest, RefImage, WeekPick, WeekReview, WishlistEntry } from './gamedev';
 import { sanitizeLinks, type ResourceLink } from './links';
@@ -113,6 +114,8 @@ export interface ProjectsState {
   wishlists?: WishlistEntry[];
   jams?: GameJam[];
   reviews?: WeekReview[];
+  /** Self-paced courses (added later). */
+  courses?: Course[];
 }
 
 export const GAMEDEV_COLLECTIONS = ['weekPlan', 'bugs', 'playtests', 'builds', 'learning', 'assets', 'refs', 'wishlists', 'jams', 'reviews'] as const;
@@ -200,6 +203,7 @@ export function migrateProjects(value: unknown): ProjectsState | null {
     activeFocus: v.activeFocus && typeof v.activeFocus.startedAt === 'number' ? v.activeFocus : null,
     // Game dev workspace collections (added later): keep only if present, so old data round-trips unchanged.
     ...Object.fromEntries(GAMEDEV_COLLECTIONS.filter((k) => v[k] !== undefined).map((k) => [k, arr(v[k] as unknown[])])),
+    ...(v.courses === undefined ? {} : { courses: sanitizeCourses(v.courses) }),
   };
 }
 

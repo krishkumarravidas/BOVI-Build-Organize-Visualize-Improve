@@ -218,13 +218,13 @@ const projects: Tool = {
   name: 'bovi_projects',
   title: 'Projects and ideas',
   description:
-    "The user's side projects from BOVI's second tab (named by the user, e.g. \"Projects\" or \"Game dev\"): status, next step, open milestones and tasks, deadline, last devlog date, focus minutes in the last 7 days, plus their ideas inbox.",
+    "The user's side projects from BOVI's second tab (named by the user, e.g. \"Projects\" or \"Game dev\"): status, next step, open milestones and tasks, deadline, last devlog date, focus minutes in the last 7 days; the self-paced courses they follow (lessons done, next lesson, study times, pace vs finish date, sessions kept); and their ideas inbox.",
   inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   annotations: READ,
   async run(_a, ctx) {
     const r = await snapshotOr(ctx);
     if (isResult(r)) return r;
-    return json(r.header, { tabName: r.snap.projectsTabName, projects: r.snap.projects, ideas: r.snap.ideas });
+    return json(r.header, { tabName: r.snap.projectsTabName, projects: r.snap.projects, courses: r.snap.courses ?? [], ideas: r.snap.ideas });
   },
 };
 

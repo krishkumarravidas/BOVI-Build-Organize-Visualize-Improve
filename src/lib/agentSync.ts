@@ -11,6 +11,7 @@ import { addDays, daysBetween, isValidDateKey, toDateKey, weekdayOf } from './da
 import { habitsForDay, isCompleted } from './habits';
 import { addIdea, nextMilestone, sortedLog, type ProjectsState } from './projects';
 import { examReadiness } from './readiness';
+import { consistency, coursePace, courseProgress, nextLesson } from './courses';
 import { currentSemester, semesterProgress } from './semesters';
 import { upsertTodo } from './todos';
 import type { DateKey, HabitState } from './types';
@@ -153,6 +154,26 @@ export function buildAgentSnapshot({ college, habits, projects, projectsLabel, n
     marks: college.marks.map((m) => ({ subject: subjectLabel(m.subjectId) ?? null, label: m.label, scored: m.scored, outOf: m.outOf })),
     projects: projectList,
     ideas: projects.ideas.slice(0, 50).map((i) => ({ text: i.text, date: i.createdAt })),
+    courses: (projects.courses ?? []).map((c) => {
+      const p = courseProgress(c);
+      const pace = coursePace(c, now);
+      const k = consistency(c);
+      return {
+        title: c.title,
+        provider: c.provider ?? null,
+        status: c.status,
+        lessonsDone: p.done,
+        lessonsTotal: p.total,
+        nextLesson: nextLesson(c)?.lesson.title ?? null,
+        studyTimes: c.slots.map((sl) => `${WEEKDAYS[sl.day]} ${sl.start}-${sl.end}`),
+        finishBy: c.target ?? null,
+        lessonsPerWeekNeeded: pace.neededPerWeek,
+        lessonsPerWeekLately: pace.recentPerWeek,
+        projectedFinish: pace.projectedFinish,
+        onTrack: pace.onTrack,
+        sessionsKeptPercent: k.percent === null ? null : Math.round(k.percent),
+      };
+    }),
   };
 }
 

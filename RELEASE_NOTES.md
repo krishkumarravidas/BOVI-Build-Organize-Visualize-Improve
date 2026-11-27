@@ -2,6 +2,9 @@
 
 A planner for college students and their own projects, built around a clock-style calendar. Android only. No account, no ads, no servers: everything stays on your phone.
 
+### New in 1.7
+- **Courses.** Follow self-paced courses (Udemy, YouTube, books) like a college subject, from the Projects tab. Paste the curriculum to get sections and lessons, tick them off, and set weekly study times: they show on the calendar dial, where one tap marks the session done. A finish date tells you how many lessons a week you need and when you'll actually finish at your current pace.
+
 ### New in 1.6
 - **Phone use on the dial, explained.** A card under the calendar shows phone use for the hours you're looking at: the total, today against your limit, minutes per hour, the busiest hour and which apps took it (tap an hour for its top apps). The dial's outer ring now uses the same colours: grey under 15 min, amber 15–30 min, red 30+ min.
 

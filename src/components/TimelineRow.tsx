@@ -28,7 +28,9 @@ export function TimelineRow({ item, day, onPress }: Props) {
             ? theme.danger
             : item.kind === 'study'
               ? theme.accent
-              : theme.muted;
+              : item.kind === 'course'
+                ? item.color
+                : theme.muted;
   const conflict = item.kind !== 'habit' && item.conflict;
   const subtitle = (() => {
     switch (item.kind) {
@@ -46,6 +48,8 @@ export function TimelineRow({ item, day, onPress }: Props) {
         return item.done ? 'Revision · done' : 'Revision';
       case 'task':
         return item.done ? 'Task · done' : 'Task';
+      case 'course':
+        return item.done ? 'Course · done' : 'Course';
     }
   })();
 
@@ -55,7 +59,7 @@ export function TimelineRow({ item, day, onPress }: Props) {
       : `${item.title}, ${time}, ${subtitle}${conflict ? ', overlaps another item' : ''}`;
 
   const hint =
-    item.kind === 'habit' ? 'Toggles done' : item.kind === 'block' ? 'Edit block' : item.kind === 'class' ? 'Change this class' : item.kind === 'exam' ? 'Edit exam' : item.kind === 'study' || item.kind === 'task' ? 'Toggles done' : undefined;
+    item.kind === 'habit' ? 'Toggles done' : item.kind === 'block' ? 'Edit block' : item.kind === 'class' ? 'Change this class' : item.kind === 'exam' ? 'Edit exam' : item.kind === 'study' || item.kind === 'task' || item.kind === 'course' ? 'Toggles done' : undefined;
 
   return (
     <Pressable
@@ -77,8 +81,8 @@ export function TimelineRow({ item, day, onPress }: Props) {
         <Text
           style={[
             styles.title,
-            { color: (item.kind === 'habit' || item.kind === 'study' || item.kind === 'task') && item.done ? theme.muted : theme.text },
-            (item.kind === 'habit' || item.kind === 'study' || item.kind === 'task') && item.done && styles.done,
+            { color: (item.kind === 'habit' || item.kind === 'study' || item.kind === 'task' || item.kind === 'course') && item.done ? theme.muted : theme.text },
+            (item.kind === 'habit' || item.kind === 'study' || item.kind === 'task' || item.kind === 'course') && item.done && styles.done,
           ]}
           numberOfLines={2}
         >

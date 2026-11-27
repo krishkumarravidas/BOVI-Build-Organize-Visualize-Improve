@@ -164,6 +164,8 @@ export function deleteProjectData(state: ProjectsState, projectId: string): Proj
     if (state[k]) (out as unknown as Record<string, unknown[]>)[k] = (state[k] as { projectId: string }[]).filter((x) => x.projectId !== projectId);
   }
   if (state.learning) out.learning = state.learning.map((l) => (l.projectId === projectId ? { ...l, projectId: undefined } : l));
+  // Courses outlive the project: just unlink them.
+  if (state.courses) out.courses = state.courses.map((c) => (c.projectId === projectId ? { ...c, projectId: undefined } : c));
   return out;
 }
 

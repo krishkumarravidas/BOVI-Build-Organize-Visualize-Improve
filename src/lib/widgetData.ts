@@ -159,12 +159,12 @@ export function buildWidgetData({ college, habitState, projects, events, mode, s
   const to = nowMs + 60 * 60 * 60_000;
   const dial: WidgetData['dial'] = [];
   for (const day of [today, addDays(today, 1), addDays(today, 2), addDays(today, 3)]) {
-    const tl = buildTimeline(day, { events: events.filter((e) => !e.allDay), blocks: habitState.blocks, habitState, college });
+    const tl = buildTimeline(day, { events: events.filter((e) => !e.allDay), blocks: habitState.blocks, habitState, college, courses: projects.courses });
     for (const item of tl.items) {
       const start = item.start.getTime();
       const end = 'end' in item ? item.end.getTime() : start;
       if (end < from || start > to) continue;
-      const color = item.kind === 'class' ? (item.color ?? COLORS.class) : item.kind === 'exam' ? COLORS.exam : item.kind === 'event' ? COLORS.event : COLORS.life;
+      const color = item.kind === 'class' ? (item.color ?? COLORS.class) : item.kind === 'course' ? item.color : item.kind === 'exam' ? COLORS.exam : item.kind === 'event' ? COLORS.event : COLORS.life;
       const title = item.kind === 'class' && item.short ? item.short : item.title;
       dial.push({ start, end, ring: ringFor(item), title, color, point: item.kind === 'habit', done: 'done' in item ? item.done : false });
     }
